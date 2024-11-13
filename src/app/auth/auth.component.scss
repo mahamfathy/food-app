@@ -1,13 +1,11 @@
 @import "../../assets/sass/components/button";
 @import "../../assets/sass/abstract/variables";
 @import "../../assets/sass/base/utilities";
+@import "../../assets/sass/abstract/mixins";
+@import "../../assets/sass/base/typography";
+
 .fluid-container {
-  background: linear-gradient(
-      51.22deg,
-      rgba(47, 140, 96, 0.63) -22.39%,
-      rgba(0, 0, 0, 0.6237) 61.76%
-    ),
-    url("../../assets/img/bg-login.png") center center / cover no-repeat;
+  @include bd-overlay;
   .col-md-6 {
     background-color: $color-white;
     .login-form {
