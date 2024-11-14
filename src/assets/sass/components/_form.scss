@@ -1,11 +1,12 @@
 @import "../abstract/variables";
 .form {
   width: 100%;
-  padding: 2rem 5rem;
+  padding: 2rem 4rem;
   flex-direction: column;
   &__group {
     .input-group {
       padding: 1rem;
+      position: relative;
       .input-group-text {
         border: none;
       }
@@ -21,6 +22,16 @@
         background-color: #f8f9fa;
         border: none;
         padding: 0.75rem;
+        position: relative;
+        &::before {
+          content: "";
+          position: absolute;
+          height: 80%;
+          width: 1px;
+          background-color: $light-grey;
+          top: 10%;
+          left: 0;
+        }
         &::placeholder {
           color: $light-grey;
         }
@@ -30,6 +41,14 @@
             0px 1px 0px rgba(0, 0, 0, 0.3);
           border-color: $light-grey;
         }
+      }
+
+      .eye-icon {
+        position: absolute;
+        right: 5%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
       }
     }
   }

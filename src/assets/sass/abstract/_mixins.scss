@@ -6,3 +6,11 @@
     ),
     url("../../assets/img/bg-login.png") center center / cover no-repeat;
 }
+@mixin form-text {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.36px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}

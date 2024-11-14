@@ -6,9 +6,7 @@
 @import "../../assets/sass/components/form";
 .fluid-container {
   @include bd-overlay;
-  .col-md-6 {
+  .col-md-8 {
     background-color: $color-white;
-    .login-form {
-    }
   }
 }

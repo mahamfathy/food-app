@@ -1,4 +1,5 @@
 @import "../abstract/variables";
+@import "../abstract/mixins";
 body {
   font-family: "Inter", sans-serif !important;
 }
@@ -19,4 +20,12 @@ body {
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+}
+.green-text {
+  color: $color-green1;
+  @include form-text;
+}
+.grey-text {
+  color: $dark-grey;
+  @include form-text;
 }
