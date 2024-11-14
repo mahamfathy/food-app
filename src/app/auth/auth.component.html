@@ -83,7 +83,13 @@
               >Forgot Password?</a
             >
           </div>
-          <button class="w-100 light-green-btn" type="submit">Login</button>
+          <button
+            class="w-100 light-green-btn"
+            [disabled]="loginForm.invalid"
+            type="submit"
+          >
+            Login
+          </button>
         </div>
       </form>
     </div>
