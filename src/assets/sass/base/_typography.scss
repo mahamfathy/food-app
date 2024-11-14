@@ -1,3 +1,13 @@
+@import "../abstract/variables";
 body {
   font-family: "Inter", sans-serif !important;
+}
+.auth-header {
+  color: $primary-grey;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 30.26px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
 }
