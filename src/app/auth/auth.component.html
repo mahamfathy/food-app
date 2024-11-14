@@ -36,14 +36,19 @@
               ><img src="assets/img/lock.svg" alt="password icon" />
             </span>
             <input
-              type="text"
+              [type]="passwordVisible ? 'text' : 'password'"
               class="form-control"
               placeholder="Password"
               aria-label="password"
               formControlName="password"
               aria-describedby="basic-addon1"
             />
-            <img class="eye-icon" src="assets/img/eye.svg" alt="eye icon" />
+            <img
+              class="eye-icon"
+              src="assets/img/eye.svg"
+              alt="eye icon"
+              (click)="togglePasswordVisiblity()"
+            />
           </div>
         </div>
         <div class="other-data mb-4 d-flex justify-content-between">

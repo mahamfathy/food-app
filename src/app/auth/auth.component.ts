@@ -8,6 +8,7 @@ import { AuthService } from './service/auth.service';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent {
+  passwordVisible: boolean = false;
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
@@ -19,6 +20,9 @@ export class AuthComponent {
   });
   constructor(private authService: AuthService) {}
 
+  togglePasswordVisiblity(): void {
+    this.passwordVisible = !this.passwordVisible;
+  }
   onLogin(loginForm: FormGroup): void {
     this.authService.loginForm(loginForm.value).subscribe((next) => {
       console.log(next);
