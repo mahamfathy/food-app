@@ -8,9 +8,11 @@ import { ILogin } from '../interface/ILogin';
 export class AuthService {
   constructor(private _httpClient: HttpClient) {}
   loginForm(loginForm: ILogin): Observable<any> {
+    const headers = { 'Content-Type': 'application/json' };
     return this._httpClient.post(
-      'upskilling-egypt.com:3006/api/v1/Users/Login',
-      loginForm
+      'https://upskilling-egypt.com:3006/api/v1/Users/Login',
+      loginForm,
+      { headers }
     );
   }
 }

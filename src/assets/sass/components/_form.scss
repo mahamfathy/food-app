@@ -11,7 +11,6 @@
         border: none;
       }
       input {
-        text-transform: capitalize;
         color: $color-black;
         font-size: 15px;
         font-weight: 500;
@@ -34,6 +33,7 @@
         }
         &::placeholder {
           color: $light-grey;
+          text-transform: capitalize;
         }
         &:focus,
         &:active {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from './service/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -8,7 +9,20 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class AuthComponent {
   loginForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.pattern(
+        '^(?=(.*[a-z]){3,})(?=(.*[A-Z]){2,})(?=(.*[0-9]){2,})(?=(.*[!@#$%^&*()-__+.]){1,}).{8,}$'
+      ),
+    ]),
   });
+  constructor(private authService: AuthService) {}
+
+  onLogin(loginForm: FormGroup): void {
+    this.authService.loginForm(loginForm.value).subscribe((next) => {
+      console.log(next);
+    });
+    loginForm.reset();
+  }
 }
