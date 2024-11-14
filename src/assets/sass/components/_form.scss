@@ -1,5 +1,36 @@
+@import "../abstract/variables";
 .form {
   width: 100%;
   padding: 2rem 5rem;
   flex-direction: column;
+  &__group {
+    .input-group {
+      padding: 1rem;
+      .input-group-text {
+        border: none;
+      }
+      input {
+        text-transform: capitalize;
+        color: $color-black;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 18.75px;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+        background-color: #f8f9fa;
+        border: none;
+        padding: 0.75rem;
+        &::placeholder {
+          color: $light-grey;
+        }
+        &:focus,
+        &:active {
+          box-shadow: 2px 1px 1px rgba(131, 145, 161, 0.7),
+            0px 1px 0px rgba(0, 0, 0, 0.3);
+          border-color: $light-grey;
+        }
+      }
+    }
+  }
 }
