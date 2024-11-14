@@ -20,7 +20,7 @@ export class AuthComponent {
   });
   constructor(private authService: AuthService) {}
 
-  togglePasswordVisiblity(): void {
+  togglePasswordVisibility(): void {
     this.passwordVisible = !this.passwordVisible;
   }
   onLogin(loginForm: FormGroup): void {

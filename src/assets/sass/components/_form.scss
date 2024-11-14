@@ -5,10 +5,14 @@
   flex-direction: column;
   &__group {
     .input-group {
-      padding: 1rem;
+      padding: 0.5rem;
       position: relative;
       .input-group-text {
         border: none;
+        img {
+          border-right: 1px solid $light-grey;
+          padding-right: 1rem;
+        }
       }
       input {
         color: $color-black;
@@ -45,7 +49,7 @@
 
       .eye-icon {
         position: absolute;
-        right: 5%;
+        right: 2%;
         top: 50%;
         transform: translate(-50%, -50%);
         z-index: 1000;

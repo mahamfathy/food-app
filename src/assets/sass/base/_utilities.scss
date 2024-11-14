@@ -1,3 +1,4 @@
+@import "../abstract/variables";
 .center-div {
   display: flex;
   justify-content: center;
@@ -8,4 +9,12 @@
 }
 .auth-padding {
   padding: 2rem 1rem;
+}
+.error-text {
+  color: $error-text-color;
+  font-size: 12px;
+  margin-top: 5px;
+}
+.password {
+  padding-right: 3rem !important;
 }
