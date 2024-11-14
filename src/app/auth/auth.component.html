@@ -2,7 +2,11 @@
   <div class="overlay"></div>
   <div class="col-md-8 radius-16">
     <div class="login-form center-div">
-      <form class="form d-flex">
+      <form
+        class="form d-flex"
+        [formGroup]="loginForm"
+        (ngSubmit)="onLogin(loginForm)"
+      >
         <div class="logo text-center">
           <img src="assets/img/logo.svg" alt="logo" />
         </div>
