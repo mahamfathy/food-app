@@ -9,7 +9,8 @@
       position: relative;
       .input-group-text {
         border: none;
-        img {
+        img,
+        .fa-solid {
           border-right: 1px solid $light-grey;
           padding-right: 1rem;
         }

@@ -6,7 +6,11 @@
 @import "../../../../assets/sass/components/form";
 .fluid-container {
   @include bd-overlay(false);
-  .col-md-10 {
+  .col-md-9 {
+    height: 80%;
     background-color: $color-white;
+    .logo img {
+      height: 80px;
+    }
   }
 }

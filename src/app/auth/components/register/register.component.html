@@ -1,6 +1,6 @@
 <div class="fluid-container w-100 h-100 center-div">
   <div class="overlay"></div>
-  <div class="col-md-10 radius-16">
+  <div class="col-md-9 radius-16">
     <div class="register-form center-div">
       <form class="form d-flex" (ngSubmit)="onRegister()">
         <div class="logo text-center">
@@ -15,14 +15,14 @@
             <div class="form__group">
               <div class="input-group">
                 <span class="input-group-text">
-                  <img src="assets/img/mobile.svg" alt="email icon"
-                /></span>
+                  <i class="fa-solid fa-user"></i
+                ></span>
 
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="Enter your E-mail"
-                  aria-label="email"
+                  placeholder="Username"
+                  aria-label="username"
                   aria-describedby="basic-addon1"
                 />
               </div>
@@ -45,32 +45,32 @@
           <div class="col-md-6">
             <div class="form__group">
               <div class="input-group">
-                <span class="input-group-text"
-                  ><img src="assets/img/lock.svg" alt="password icon" />
+                <span class="input-group-text">
+                  <i class="fa-solid fa-envelope"></i>
                 </span>
+
                 <input
-                  class="form-control password"
-                  placeholder="Password"
-                  aria-label="password"
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter your E-mail"
+                  aria-label="email"
                   aria-describedby="basic-addon1"
-                  type="password"
                 />
-                <span class="eye-icon"> <i class="fa-solid fa-eye"></i> </span>
               </div>
               <!-- <div
-                    *ngIf="
-                      registerForm.get('password')?.invalid &&
-                      registerForm.get('password')?.touched
-                    "
-                    class="error-text"
-                  >
-                    <small *ngIf="registerForm.get('password')?.hasError('required')"
-                      >Password is required.</small
+                      *ngIf="
+                        registerForm.get('email')?.invalid &&
+                        registerForm.get('email')?.touched
+                      "
+                      class="error-text"
                     >
-                    <small *ngIf="registerForm.get('password')?.hasError('pattern')"
-                      >Password must be stronger.</small
-                    >
-                  </div> -->
+                      <small *ngIf="registerForm.get('email')?.hasError('required')"
+                        >Email is required.</small
+                      >
+                      <small *ngIf="registerForm.get('email')?.hasError('email')"
+                        >Email must be in email-format .</small
+                      > 
+                    </div> -->
             </div>
           </div>
         </div>
@@ -79,14 +79,14 @@
             <div class="form__group">
               <div class="input-group">
                 <span class="input-group-text">
-                  <img src="assets/img/mobile.svg" alt="email icon"
-                /></span>
+                  <i class="fa-solid fa-earth-americas"></i
+                ></span>
 
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="Enter your E-mail"
-                  aria-label="email"
+                  placeholder="Country"
+                  aria-label="country"
                   aria-describedby="basic-addon1"
                 />
               </div>
@@ -109,31 +109,31 @@
           <div class="col-md-6">
             <div class="form__group">
               <div class="input-group">
-                <span class="input-group-text"
-                  ><img src="assets/img/lock.svg" alt="password icon" />
-                </span>
+                <span class="input-group-text">
+                  <i class="fa-solid fa-mobile-screen-button"></i
+                ></span>
+
                 <input
-                  class="form-control password"
-                  placeholder="Password"
-                  aria-label="password"
+                  type="text"
+                  class="form-control"
+                  placeholder="Phone Number"
+                  aria-label="phoneNumber"
                   aria-describedby="basic-addon1"
-                  type="password"
                 />
-                <span class="eye-icon"> <i class="fa-solid fa-eye"></i> </span>
               </div>
               <!-- <div
                       *ngIf="
-                        registerForm.get('password')?.invalid &&
-                        registerForm.get('password')?.touched
+                        registerForm.get('email')?.invalid &&
+                        registerForm.get('email')?.touched
                       "
                       class="error-text"
                     >
-                      <small *ngIf="registerForm.get('password')?.hasError('required')"
-                        >Password is required.</small
+                      <small *ngIf="registerForm.get('email')?.hasError('required')"
+                        >Email is required.</small
                       >
-                      <small *ngIf="registerForm.get('password')?.hasError('pattern')"
-                        >Password must be stronger.</small
-                      >
+                      <small *ngIf="registerForm.get('email')?.hasError('email')"
+                        >Email must be in email-format .</small
+                      > 
                     </div> -->
             </div>
           </div>
@@ -143,43 +143,43 @@
             <div class="form__group">
               <div class="input-group">
                 <span class="input-group-text">
-                  <img src="assets/img/mobile.svg" alt="email icon"
-                /></span>
-
+                  <i class="fa-solid fa-lock"></i>
+                </span>
                 <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Enter your E-mail"
-                  aria-label="email"
+                  class="form-control password"
+                  placeholder="Password"
+                  aria-label="password"
                   aria-describedby="basic-addon1"
+                  type="password"
                 />
+                <span class="eye-icon"> <i class="fa-solid fa-eye"></i> </span>
               </div>
               <!-- <div
-                    *ngIf="
-                      registerForm.get('email')?.invalid &&
-                      registerForm.get('email')?.touched
-                    "
-                    class="error-text"
-                  >
-                    <small *ngIf="registerForm.get('email')?.hasError('required')"
-                      >Email is required.</small
-                    >
-                    <small *ngIf="registerForm.get('email')?.hasError('email')"
-                      >Email must be in email-format .</small
-                    > 
-                  </div> -->
+                        *ngIf="
+                          registerForm.get('password')?.invalid &&
+                          registerForm.get('password')?.touched
+                        "
+                        class="error-text"
+                      >
+                        <small *ngIf="registerForm.get('password')?.hasError('required')"
+                          >Password is required.</small
+                        >
+                        <small *ngIf="registerForm.get('password')?.hasError('pattern')"
+                          >Password must be stronger.</small
+                        >
+                      </div> -->
             </div>
           </div>
           <div class="col-md-6">
             <div class="form__group">
               <div class="input-group">
                 <span class="input-group-text"
-                  ><img src="assets/img/lock.svg" alt="password icon" />
+                  ><i class="fa-solid fa-lock"></i>
                 </span>
                 <input
                   class="form-control password"
-                  placeholder="Password"
-                  aria-label="password"
+                  placeholder="Confirm Password"
+                  aria-label="confirmPassword"
                   aria-describedby="basic-addon1"
                   type="password"
                 />
@@ -203,15 +203,17 @@
           </div>
         </div>
 
-        <div class="other-data mb-4 d-flex justify-content-between">
-          <a class="text-decoration-none grey-text" routerLink="/auth/login"
+        <div class="other-data mb-1 d-flex justify-content-end">
+          <a
+            routerLink="/auth/login"
+            class="text-decoration-none green-text"
+            href="#"
             >Login now?</a
           >
-          <a class="text-decoration-none green-text" href="#"
-            >Forgot Password?</a
-          >
         </div>
-        <button class="w-100 light-green-btn" type="submit">Register</button>
+        <div class="col-md-5 mb-4 m-auto">
+          <button class="w-100 light-green-btn" type="submit">Register</button>
+        </div>
       </form>
     </div>
   </div>
