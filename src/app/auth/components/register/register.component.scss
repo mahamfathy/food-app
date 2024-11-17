@@ -9,5 +9,8 @@
   .col-md-9 {
     height: 80%;
     background-color: $color-white;
+    i {
+      color: $secondary-grey;
+    }
   }
 }

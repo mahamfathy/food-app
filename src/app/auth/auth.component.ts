@@ -24,9 +24,10 @@ export class AuthComponent {
     this.passwordVisible = !this.passwordVisible;
   }
   onLogin(loginForm: FormGroup): void {
+    console.log(loginForm);
     this.authService.loginForm(loginForm.value).subscribe((next) => {
       console.log(next);
     });
-    loginForm.reset();
+    // loginForm.reset();
   }
 }
