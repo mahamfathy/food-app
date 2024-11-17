@@ -55,12 +55,12 @@
                 formControlName="password"
                 aria-describedby="basic-addon1"
               />
-              <img
-                class="eye-icon"
-                src="assets/img/eye.svg"
-                alt="eye icon"
-                (click)="togglePasswordVisibility()"
-              />
+              <span class="eye-icon" (click)="togglePasswordVisibility()">
+                <i
+                  class="fa-solid"
+                  [class]="passwordVisible ? 'fa-eye-slash' : 'fa-eye'"
+                ></i>
+              </span>
             </div>
             <div
               *ngIf="
@@ -78,7 +78,9 @@
             </div>
           </div>
           <div class="other-data mb-4 d-flex justify-content-between">
-            <a class="text-decoration-none grey-text" href="#">Register now?</a>
+            <a class="text-decoration-none grey-text" href="auth/register"
+              >Register now?</a
+            >
             <a class="text-decoration-none green-text" href="#"
               >Forgot Password?</a
             >

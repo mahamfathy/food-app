@@ -5,7 +5,7 @@
   flex-direction: column;
   &__group {
     .input-group {
-      padding: 0.5rem;
+      margin-bottom: 0.5rem;
       position: relative;
       .input-group-text {
         border: none;
@@ -46,13 +46,14 @@
           border-color: $light-grey;
         }
       }
-
       .eye-icon {
         position: absolute;
         right: 2%;
+        width: 1.5rem;
         top: 50%;
         transform: translate(-50%, -50%);
         z-index: 1000;
+        text-align: center;
         cursor: pointer;
       }
     }

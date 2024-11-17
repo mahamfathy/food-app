@@ -1,1 +1,218 @@
-<p>register works!</p>
+<div class="fluid-container w-100 h-100 center-div">
+  <div class="overlay"></div>
+  <div class="col-md-10 radius-16">
+    <div class="register-form center-div">
+      <form class="form d-flex" (ngSubmit)="onRegister()">
+        <div class="logo text-center">
+          <img src="assets/img/logo.svg" alt="logo" />
+        </div>
+        <div class="text-container">
+          <h3 class="auth-header">Register</h3>
+          <p class="auth-paragraph">Welcome Back! Please enter your details</p>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form__group">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <img src="assets/img/mobile.svg" alt="email icon"
+                /></span>
+
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter your E-mail"
+                  aria-label="email"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+              <!-- <div
+                  *ngIf="
+                    registerForm.get('email')?.invalid &&
+                    registerForm.get('email')?.touched
+                  "
+                  class="error-text"
+                >
+                  <small *ngIf="registerForm.get('email')?.hasError('required')"
+                    >Email is required.</small
+                  >
+                  <small *ngIf="registerForm.get('email')?.hasError('email')"
+                    >Email must be in email-format .</small
+                  > 
+                </div> -->
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form__group">
+              <div class="input-group">
+                <span class="input-group-text"
+                  ><img src="assets/img/lock.svg" alt="password icon" />
+                </span>
+                <input
+                  class="form-control password"
+                  placeholder="Password"
+                  aria-label="password"
+                  aria-describedby="basic-addon1"
+                  type="password"
+                />
+                <span class="eye-icon"> <i class="fa-solid fa-eye"></i> </span>
+              </div>
+              <!-- <div
+                    *ngIf="
+                      registerForm.get('password')?.invalid &&
+                      registerForm.get('password')?.touched
+                    "
+                    class="error-text"
+                  >
+                    <small *ngIf="registerForm.get('password')?.hasError('required')"
+                      >Password is required.</small
+                    >
+                    <small *ngIf="registerForm.get('password')?.hasError('pattern')"
+                      >Password must be stronger.</small
+                    >
+                  </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form__group">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <img src="assets/img/mobile.svg" alt="email icon"
+                /></span>
+
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter your E-mail"
+                  aria-label="email"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+              <!-- <div
+                    *ngIf="
+                      registerForm.get('email')?.invalid &&
+                      registerForm.get('email')?.touched
+                    "
+                    class="error-text"
+                  >
+                    <small *ngIf="registerForm.get('email')?.hasError('required')"
+                      >Email is required.</small
+                    >
+                    <small *ngIf="registerForm.get('email')?.hasError('email')"
+                      >Email must be in email-format .</small
+                    > 
+                  </div> -->
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form__group">
+              <div class="input-group">
+                <span class="input-group-text"
+                  ><img src="assets/img/lock.svg" alt="password icon" />
+                </span>
+                <input
+                  class="form-control password"
+                  placeholder="Password"
+                  aria-label="password"
+                  aria-describedby="basic-addon1"
+                  type="password"
+                />
+                <span class="eye-icon"> <i class="fa-solid fa-eye"></i> </span>
+              </div>
+              <!-- <div
+                      *ngIf="
+                        registerForm.get('password')?.invalid &&
+                        registerForm.get('password')?.touched
+                      "
+                      class="error-text"
+                    >
+                      <small *ngIf="registerForm.get('password')?.hasError('required')"
+                        >Password is required.</small
+                      >
+                      <small *ngIf="registerForm.get('password')?.hasError('pattern')"
+                        >Password must be stronger.</small
+                      >
+                    </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form__group">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <img src="assets/img/mobile.svg" alt="email icon"
+                /></span>
+
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter your E-mail"
+                  aria-label="email"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+              <!-- <div
+                    *ngIf="
+                      registerForm.get('email')?.invalid &&
+                      registerForm.get('email')?.touched
+                    "
+                    class="error-text"
+                  >
+                    <small *ngIf="registerForm.get('email')?.hasError('required')"
+                      >Email is required.</small
+                    >
+                    <small *ngIf="registerForm.get('email')?.hasError('email')"
+                      >Email must be in email-format .</small
+                    > 
+                  </div> -->
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form__group">
+              <div class="input-group">
+                <span class="input-group-text"
+                  ><img src="assets/img/lock.svg" alt="password icon" />
+                </span>
+                <input
+                  class="form-control password"
+                  placeholder="Password"
+                  aria-label="password"
+                  aria-describedby="basic-addon1"
+                  type="password"
+                />
+                <span class="eye-icon"> <i class="fa-solid fa-eye"></i> </span>
+              </div>
+              <!-- <div
+                      *ngIf="
+                        registerForm.get('password')?.invalid &&
+                        registerForm.get('password')?.touched
+                      "
+                      class="error-text"
+                    >
+                      <small *ngIf="registerForm.get('password')?.hasError('required')"
+                        >Password is required.</small
+                      >
+                      <small *ngIf="registerForm.get('password')?.hasError('pattern')"
+                        >Password must be stronger.</small
+                      >
+                    </div> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="other-data mb-4 d-flex justify-content-between">
+          <a class="text-decoration-none grey-text" routerLink="/auth/login"
+            >Login now?</a
+          >
+          <a class="text-decoration-none green-text" href="#"
+            >Forgot Password?</a
+          >
+        </div>
+        <button class="w-100 light-green-btn" type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+</div>
