@@ -150,9 +150,15 @@
                   placeholder="Password"
                   aria-label="password"
                   aria-describedby="basic-addon1"
-                  type="password"
+                  [type]="hidePassword ? 'password' : 'text'"
                 />
-                <span class="eye-icon"> <i class="fa-solid fa-eye"></i> </span>
+                <span class="eye-icon">
+                  <i
+                    class="fa-solid"
+                    (click)="togglePasswordVisibility()"
+                    [class]="hidePassword ? 'fa-eye' : 'fa-eye-slash'"
+                  ></i>
+                </span>
               </div>
               <!-- <div
                         *ngIf="
@@ -181,9 +187,15 @@
                   placeholder="Confirm Password"
                   aria-label="confirmPassword"
                   aria-describedby="basic-addon1"
-                  type="password"
+                  [type]="hidePassword ? 'password' : 'text'"
                 />
-                <span class="eye-icon"> <i class="fa-solid fa-eye"></i> </span>
+                <span class="eye-icon">
+                  <i
+                    class="fa-solid"
+                    (click)="togglePasswordVisibility()"
+                    [ngClass]="hidePassword ? 'fa-eye' : 'fa-eye-slash'"
+                  ></i>
+                </span>
               </div>
               <!-- <div
                       *ngIf="
@@ -203,11 +215,8 @@
           </div>
         </div>
 
-        <div class="other-data mb-1 d-flex justify-content-end">
-          <a
-            routerLink="/auth/login"
-            class="text-decoration-none green-text"
-            href="#"
+        <div class="other-data mb-2 d-flex justify-content-end">
+          <a routerLink="/auth/login" class="text-decoration-none green-text"
             >Login now?</a
           >
         </div>

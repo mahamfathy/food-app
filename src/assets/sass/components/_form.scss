@@ -1,8 +1,11 @@
 @import "../abstract/variables";
 .form {
   width: 100%;
-  padding: 2rem 4rem;
+  padding: 1.5rem 3.5rem;
   flex-direction: column;
+  .logo img {
+    height: 80px;
+  }
   &__group {
     .input-group {
       margin-bottom: 0.5rem;
