@@ -1,0 +1,14 @@
+@import "../../../../assets/sass/components/button";
+@import "../../../../assets/sass/abstract/variables";
+@import "../../../../assets/sass/base/utilities";
+@import "../../../../assets/sass/abstract/mixins";
+@import "../../../../assets/sass/base/typography";
+@import "../../../../assets/sass/components/form";
+.fluid-container {
+  @include bd-overlay;
+  .col-md-6 {
+    background-color: $color-white;
+
+    height: 70%;
+  }
+}

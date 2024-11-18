@@ -1,1 +1,94 @@
-<p>reset-passowrd works!</p>
+<div class="fluid-container w-100 h-100 center-div">
+  <div class="overlay"></div>
+  <div class="col-md-6 radius-16">
+    <div class="login-form center-div">
+      <form class="form d-flex justify-content-around">
+        <div class="logo text-center">
+          <img src="assets/img/logo.svg" alt="logo" />
+        </div>
+        <div class="text-container">
+          <h3 class="auth-header">Reset Password</h3>
+          <p class="auth-paragraph">
+            Please Enter Your Otp or Check Your Inbox
+          </p>
+        </div>
+        <div class="form__group">
+          <div class="input-group">
+            <span class="input-group-text">
+              <img src="assets/img/mobile.svg" alt="email icon"
+            /></span>
+
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter your E-mail"
+              aria-label="email"
+              aria-describedby="basic-addon1"
+              formControlName="email"
+            />
+          </div>
+          <!-- <div
+              *ngIf="
+                resetPassword.get('email')?.invalid && resetPassword.get('email')?.touched
+              "
+              class="error-text"
+            >
+              <small *ngIf="resetPassword.get('email')?.hasError('required')"
+                >Email is required.</small
+              >
+              <small *ngIf="resetPassword.get('email')?.hasError('email')"
+                >Email must be in email-format .</small
+              >
+            </div> -->
+          <div class="form__group">
+            <div class="input-group">
+              <span class="input-group-text"
+                ><img src="assets/img/lock.svg" alt="password icon" />
+              </span>
+              <input
+                type=" text"
+                class="form-control password"
+                placeholder="Password"
+                aria-label="password"
+                formControlName="password"
+                aria-describedby="basic-addon1"
+              />
+              <span class="eye-icon">
+                <i class="fa-solid fa-eye"></i>
+              </span>
+            </div>
+            <!-- <div
+                *ngIf="
+                  resetPassword.get('password')?.invalid &&
+                  resetPassword.get('password')?.touched
+                "
+                class="error-text"
+              >
+                <small *ngIf="resetPassword.get('password')?.hasError('required')"
+                  >Password is required.</small
+                >
+                <small *ngIf="resetPassword.get('password')?.hasError('pattern')"
+                  >Password must be stronger.</small
+                >
+              </div> -->
+          </div>
+          <div class="other-data mb-4 d-flex justify-content-between">
+            <a
+              class="text-decoration-none grey-text"
+              routerLink="/auth/register"
+              >Register now?</a
+            >
+            <a
+              class="text-decoration-none green-text"
+              routerLink="/auth/reset-request"
+              >Forgot Password?</a
+            >
+          </div>
+          <button class="w-100 light-green-btn" type="submit">
+            Reset Password
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
