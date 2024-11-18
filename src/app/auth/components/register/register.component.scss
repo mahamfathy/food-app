@@ -12,5 +12,24 @@
     i {
       color: $secondary-grey;
     }
+    .dropzone-container {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      ngx-dropzone-image-preview {
+        min-height: unset !important;
+        min-width: unset !important;
+        max-width: unset !important;
+        height: 95% !important;
+        width: 95% !important;
+        margin: 0 auto !important;
+        border-radius: 50% !important ;
+        img {
+          width: 100% !important ;
+          height: 100% !important ;
+          border-radius: 50% !important ;
+        }
+      }
+    }
   }
 }

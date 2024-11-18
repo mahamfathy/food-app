@@ -16,7 +16,6 @@ export class GlobalInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     const newRequest = request.clone({
       url: `${this.baseUrl}${request.url}`,
-      setHeaders: { 'Content-Type': 'application/json' },
     });
     console.log(newRequest);
     return next.handle(newRequest);

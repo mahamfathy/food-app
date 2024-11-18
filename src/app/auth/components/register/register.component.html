@@ -1,4 +1,4 @@
-<div class="fluid-container w-100 h-100 center-div">
+<div class="fluid-container w-100 center-div">
   <div class="overlay"></div>
   <div class="col-md-9 radius-16">
     <div class="register-form center-div">
@@ -138,39 +138,7 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form__group">
-              <div class="input-group">
-                <span class="input-group-text">
-                  <i class="fa-solid fa-earth-americas"></i
-                ></span>
 
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="No file chosen"
-                  aria-label="profileImage"
-                  aria-describedby="basic-addon1"
-                />
-              </div>
-              <!-- <div
-                    *ngIf="
-                      registerForm.get('email')?.invalid &&
-                      registerForm.get('email')?.touched
-                    "
-                    class="error-text"
-                  >
-                    <small *ngIf="registerForm.get('email')?.hasError('required')"
-                      >Email is required.</small
-                    >
-                    <small *ngIf="registerForm.get('email')?.hasError('email')"
-                      >Email must be in email-format .</small
-                    > 
-                  </div> -->
-            </div>
-          </div>
-        </div>
         <div class="row">
           <div class="col-md-6">
             <div class="form__group">
@@ -189,7 +157,7 @@
                   <i
                     class="fa-solid"
                     (click)="togglePasswordVisibility()"
-                    [class]="hidePassword ? 'fa-eye' : 'fa-eye-slash'"
+                    [class]="hidePassword ? 'fa-eye-slash' : 'fa-eye'"
                   ></i>
                 </span>
               </div>
@@ -226,7 +194,7 @@
                   <i
                     class="fa-solid"
                     (click)="togglePasswordVisibility()"
-                    [ngClass]="hidePassword ? 'fa-eye' : 'fa-eye-slash'"
+                    [ngClass]="hidePassword ? 'fa-eye-slash' : 'fa-eye'"
                   ></i>
                 </span>
               </div>
@@ -247,7 +215,25 @@
             </div>
           </div>
         </div>
-
+        <div class="row mt-2 m-auto">
+          <div class="col-md-6">
+            <ngx-dropzone
+              class="dropzone-container"
+              (change)="onSelect($event)"
+            >
+              <ngx-dropzone-label>Drop your photo here!</ngx-dropzone-label>
+              <ngx-dropzone-image-preview
+                ngProjectAs="ngx-dropzone-preview"
+                *ngFor="let f of files"
+                [file]="f"
+                class="dropzone-preview"
+                [removable]="true"
+                (removed)="onRemove(f)"
+              >
+              </ngx-dropzone-image-preview>
+            </ngx-dropzone>
+          </div>
+        </div>
         <div class="other-data mb-2 d-flex justify-content-end">
           <a routerLink="/auth/login" class="text-decoration-none green-text"
             >Login now?</a
