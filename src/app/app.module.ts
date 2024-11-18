@@ -17,7 +17,11 @@ import { GlobalInterceptor } from './auth/interceptors/global.interceptor';
     HttpClientModule,
     CommonModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: GlobalInterceptor, multi: true },

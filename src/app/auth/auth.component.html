@@ -3,7 +3,7 @@
   <div class="col-md-6 radius-16">
     <div class="login-form center-div">
       <form
-        class="form d-flex"
+        class="form d-flex justify-content-around"
         [formGroup]="loginForm"
         (ngSubmit)="onLogin(loginForm)"
       >
@@ -78,10 +78,14 @@
             </div>
           </div>
           <div class="other-data mb-4 d-flex justify-content-between">
-            <a class="text-decoration-none grey-text" href="auth/register"
+            <a
+              class="text-decoration-none grey-text"
+              routerLink="/auth/register"
               >Register now?</a
             >
-            <a class="text-decoration-none green-text" href="#"
+            <a
+              class="text-decoration-none green-text"
+              routerLink="/auth/reset-request"
               >Forgot Password?</a
             >
           </div>

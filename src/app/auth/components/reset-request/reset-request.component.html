@@ -1,1 +1,66 @@
-<p>reset-request works!</p>
+<div class="fluid-container w-100 h-100 center-div">
+  <div class="overlay"></div>
+  <div class="col-md-6 radius-16">
+    <div class="resetReq-form center-div">
+      <form
+        class="form d-flex"
+        #resetRequest="ngForm"
+        (ngSubmit)="onResetReq()"
+      >
+        <div class="logo text-center">
+          <img src="assets/img/logo.svg" alt="logo" />
+        </div>
+        <div class="text-container">
+          <h3 class="auth-header">Forgot Your Password?</h3>
+          <p class="auth-paragraph">
+            No worries! Please enter your email and we will send a password
+            reset link
+          </p>
+        </div>
+        <div class="form__group mt-4">
+          <div class="input-group">
+            <span class="input-group-text">
+              <img src="assets/img/mobile.svg" alt="email icon"
+            /></span>
+
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter your email"
+              aria-label="email"
+              aria-describedby="basic-addon1"
+              name="email"
+              ngModel
+              required
+              email
+              #emailInput="ngModel"
+            />
+          </div>
+          <div
+            *ngIf="emailInput.invalid && emailInput.touched"
+            class="error-text"
+          >
+            <small *ngIf="emailInput.errors?.['required']"
+              >Email is required.</small
+            >
+            <small *ngIf="emailInput.errors?.['email']"
+              >Email must be valid.</small
+            >
+          </div>
+          <div class="other-data mt-3 mb-5 d-flex justify-content-end">
+            <a class="text-decoration-none green-text" routerLink="/auth/login"
+              >Login now?</a
+            >
+          </div>
+          <button
+            class="w-100 light-green-btn"
+            [disabled]="resetRequest.invalid"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
