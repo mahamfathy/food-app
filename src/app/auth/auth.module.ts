@@ -6,9 +6,10 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ResetRequestComponent } from './components/reset-request/reset-request.component';
 
 @NgModule({
-  declarations: [AuthComponent, RegisterComponent],
+  declarations: [AuthComponent, RegisterComponent, ResetRequestComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

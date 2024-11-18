@@ -25,8 +25,14 @@ export class AuthComponent {
   }
   onLogin(loginForm: FormGroup): void {
     console.log(loginForm);
-    this.authService.loginForm(loginForm.value).subscribe((next) => {
-      console.log(next);
+    this.authService.loginForm(loginForm.value).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {},
     });
     // loginForm.reset();
   }
