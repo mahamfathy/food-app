@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from './service/auth.service';
+import { LocalStorageService } from './service/local-storage.service';
 
 @Component({
   selector: 'app-auth',
@@ -18,21 +20,30 @@ export class AuthComponent {
       ),
     ]),
   });
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private localStorageService: LocalStorageService,
+    private toastr: ToastrService
+  ) {}
 
   togglePasswordVisibility(): void {
     this.passwordVisible = !this.passwordVisible;
   }
   onLogin(loginForm: FormGroup): void {
-    console.log(loginForm);
+    if (loginForm.invalid) {
+      this.toastr.error('Invalid login details!', 'Error');
+      return;
+    }
     this.authService.loginForm(loginForm.value).subscribe({
       next: (res) => {
-        console.log(res);
+        this.localStorageService.setItem('userToken', res.token);
       },
       error: (err) => {
-        console.log(err);
+        this.toastr.error('Login failed. Please try again.', 'Error');
       },
-      complete: () => {},
+      complete: () => {
+        this.toastr.success('Login successful!', 'Success');
+      },
     });
     // loginForm.reset();
   }
