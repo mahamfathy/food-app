@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ILogin } from '../interface/ILogin';
 import { IRegister } from '../interface/IRegister';
+import { IResetPassword } from '../interface/IResetPassword';
 @Injectable({
   providedIn: 'root',
 })
@@ -12,6 +13,9 @@ export class AuthService {
     return this._httpClient.post('/Users/Login', loginForm);
   }
   registerForm(registerForm: IRegister): Observable<any> {
-    return this._httpClient.post('/User/Register', registerForm);
+    return this._httpClient.post('/Users/Register', registerForm);
+  }
+  resetPasswordForm(resetPasswordForm: IResetPassword): Observable<any> {
+    return this._httpClient.post('/Users/Reset', resetPasswordForm);
   }
 }
