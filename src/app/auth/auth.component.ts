@@ -39,7 +39,19 @@ export class AuthComponent {
         this.localStorageService.setItem('userToken', res.token);
       },
       error: (err) => {
-        this.toastr.error('Login failed. Please try again.', 'Error');
+        const errors = err.error.errors;
+        if (errors) {
+          if (errors.email) {
+            this.toastr.error(errors.email, 'Email Error');
+          } else if (errors.password) {
+            this.toastr.error(errors.password, 'Password Error');
+          }
+        } else {
+          this.toastr.error(
+            err.error.message || 'An unexpected error occurred',
+            'Error'
+          );
+        }
       },
       complete: () => {
         this.toastr.success('Login successful!', 'Success');
