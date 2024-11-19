@@ -15,6 +15,9 @@ export class AuthService {
   registerForm(registerForm: IRegister): Observable<any> {
     return this._httpClient.post('/Users/Register', registerForm);
   }
+  resetRequestForm(resetReq: any): Observable<any> {
+    return this._httpClient.post('Users/Reset/Request', resetReq);
+  }
   resetPasswordForm(resetPasswordForm: IResetPassword): Observable<any> {
     return this._httpClient.post('/Users/Reset', resetPasswordForm);
   }
