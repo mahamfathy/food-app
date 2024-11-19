@@ -1,8 +1,12 @@
 <div class="fluid-container w-100 h-100 center-div">
   <div class="overlay"></div>
   <div class="col-md-6 radius-16">
-    <div class="login-form center-div">
-      <form class="form d-flex justify-content-around">
+    <div class="resetPassword-form center-div">
+      <form
+        class="form d-flex row-gap-1"
+        [formGroup]="resetPasswordForm"
+        (ngSubmit)="onResetPass(resetPasswordForm)"
+      >
         <div class="logo text-center">
           <img src="assets/img/logo.svg" alt="logo" />
         </div>
@@ -27,19 +31,20 @@
               formControlName="email"
             />
           </div>
-          <!-- <div
-              *ngIf="
-                resetPassword.get('email')?.invalid && resetPassword.get('email')?.touched
-              "
-              class="error-text"
+          <div
+            *ngIf="
+              resetPasswordForm.get('email')?.invalid &&
+              resetPasswordForm.get('email')?.touched
+            "
+            class="error-text"
+          >
+            <small *ngIf="resetPasswordForm.get('email')?.hasError('required')"
+              >Email is required.</small
             >
-              <small *ngIf="resetPassword.get('email')?.hasError('required')"
-                >Email is required.</small
-              >
-              <small *ngIf="resetPassword.get('email')?.hasError('email')"
-                >Email must be in email-format .</small
-              >
-            </div> -->
+            <small *ngIf="resetPasswordForm.get('email')?.hasError('email')"
+              >Email must be in email-format .</small
+            >
+          </div>
         </div>
 
         <div class="form__group">
@@ -56,20 +61,17 @@
               aria-describedby="basic-addon1"
             />
           </div>
-          <!-- <div
-                *ngIf="
-                  resetPassword.get('password')?.invalid &&
-                  resetPassword.get('password')?.touched
-                "
-                class="error-text"
-              >
-                <small *ngIf="resetPassword.get('password')?.hasError('required')"
-                  >Password is required.</small
-                >
-                <small *ngIf="resetPassword.get('password')?.hasError('pattern')"
-                  >Password must be stronger.</small
-                >
-              </div> -->
+          <div
+            *ngIf="
+              resetPasswordForm.get('seed')?.invalid &&
+              resetPasswordForm.get('seed')?.touched
+            "
+            class="error-text"
+          >
+            <small *ngIf="resetPasswordForm.get('seed')?.hasError('required')"
+              >OTP is required.</small
+            >
+          </div>
         </div>
         <div class="form__group">
           <div class="input-group">
@@ -88,20 +90,22 @@
               <i class="fa-solid fa-eye"></i>
             </span>
           </div>
-          <!-- <div
+          <div
             *ngIf="
-              loginForm.get('password')?.invalid &&
-              loginForm.get('password')?.touched
+              resetPasswordForm.get('password')?.invalid &&
+              resetPasswordForm.get('password')?.touched
             "
             class="error-text"
           >
-            <small *ngIf="loginForm.get('password')?.hasError('required')"
+            <small
+              *ngIf="resetPasswordForm.get('password')?.hasError('required')"
               >Password is required.</small
             >
-            <small *ngIf="loginForm.get('password')?.hasError('pattern')"
+            <small
+              *ngIf="resetPasswordForm.get('password')?.hasError('pattern')"
               >Password must be stronger.</small
             >
-          </div> -->
+          </div>
         </div>
         <div class="form__group">
           <div class="input-group">
@@ -109,7 +113,7 @@
               ><img src="assets/img/lock.svg" alt="password icon" />
             </span>
             <input
-              type="text"
+              type="password"
               class="form-control password"
               placeholder="Confirm New Password"
               aria-label="confirmPassword"
@@ -120,23 +124,33 @@
               <i class="fa-solid fa-eye"></i>
             </span>
           </div>
-          <!-- <div
+          <div
             *ngIf="
-              loginForm.get('password')?.invalid &&
-              loginForm.get('password')?.touched
+              resetPasswordForm.get('confirmPassword')?.invalid &&
+              resetPasswordForm.get('confirmPassword')?.touched
             "
             class="error-text"
           >
-            <small *ngIf="loginForm.get('password')?.hasError('required')"
+            <small
+              *ngIf="
+                resetPasswordForm.get('confirmPassword')?.hasError('required')
+              "
               >Password is required.</small
             >
-            <small *ngIf="loginForm.get('password')?.hasError('pattern')"
+            <small
+              *ngIf="
+                resetPasswordForm.get('confirmPassword')?.hasError('pattern')
+              "
               >Password must be stronger.</small
             >
-          </div> -->
+          </div>
         </div>
 
-        <button class="w-100 light-green-btn" type="submit">
+        <button
+          class="w-100 light-green-btn"
+          [disabled]="resetPasswordForm.invalid"
+          type="submit"
+        >
           Reset Password
         </button>
       </form>
