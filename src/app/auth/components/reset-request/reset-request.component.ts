@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../service/auth.service';
 import { LocalStorageService } from '../../service/local-storage.service';
@@ -15,7 +16,8 @@ export class ResetRequestComponent {
   constructor(
     private _AuthService: AuthService,
     private _ToasttrService: ToastrService,
-    private _LocalStorageService: LocalStorageService
+    private _LocalStorageService: LocalStorageService,
+    private _Router: Router
   ) {}
   onResetReq(resetReq: NgForm): void {
     if (resetReq.valid) {
@@ -33,6 +35,7 @@ export class ResetRequestComponent {
             this.backendMsg || 'Password reset link sent!',
             'Reset Request'
           );
+          this._Router.navigateByUrl('/auth/reset-password');
         },
       });
     }
