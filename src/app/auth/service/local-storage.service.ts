@@ -8,8 +8,8 @@ export class LocalStorageService {
   setItem(key: string, value: string): void {
     localStorage.setItem(key, value);
   }
-  getItem(key: string): void {
-    localStorage.getItem(key);
+  getItem(key: string): string | null {
+    return localStorage.getItem(key);
   }
   removeItem(key: string): void {
     localStorage.removeItem(key);

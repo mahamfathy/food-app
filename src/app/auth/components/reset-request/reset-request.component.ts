@@ -12,10 +12,10 @@ import { LocalStorageService } from '../../service/local-storage.service';
 })
 export class ResetRequestComponent {
   email: string = '';
-  backendMsg: string = '';
+  resMessage: string = '';
   constructor(
     private _AuthService: AuthService,
-    private _ToasttrService: ToastrService,
+    private _ToastrService: ToastrService,
     private _LocalStorageService: LocalStorageService,
     private _Router: Router
   ) {}
@@ -25,14 +25,14 @@ export class ResetRequestComponent {
       this._AuthService.resetRequestForm(formData).subscribe({
         next: (res) => {
           this._LocalStorageService.setItem('email', formData.email);
-          this.backendMsg = res.message;
+          this.resMessage = res.message;
         },
         error: (err) => {
-          this._ToasttrService.error(err.error.message, 'Error');
+          this._ToastrService.error(err.error.message, 'Error');
         },
         complete: () => {
-          this._ToasttrService.success(
-            this.backendMsg || 'Password reset link sent!',
+          this._ToastrService.success(
+            this.resMessage || 'Password reset link sent!',
             'Reset Request'
           );
           this._Router.navigateByUrl('/auth/reset-password');
