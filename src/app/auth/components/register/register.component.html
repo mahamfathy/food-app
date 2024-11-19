@@ -2,7 +2,11 @@
   <div class="overlay"></div>
   <div class="col-md-9 radius-16">
     <div class="register-form center-div">
-      <form class="form d-flex" (ngSubmit)="onRegister()">
+      <form
+        class="form d-flex"
+        [formGroup]="registerForm"
+        (ngSubmit)="onRegister()"
+      >
         <div class="logo text-center">
           <img src="assets/img/logo.svg" alt="logo" />
         </div>
@@ -23,6 +27,7 @@
                   class="form-control"
                   placeholder="Username"
                   aria-label="username"
+                  formControlName="userName"
                   aria-describedby="basic-addon1"
                 />
               </div>
@@ -54,6 +59,7 @@
                   class="form-control"
                   placeholder="Enter your E-mail"
                   aria-label="email"
+                  formControlName="email"
                   aria-describedby="basic-addon1"
                 />
               </div>
@@ -86,6 +92,7 @@
                   type="text"
                   class="form-control"
                   placeholder="Country"
+                  formControlName="country"
                   aria-label="country"
                   aria-describedby="basic-addon1"
                 />
@@ -117,6 +124,7 @@
                   type="text"
                   class="form-control"
                   placeholder="Phone Number"
+                  formControlName="phoneNumber"
                   aria-label="phoneNumber"
                   aria-describedby="basic-addon1"
                 />
@@ -150,6 +158,7 @@
                   class="form-control password"
                   placeholder="Password"
                   aria-label="password"
+                  formControlName="password"
                   aria-describedby="basic-addon1"
                   [type]="hidePassword ? 'password' : 'text'"
                 />
@@ -187,6 +196,7 @@
                   class="form-control password"
                   placeholder="Confirm Password"
                   aria-label="confirmPassword"
+                  formControlName="confirmPassword"
                   aria-describedby="basic-addon1"
                   [type]="hidePassword ? 'password' : 'text'"
                 />
