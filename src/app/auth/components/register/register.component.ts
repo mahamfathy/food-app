@@ -37,6 +37,7 @@ export class RegisterComponent {
         ],
       ],
       confirmPassword: ['', Validators.required],
+      profileImage: [''],
     });
   }
 
@@ -57,7 +58,7 @@ export class RegisterComponent {
         formData.append(key, this.registerForm.value[key]);
       });
       this.files.forEach((file, index) => {
-        formData.append(`file_${index}`, file, file.name);
+        formData.append('image', file, file.name);
       });
       formData.forEach((value, key) => {
         console.log(key, value);
@@ -66,14 +67,14 @@ export class RegisterComponent {
     this._AuthService.registerForm(this.registerForm.value).subscribe({
       next: (res) => {
         this.resMessage = res.message;
+        const userName = this.registerForm.value.userName;
+        this._LocalStorageService.setItem('userName', userName);
       },
       error: (err) => {
         this._ToastrService.error(err.error.message, 'Error');
       },
       complete: () => {
-        const userName = this.registerForm.value.userName;
         this._ToastrService.success(this.resMessage, 'Success');
-        this._LocalStorageService.setItem('userName', userName);
         this._Router.navigateByUrl('/dashboard/home');
       },
     });

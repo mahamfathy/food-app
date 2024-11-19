@@ -5,4 +5,5 @@ export interface IRegister {
   country: string;
   password: string;
   confirmPassword: string;
+  profileImage?: string;
 }

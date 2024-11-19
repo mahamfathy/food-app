@@ -4,7 +4,8 @@
 @import "../../../../assets/sass/abstract/mixins";
 @import "../../../../assets/sass/base/typography";
 @import "../../../../assets/sass/components/form";
-.fluid-container {
+.container-fluid {
+  height: 100%;
   @include bd-overlay(false);
   .col-md-9 {
     height: 80%;
@@ -12,24 +13,51 @@
     i {
       color: $secondary-grey;
     }
+    .form {
+      row-gap: 0.2rem;
+      .logo {
+        img {
+          width: 150px;
+          height: fit-content;
+        }
+      }
+      .auth-header,
+      .auth-paragraph {
+        margin: 0;
+      }
+      .auth-header {
+        font-size: 22px;
+      }
+      .auth-paragraph {
+        font-size: 12px;
+      }
+    }
     .dropzone-container {
-      width: 120px;
-      height: 120px;
+      width: 85px;
+      height: 85px;
       border-radius: 50%;
       ngx-dropzone-image-preview {
         min-height: unset !important;
         min-width: unset !important;
         max-width: unset !important;
-        height: 95% !important;
-        width: 95% !important;
+        height: 75% !important;
+        width: 75% !important;
         margin: 0 auto !important;
         border-radius: 50% !important ;
-        img {
-          width: 100% !important ;
-          height: 100% !important ;
-          border-radius: 50% !important ;
-        }
       }
+      img {
+        max-height: none !important ;
+        width: 100% !important ;
+        height: 100% !important ;
+        border-radius: 50% !important ;
+      }
+    }
+    ngx-dropzone-remove-badge {
+      top: 10px !important;
+      right: 13px !important;
+    }
+    ngx-dropzone-label {
+      font-size: 12px !important;
     }
   }
 }

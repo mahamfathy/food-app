@@ -1,4 +1,4 @@
-<div class="fluid-container w-100 center-div">
+<div class="container-fluid w-100 center-div">
   <div class="overlay"></div>
   <div class="col-md-9 radius-16">
     <div class="register-form center-div">
@@ -31,20 +31,18 @@
                   aria-describedby="basic-addon1"
                 />
               </div>
-              <!-- <div
-                  *ngIf="
-                    registerForm.get('email')?.invalid &&
-                    registerForm.get('email')?.touched
-                  "
-                  class="error-text"
+              <div
+                *ngIf="
+                  registerForm.get('userName')?.invalid &&
+                  registerForm.get('userName')?.touched
+                "
+                class="error-text"
+              >
+                <small
+                  *ngIf="registerForm.get('userName')?.hasError('required')"
+                  >Username is required.</small
                 >
-                  <small *ngIf="registerForm.get('email')?.hasError('required')"
-                    >Email is required.</small
-                  >
-                  <small *ngIf="registerForm.get('email')?.hasError('email')"
-                    >Email must be in email-format .</small
-                  > 
-                </div> -->
+              </div>
             </div>
           </div>
           <div class="col-md-6">
@@ -63,20 +61,20 @@
                   aria-describedby="basic-addon1"
                 />
               </div>
-              <!-- <div
-                      *ngIf="
-                        registerForm.get('email')?.invalid &&
-                        registerForm.get('email')?.touched
-                      "
-                      class="error-text"
-                    >
-                      <small *ngIf="registerForm.get('email')?.hasError('required')"
-                        >Email is required.</small
-                      >
-                      <small *ngIf="registerForm.get('email')?.hasError('email')"
-                        >Email must be in email-format .</small
-                      > 
-                    </div> -->
+              <div
+                *ngIf="
+                  registerForm.get('email')?.invalid &&
+                  registerForm.get('email')?.touched
+                "
+                class="error-text"
+              >
+                <small *ngIf="registerForm.get('email')?.hasError('required')"
+                  >Email is required.</small
+                >
+                <small *ngIf="registerForm.get('email')?.hasError('email')"
+                  >Email must be in email-format .</small
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -97,20 +95,17 @@
                   aria-describedby="basic-addon1"
                 />
               </div>
-              <!-- <div
-                    *ngIf="
-                      registerForm.get('email')?.invalid &&
-                      registerForm.get('email')?.touched
-                    "
-                    class="error-text"
-                  >
-                    <small *ngIf="registerForm.get('email')?.hasError('required')"
-                      >Email is required.</small
-                    >
-                    <small *ngIf="registerForm.get('email')?.hasError('email')"
-                      >Email must be in email-format .</small
-                    > 
-                  </div> -->
+              <div
+                *ngIf="
+                  registerForm.get('country')?.invalid &&
+                  registerForm.get('country')?.touched
+                "
+                class="error-text"
+              >
+                <small *ngIf="registerForm.get('country')?.hasError('required')"
+                  >Country is required.</small
+                >
+              </div>
             </div>
           </div>
           <div class="col-md-6">
@@ -129,20 +124,18 @@
                   aria-describedby="basic-addon1"
                 />
               </div>
-              <!-- <div
-                      *ngIf="
-                        registerForm.get('email')?.invalid &&
-                        registerForm.get('email')?.touched
-                      "
-                      class="error-text"
-                    >
-                      <small *ngIf="registerForm.get('email')?.hasError('required')"
-                        >Email is required.</small
-                      >
-                      <small *ngIf="registerForm.get('email')?.hasError('email')"
-                        >Email must be in email-format .</small
-                      > 
-                    </div> -->
+              <div
+                *ngIf="
+                  registerForm.get('phoneNumber')?.invalid &&
+                  registerForm.get('phoneNumber')?.touched
+                "
+                class="error-text"
+              >
+                <small
+                  *ngIf="registerForm.get('phoneNumber')?.hasError('required')"
+                  >Phone Number is required.</small
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -170,20 +163,21 @@
                   ></i>
                 </span>
               </div>
-              <!-- <div
-                        *ngIf="
-                          registerForm.get('password')?.invalid &&
-                          registerForm.get('password')?.touched
-                        "
-                        class="error-text"
-                      >
-                        <small *ngIf="registerForm.get('password')?.hasError('required')"
-                          >Password is required.</small
-                        >
-                        <small *ngIf="registerForm.get('password')?.hasError('pattern')"
-                          >Password must be stronger.</small
-                        >
-                      </div> -->
+              <div
+                *ngIf="
+                  registerForm.get('password')?.invalid &&
+                  registerForm.get('password')?.touched
+                "
+                class="error-text"
+              >
+                <small
+                  *ngIf="registerForm.get('password')?.hasError('required')"
+                  >Password is required.</small
+                >
+                <small *ngIf="registerForm.get('password')?.hasError('pattern')"
+                  >Password must be stronger.</small
+                >
+              </div>
             </div>
           </div>
           <div class="col-md-6">
@@ -208,24 +202,30 @@
                   ></i>
                 </span>
               </div>
-              <!-- <div
-                      *ngIf="
-                        registerForm.get('password')?.invalid &&
-                        registerForm.get('password')?.touched
-                      "
-                      class="error-text"
-                    >
-                      <small *ngIf="registerForm.get('password')?.hasError('required')"
-                        >Password is required.</small
-                      >
-                      <small *ngIf="registerForm.get('password')?.hasError('pattern')"
-                        >Password must be stronger.</small
-                      >
-                    </div> -->
+              <div
+                *ngIf="
+                  registerForm.get('confirmPassword')?.invalid &&
+                  registerForm.get('confirmPassword')?.touched
+                "
+                class="error-text"
+              >
+                <small
+                  *ngIf="
+                    registerForm.get('confirmPassword')?.hasError('required')
+                  "
+                  >Confirm Password is required.</small
+                >
+                <small
+                  *ngIf="
+                    registerForm.get('confirmPassword')?.hasError('pattern')
+                  "
+                  >Confirm Password must be stronger.</small
+                >
+              </div>
             </div>
           </div>
         </div>
-        <div class="row mt-2 m-auto">
+        <div class="row d-flex">
           <div class="col-md-6">
             <ngx-dropzone
               class="dropzone-container"
@@ -243,13 +243,18 @@
               </ngx-dropzone-image-preview>
             </ngx-dropzone>
           </div>
+          <div class="col-md-6 text-end align-self-center">
+            <div class="other-data">
+              <a
+                routerLink="/auth/login"
+                class="text-decoration-none green-text"
+                >Login now?</a
+              >
+            </div>
+          </div>
         </div>
-        <div class="other-data mb-2 d-flex justify-content-end">
-          <a routerLink="/auth/login" class="text-decoration-none green-text"
-            >Login now?</a
-          >
-        </div>
-        <div class="col-md-7 mb-4 m-auto">
+
+        <div class="col-md-7 m-auto">
           <button class="w-100 light-green-btn" type="submit">Register</button>
         </div>
       </form>
