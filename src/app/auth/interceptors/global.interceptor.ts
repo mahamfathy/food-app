@@ -17,7 +17,6 @@ export class GlobalInterceptor implements HttpInterceptor {
     const newRequest = request.clone({
       url: `${this.baseUrl}${request.url}`,
     });
-    console.log(newRequest);
     return next.handle(newRequest);
   }
 }

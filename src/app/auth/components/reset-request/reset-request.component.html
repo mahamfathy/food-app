@@ -4,8 +4,8 @@
     <div class="resetReq-form center-div">
       <form
         class="form d-flex"
-        #resetRequest="ngForm"
-        (ngSubmit)="onResetReq()"
+        #resetRequestFrom="ngForm"
+        (ngSubmit)="onResetReq(resetRequestFrom)"
       >
         <div class="logo text-center">
           <img src="assets/img/logo.svg" alt="logo" />
@@ -30,7 +30,7 @@
               aria-label="email"
               aria-describedby="basic-addon1"
               name="email"
-              ngModel
+              [(ngModel)]="email"
               required
               email
               #emailInput="ngModel"
@@ -47,6 +47,7 @@
               >Email must be valid.</small
             >
           </div>
+
           <div class="other-data mt-3 mb-5 d-flex justify-content-end">
             <a class="text-decoration-none green-text" routerLink="/auth/login"
               >Login now?</a
@@ -54,7 +55,7 @@
           </div>
           <button
             class="w-100 light-green-btn"
-            [disabled]="resetRequest.invalid"
+            [disabled]="resetRequestFrom.invalid"
             type="submit"
           >
             Submit

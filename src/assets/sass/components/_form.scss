@@ -3,12 +3,13 @@
   width: 100%;
   padding: 1.5rem 3.5rem;
   flex-direction: column;
+  row-gap: 0.5rem;
   .logo img {
     height: 80px;
   }
   &__group {
     .input-group {
-      margin-bottom: 0.5rem;
+      margin: unset;
       position: relative;
       .input-group-text {
         border: none;
@@ -60,6 +61,9 @@
         text-align: center;
         cursor: pointer;
       }
+    }
+    .error-text {
+      margin: unset;
     }
   }
 }

@@ -42,61 +42,60 @@
               >Email must be in email-format .</small
             >
           </div>
-          <div class="form__group">
-            <div class="input-group">
-              <span class="input-group-text"
-                ><img src="assets/img/lock.svg" alt="password icon" />
-              </span>
-              <input
-                [type]="passwordVisible ? 'text' : 'password'"
-                class="form-control password"
-                placeholder="Password"
-                aria-label="password"
-                formControlName="password"
-                aria-describedby="basic-addon1"
-              />
-              <span class="eye-icon" (click)="togglePasswordVisibility()">
-                <i
-                  class="fa-solid"
-                  [class]="!passwordVisible ? 'fa-eye-slash' : 'fa-eye'"
-                ></i>
-              </span>
-            </div>
-            <div
-              *ngIf="
-                loginForm.get('password')?.invalid &&
-                loginForm.get('password')?.touched
-              "
-              class="error-text"
-            >
-              <small *ngIf="loginForm.get('password')?.hasError('required')"
-                >Password is required.</small
-              >
-              <small *ngIf="loginForm.get('password')?.hasError('pattern')"
-                >Password must be stronger.</small
-              >
-            </div>
-          </div>
-          <div class="other-data mb-4 d-flex justify-content-between">
-            <a
-              class="text-decoration-none grey-text"
-              routerLink="/auth/register"
-              >Register now?</a
-            >
-            <a
-              class="text-decoration-none green-text"
-              routerLink="/auth/reset-request"
-              >Forgot Password?</a
-            >
-          </div>
-          <button
-            class="w-100 light-green-btn"
-            [disabled]="loginForm.invalid"
-            type="submit"
-          >
-            Login
-          </button>
         </div>
+
+        <div class="form__group">
+          <div class="input-group">
+            <span class="input-group-text"
+              ><img src="assets/img/lock.svg" alt="password icon" />
+            </span>
+            <input
+              [type]="passwordVisible ? 'text' : 'password'"
+              class="form-control password"
+              placeholder="Password"
+              aria-label="password"
+              formControlName="password"
+              aria-describedby="basic-addon1"
+            />
+            <span class="eye-icon" (click)="togglePasswordVisibility()">
+              <i
+                class="fa-solid"
+                [class]="!passwordVisible ? 'fa-eye-slash' : 'fa-eye'"
+              ></i>
+            </span>
+          </div>
+          <div
+            *ngIf="
+              loginForm.get('password')?.invalid &&
+              loginForm.get('password')?.touched
+            "
+            class="error-text"
+          >
+            <small *ngIf="loginForm.get('password')?.hasError('required')"
+              >Password is required.</small
+            >
+            <small *ngIf="loginForm.get('password')?.hasError('pattern')"
+              >Password must be stronger.</small
+            >
+          </div>
+        </div>
+        <div class="other-data mb-2 d-flex justify-content-between">
+          <a class="text-decoration-none grey-text" routerLink="/auth/register"
+            >Register now?</a
+          >
+          <a
+            class="text-decoration-none green-text"
+            routerLink="/auth/reset-request"
+            >Forgot Password?</a
+          >
+        </div>
+        <button
+          class="w-100 light-green-btn"
+          [disabled]="loginForm.invalid"
+          type="submit"
+        >
+          Login
+        </button>
       </form>
     </div>
   </div>
