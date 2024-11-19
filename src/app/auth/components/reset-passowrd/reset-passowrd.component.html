@@ -7,7 +7,7 @@
           <img src="assets/img/logo.svg" alt="logo" />
         </div>
         <div class="text-container">
-          <h3 class="auth-header">Reset Password</h3>
+          <h6 class="auth-header">Reset Password</h6>
           <p class="auth-paragraph">
             Please Enter Your Otp or Check Your Inbox
           </p>
@@ -21,7 +21,7 @@
             <input
               type="text"
               class="form-control"
-              placeholder="Enter your E-mail"
+              placeholder="Email"
               aria-label="email"
               aria-describedby="basic-addon1"
               formControlName="email"
@@ -49,15 +49,12 @@
             </span>
             <input
               type=" text"
-              class="form-control password"
-              placeholder="Password"
-              aria-label="password"
-              formControlName="password"
+              class="form-control"
+              placeholder="OTP"
+              aria-label="seed"
+              formControlName="seed"
               aria-describedby="basic-addon1"
             />
-            <span class="eye-icon">
-              <i class="fa-solid fa-eye"></i>
-            </span>
           </div>
           <!-- <div
                 *ngIf="
@@ -82,7 +79,7 @@
             <input
               type="password"
               class="form-control password"
-              placeholder="Password"
+              placeholder="New Password"
               aria-label="password"
               formControlName="password"
               aria-describedby="basic-addon1"
@@ -114,9 +111,9 @@
             <input
               type="text"
               class="form-control password"
-              placeholder="Password"
-              aria-label="password"
-              formControlName="password"
+              placeholder="Confirm New Password"
+              aria-label="confirmPassword"
+              formControlName="confirmPassword"
               aria-describedby="basic-addon1"
             />
             <span class="eye-icon">
@@ -138,16 +135,7 @@
             >
           </div> -->
         </div>
-        <div class="other-data mb-2 d-flex justify-content-between">
-          <a class="text-decoration-none grey-text" routerLink="/auth/register"
-            >Register now?</a
-          >
-          <a
-            class="text-decoration-none green-text"
-            routerLink="/auth/reset-request"
-            >Forgot Password?</a
-          >
-        </div>
+
         <button class="w-100 light-green-btn" type="submit">
           Reset Password
         </button>

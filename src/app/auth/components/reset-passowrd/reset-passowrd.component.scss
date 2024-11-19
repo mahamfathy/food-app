@@ -9,5 +9,18 @@
   .col-md-6 {
     background-color: $color-white;
     height: fit-content;
+    .form {
+      font-family: "Montserrat", sans-serif;
+      .text-container {
+        .auth-header {
+          font-weight: 600;
+        }
+      }
+      .input-group {
+        input {
+          padding: 0.5rem 0;
+        }
+      }
+    }
   }
 }
