@@ -8,6 +8,7 @@ import { AuthService } from '../../service/auth.service';
   styleUrls: ['./reset-passowrd.component.scss'],
 })
 export class ResetPassowrdComponent {
+  hidePassword: boolean = true;
   resetPasswordForm = new FormGroup({
     email: new FormControl('', [Validators.email, Validators.required]),
     seed: new FormControl('', [Validators.required]),
@@ -25,6 +26,9 @@ export class ResetPassowrdComponent {
     ]),
   });
   constructor(private authService: AuthService) {}
+  togglePasswordVisibility(): void {
+    this.hidePassword = !this.hidePassword;
+  }
   onResetPass(resetPassForm: FormGroup): void {
     this.authService.resetPasswordForm(resetPassForm.value).subscribe();
     resetPassForm.reset();
