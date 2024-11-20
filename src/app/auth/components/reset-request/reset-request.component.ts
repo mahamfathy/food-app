@@ -22,7 +22,7 @@ export class ResetRequestComponent {
   onResetReq(resetReq: NgForm): void {
     if (resetReq.valid) {
       const formData = resetReq.value;
-      this._AuthService.resetRequestForm(formData).subscribe({
+      this._AuthService.onResetRequest(formData).subscribe({
         next: (res) => {
           this._LocalStorageService.setItem('email', formData.email);
           this.resMessage = res.message;

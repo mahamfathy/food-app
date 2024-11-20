@@ -64,7 +64,7 @@ export class RegisterComponent {
         console.log(key, value);
       });
     }
-    this._AuthService.registerForm(this.registerForm.value).subscribe({
+    this._AuthService.onRegister(this.registerForm.value).subscribe({
       next: (res) => {
         this.resMessage = res.message;
         const userName = this.registerForm.value.userName;

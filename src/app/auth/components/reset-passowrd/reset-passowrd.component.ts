@@ -44,7 +44,7 @@ export class ResetPassowrdComponent implements OnInit {
   }
   onResetPass(resetPassForm: FormGroup): void {
     if (resetPassForm.valid) {
-      this._AuthService.resetPasswordForm(resetPassForm.value).subscribe({
+      this._AuthService.onResetPassword(resetPassForm.value).subscribe({
         next: (res) => {
           this.resMessage = res.message;
         },

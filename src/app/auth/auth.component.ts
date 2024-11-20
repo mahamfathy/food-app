@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from './service/auth.service';
 import { LocalStorageService } from './service/local-storage.service';
@@ -21,9 +22,10 @@ export class AuthComponent {
     ]),
   });
   constructor(
-    private authService: AuthService,
-    private localStorageService: LocalStorageService,
-    private toastr: ToastrService
+    private _AuthService: AuthService,
+    private _LocalStorageService: LocalStorageService,
+    private _ToastrService: ToastrService,
+    private _Router: Router
   ) {}
 
   togglePasswordVisibility(): void {
@@ -31,30 +33,32 @@ export class AuthComponent {
   }
   onLogin(loginForm: FormGroup): void {
     if (loginForm.invalid) {
-      this.toastr.error('Invalid login details!', 'Error');
+      this._ToastrService.error('Invalid login details!', 'Error');
       return;
     }
-    this.authService.loginForm(loginForm.value).subscribe({
+    this._AuthService.onLogin(loginForm.value).subscribe({
       next: (res) => {
-        this.localStorageService.setItem('userToken', res.token);
+        this._LocalStorageService.setItem('userToken', res.token);
+        this._AuthService.getProfile();
       },
       error: (err) => {
         const errors = err.error.errors;
         if (errors) {
           if (errors.email) {
-            this.toastr.error(errors.email, 'Email Error');
+            this._ToastrService.error(errors.email, 'Email Error');
           } else if (errors.password) {
-            this.toastr.error(errors.password, 'Password Error');
+            this._ToastrService.error(errors.password, 'Password Error');
           }
         } else {
-          this.toastr.error(
+          this._ToastrService.error(
             err.error.message || 'An unexpected error occurred',
             'Error'
           );
         }
       },
       complete: () => {
-        this.toastr.success('Login successful!', 'Success');
+        this._ToastrService.success('Login successful!', 'Success');
+        this._Router.navigateByUrl('/dashboard/home');
       },
     });
     // loginForm.reset();
