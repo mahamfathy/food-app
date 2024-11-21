@@ -65,7 +65,7 @@ export class ResetPassowrdComponent implements OnInit {
         },
         complete: () => {
           this._ToastrService.success(this.resMessage, 'Reset Password');
-          this._Router.navigateByUrl('/dashboard/home');
+          this._Router.navigateByUrl('/auth/login');
         },
       });
     }
