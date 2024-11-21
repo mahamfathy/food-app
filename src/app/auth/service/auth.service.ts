@@ -27,4 +27,5 @@ export class AuthService {
   onResetPassword(resetPasswordForm: IResetPassword): Observable<any> {
     return this._httpClient.post('/Users/Reset', resetPasswordForm);
   }
+  onVerifyAccount(): Observable<any> {}
 }
