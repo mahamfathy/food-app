@@ -1,0 +1,35 @@
+@import "../../../../assets/sass/components/button";
+@import "../../../../assets/sass/abstract/variables";
+@import "../../../../assets/sass/base/utilities";
+@import "../../../../assets/sass/abstract/mixins";
+@import "../../../../assets/sass/base/typography";
+@import "../../../../assets/sass/components/form";
+.container-fluid {
+  @include bd-overlay;
+  .col-md-6 {
+    background-color: $color-white;
+    height: fit-content;
+    .form {
+      font-family: "Montserrat", sans-serif;
+      .text-container {
+        .auth-header {
+          font-weight: 600;
+          font-size: 22px;
+          margin-bottom: unset;
+        }
+        .auth-paragraph {
+          font-size: 14px;
+        }
+      }
+      .input-group {
+        margin-bottom: unset;
+        input {
+          padding: 0.5rem 0;
+        }
+      }
+      .error-text {
+        margin: unset;
+      }
+    }
+  }
+}
