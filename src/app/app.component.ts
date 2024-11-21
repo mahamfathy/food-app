@@ -7,7 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'food-app';
-  // constructor(private _AuthService: AuthService) {
-  //   this._AuthService.getProfile();
-  // }
 }

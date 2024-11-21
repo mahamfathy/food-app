@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { adminGuard } from '../core/Guards/admin.guard';
+import { userGuard } from '../core/Guards/user.guard';
 import { HomeComponent } from '../shared/home/home.component';
 import { DashboardComponent } from './dashboard.component';
 
@@ -12,11 +14,13 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       {
         path: 'admin',
+        canActivate: [adminGuard],
         loadChildren: () =>
           import('../admin/admin.module').then((m) => m.AdminModule),
       },
       {
         path: 'user',
+        canActivate: [userGuard],
         loadChildren: () =>
           import('../user/user.module').then((m) => m.UserModule),
       },

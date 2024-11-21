@@ -1,13 +1,14 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/service/auth.service';
 import { LocalStorageService } from 'src/app/auth/service/local-storage.service';
 
 export const userGuard: CanActivateFn = (route, state) => {
   const _LocalStorageService = inject(LocalStorageService);
   const _Router = inject(Router);
-
-  const role = _LocalStorageService.getItem('role');
-  if (role === 'SystemUser') {
+  const _AuthService = inject(AuthService);
+  const userToken = _LocalStorageService.getItem('userToken');
+  if (userToken !== null && _AuthService.role === 'SystemUser') {
     return true;
   } else {
     _Router.navigate(['/dashboard']);

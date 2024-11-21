@@ -12,30 +12,31 @@ import { LocalStorageService } from './local-storage.service';
 })
 export class AuthService {
   role: string | null = '';
-  private token: any = this._LocalStorageService.getItem('userToken');
 
   constructor(
     private _HttpClient: HttpClient,
     private _LocalStorageService: LocalStorageService
   ) {
-    if (this.token !== null) {
+    if (this._LocalStorageService.getItem('userToken') !== null) {
       this.getProfile();
     }
   }
   getProfile() {
-    let decoded: any = jwtDecode(this.token);
+    let token: any = this._LocalStorageService.getItem('userToken');
+    let decoded: any = jwtDecode(token);
     this._LocalStorageService.setItem('email', decoded.userEmail);
     this._LocalStorageService.setItem('userName', decoded.userName);
     this._LocalStorageService.setItem('role', decoded.userGroup);
     this.getRole();
   }
-  getRole(): void {
+  getRole() {
     if (
-      this.token !== null &&
+      this._LocalStorageService.getItem('userToken') !== null &&
       this._LocalStorageService.getItem('role') !== null
     ) {
       this.role = this._LocalStorageService.getItem('role');
     }
+    return this.role;
   }
   onLogin(loginForm: ILogin): Observable<any> {
     return this._HttpClient.post('/Users/Login', loginForm);

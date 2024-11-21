@@ -1,1 +1,12 @@
-<p>sidebar works!</p>
+<section>
+  <div>
+    <ul>
+      <ng-container *ngFor="let menu of menu">
+        <li *ngIf="menu.isActive">
+          <span><i [class]="menu.icon"></i></span>
+          <a [routerLink]="menu.link">{{ menu.text }}</a>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</section>

@@ -63,7 +63,11 @@ export class AuthComponent implements OnInit {
       },
       complete: () => {
         this._ToastrService.success('Login successful!', 'Success');
-        this._Router.navigateByUrl('/dashboard/home');
+        if (this._AuthService.role === 'SuperAdmin') {
+          this._Router.navigate(['/dashboard/admin']);
+        } else {
+          this._Router.navigate(['/dashboard/user']);
+        }
       },
     });
     // loginForm.reset();
