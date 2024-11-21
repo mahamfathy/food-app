@@ -68,14 +68,16 @@ export class RegisterComponent {
       next: (res) => {
         this.resMessage = res.message;
         const userName = this.registerForm.value.userName;
+        const email = this.registerForm.value.email;
         this._LocalStorageService.setItem('userName', userName);
+        this._LocalStorageService.setItem('email', email);
       },
       error: (err) => {
         this._ToastrService.error(err.error.message, 'Error');
       },
       complete: () => {
         this._ToastrService.success(this.resMessage, 'Success');
-        this._Router.navigateByUrl('/dashboard/home');
+        this._Router.navigateByUrl('/auth/verify-account');
       },
     });
   }

@@ -14,7 +14,7 @@ export class VerifyAccountComponent {
   resMessage: string = '';
   verifyAccountForm = new FormGroup({
     email: new FormControl('', [Validators.email, Validators.required]),
-    seed: new FormControl('', [Validators.required]),
+    code: new FormControl('', [Validators.required]),
   });
   constructor(
     private _AuthService: AuthService,
@@ -40,12 +40,10 @@ export class VerifyAccountComponent {
           );
         },
         complete: () => {
-          this._ToastrService.success(this.resMessage, 'Reset Password');
+          this._ToastrService.success(this.resMessage, 'Account Verified');
           this._Router.navigateByUrl('/auth/login');
         },
       });
     }
-
-    verifyAccountForm.reset();
   }
 }

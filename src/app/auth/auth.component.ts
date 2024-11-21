@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -10,7 +10,7 @@ import { LocalStorageService } from './service/local-storage.service';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit {
   passwordVisible: boolean = false;
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -27,7 +27,12 @@ export class AuthComponent {
     private _ToastrService: ToastrService,
     private _Router: Router
   ) {}
-
+  ngOnInit(): void {
+    const email = this._LocalStorageService.getItem('email');
+    if (email) {
+      this.loginForm.get('email')!.setValue(email || '');
+    }
+  }
   togglePasswordVisibility(): void {
     this.passwordVisible = !this.passwordVisible;
   }

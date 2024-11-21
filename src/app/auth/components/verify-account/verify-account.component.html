@@ -56,19 +56,19 @@
               type=" text"
               class="form-control"
               placeholder="OTP"
-              aria-label="seed"
-              formControlName="seed"
+              aria-label="code"
+              formControlName="code"
               aria-describedby="basic-addon1"
             />
           </div>
           <div
             *ngIf="
-              verifyAccountForm.get('seed')?.invalid &&
-              verifyAccountForm.get('seed')?.touched
+              verifyAccountForm.get('code')?.invalid &&
+              verifyAccountForm.get('code')?.touched
             "
             class="error-text"
           >
-            <small *ngIf="verifyAccountForm.get('seed')?.hasError('required')"
+            <small *ngIf="verifyAccountForm.get('code')?.hasError('required')"
               >OTP is required.</small
             >
           </div>
@@ -79,7 +79,7 @@
           [disabled]="verifyAccountForm.invalid"
           type="submit"
         >
-          Send Code
+          Submit
         </button>
       </form>
     </div>
