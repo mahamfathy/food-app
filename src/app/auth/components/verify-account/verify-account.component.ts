@@ -15,18 +15,6 @@ export class VerifyAccountComponent {
   verifyAccountForm = new FormGroup({
     email: new FormControl('', [Validators.email, Validators.required]),
     seed: new FormControl('', [Validators.required]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.pattern(
-        '^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){2,})(?=(.*[!@#$%^&*()-__+.]){1,}).{8,}$'
-      ),
-    ]),
-    confirmPassword: new FormControl('', [
-      Validators.required,
-      Validators.pattern(
-        '^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){2,})(?=(.*[!@#$%^&*()-__+.]){1,}).{8,}$'
-      ),
-    ]),
   });
   constructor(
     private _AuthService: AuthService,
@@ -39,26 +27,17 @@ export class VerifyAccountComponent {
     this.verifyAccountForm.get('email')!.setValue(email || '');
   }
 
-  onVerify(resetPassForm: FormGroup): void {
-    if (resetPassForm.valid) {
-      this._AuthService.onResetPassword(resetPassForm.value).subscribe({
+  onVerify(verifyAccountForm: FormGroup): void {
+    if (verifyAccountForm.valid) {
+      this._AuthService.onVerifyAccount(verifyAccountForm.value).subscribe({
         next: (res) => {
           this.resMessage = res.message;
         },
         error: (err) => {
-          const errors = err.error.errors;
-          if (errors) {
-            if (errors.email) {
-              this._ToastrService.error(errors.email, 'Email Error');
-            } else if (errors.password) {
-              this._ToastrService.error(errors.password, 'Password Error');
-            }
-          } else {
-            this._ToastrService.error(
-              err.error.message || 'An unexpected error occurred',
-              'Error'
-            );
-          }
+          this._ToastrService.error(
+            err.message || 'An unexpected error occurred',
+            'Error'
+          );
         },
         complete: () => {
           this._ToastrService.success(this.resMessage, 'Reset Password');
@@ -67,6 +46,6 @@ export class VerifyAccountComponent {
       });
     }
 
-    resetPassForm.reset();
+    verifyAccountForm.reset();
   }
 }
