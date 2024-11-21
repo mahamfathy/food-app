@@ -5,27 +5,30 @@ import { Observable } from 'rxjs';
 import { ILogin } from '../interface/ILogin';
 import { IRegister } from '../interface/IRegister';
 import { IResetPassword } from '../interface/IResetPassword';
+import { IVerify } from '../interface/IVerify';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private _httpClient: HttpClient) {}
+  constructor(private _HttpClient: HttpClient) {}
   getProfile() {
     let token: any = localStorage.getItem('userToken');
     let decoded = jwtDecode(token);
     console.log(decoded);
   }
   onLogin(loginForm: ILogin): Observable<any> {
-    return this._httpClient.post('/Users/Login', loginForm);
+    return this._HttpClient.post('/Users/Login', loginForm);
   }
   onRegister(registerForm: IRegister): Observable<any> {
-    return this._httpClient.post('/Users/Register', registerForm);
+    return this._HttpClient.post('/Users/Register', registerForm);
   }
   onResetRequest(resetReq: any): Observable<any> {
-    return this._httpClient.post('/Users/Reset/Request', resetReq);
+    return this._HttpClient.post('/Users/Reset/Request', resetReq);
   }
   onResetPassword(resetPasswordForm: IResetPassword): Observable<any> {
-    return this._httpClient.post('/Users/Reset', resetPasswordForm);
+    return this._HttpClient.post('/Users/Reset', resetPasswordForm);
   }
-  onVerifyAccount(): Observable<any> {}
+  onVerifyAccount(IVerifyForm: IVerify): Observable<any> {
+    return this._HttpClient.put('/Users/verify', IVerifyForm);
+  }
 }
