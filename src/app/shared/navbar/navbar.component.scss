@@ -26,5 +26,24 @@
         }
       }
     }
+    .col-md-5 {
+      .info-wrapper {
+        color: $navbar-text-col;
+        .fa-bell {
+          position: relative;
+          &::after {
+            content: "";
+            position: absolute;
+            border: 1.2px solid $color-white;
+            border-radius: 50%;
+            background-color: $navbar-noti-col;
+            right: -1px;
+            top: -10px;
+            width: 9px;
+            height: 8px;
+          }
+        }
+      }
+    }
   }
 }

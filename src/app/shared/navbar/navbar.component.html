@@ -7,23 +7,25 @@
       </div>
     </div>
     <div class="col-md-5">
-      <div class="info-wrapper">
-        <span><img src="" alt="" /></span>
+      <div
+        class="info-wrapper pe-3 d-flex justify-content-end align-items-center column-gap-3"
+      >
+        <span><img src="assets/img/avatar.svg" alt="avatar" /></span>
+        <span>{{ userName }}</span>
         <div class="dropdown">
           <button
-            class="btn btn-secondary dropdown-toggle"
+            class="btn dropdown-toggle border-0"
             type="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
-          >
-            Dropdown button
-          </button>
+          ></button>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Action</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </div>
+        <span><i class="fa-solid fa-bell fa-lg"></i></span>
       </div>
     </div>
   </div>
