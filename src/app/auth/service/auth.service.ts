@@ -18,7 +18,7 @@ export class AuthService {
     private _HttpClient: HttpClient,
     private _LocalStorageService: LocalStorageService
   ) {
-    if (this.token) {
+    if (this.token !== null) {
       this.getProfile();
     }
   }
@@ -30,7 +30,10 @@ export class AuthService {
     this.getRole();
   }
   getRole(): void {
-    if (this.token && this._LocalStorageService.getItem('role')) {
+    if (
+      this.token !== null &&
+      this._LocalStorageService.getItem('role') !== null
+    ) {
       this.role = this._LocalStorageService.getItem('role');
     }
   }
