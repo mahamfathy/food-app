@@ -1,1 +1,87 @@
-<p>verify-account works!</p>
+<div class="container-fluid w-100 h-100 center-div">
+  <div class="overlay"></div>
+  <div class="col-md-6 radius-16">
+    <div class="verifyAccount-form center-div">
+      <form
+        class="form d-flex row-gap-1"
+        [formGroup]="verifyAccountForm"
+        (ngSubmit)="onVerify(verifyAccountForm)"
+      >
+        <div class="logo text-center">
+          <img src="assets/img/logo.svg" alt="logo" />
+        </div>
+        <div class="text-container">
+          <h6 class="auth-header">Verify Account</h6>
+          <p class="auth-paragraph">
+            Please Enter Your Otp or Check Your Inbox
+          </p>
+        </div>
+        <div class="form__group">
+          <div class="input-group">
+            <span class="input-group-text">
+              <img src="assets/img/mobile.svg" alt="email icon"
+            /></span>
+
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Email"
+              aria-label="email"
+              aria-describedby="basic-addon1"
+              formControlName="email"
+            />
+          </div>
+          <div
+            *ngIf="
+              verifyAccountForm.get('email')?.invalid &&
+              verifyAccountForm.get('email')?.touched
+            "
+            class="error-text"
+          >
+            <small *ngIf="verifyAccountForm.get('email')?.hasError('required')"
+              >Email is required.</small
+            >
+            <small *ngIf="verifyAccountForm.get('email')?.hasError('email')"
+              >Email must be in email-format .</small
+            >
+          </div>
+        </div>
+
+        <div class="form__group">
+          <div class="input-group">
+            <span class="input-group-text"
+              ><img src="assets/img/lock.svg" alt="lock icon" />
+            </span>
+            <input
+              type=" text"
+              class="form-control"
+              placeholder="OTP"
+              aria-label="seed"
+              formControlName="seed"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+          <div
+            *ngIf="
+              verifyAccountForm.get('seed')?.invalid &&
+              verifyAccountForm.get('seed')?.touched
+            "
+            class="error-text"
+          >
+            <small *ngIf="verifyAccountForm.get('seed')?.hasError('required')"
+              >OTP is required.</small
+            >
+          </div>
+        </div>
+
+        <button
+          class="w-100 mt-2 light-green-btn"
+          [disabled]="verifyAccountForm.invalid"
+          type="submit"
+        >
+          Send Code
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
