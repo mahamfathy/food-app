@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid radius-16">
   <div class="row h-100 align-items-center">
     <div class="col-md-7">
       <div class="search-wrapper">
@@ -20,9 +20,11 @@
             aria-expanded="false"
           ></button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" routerLink="#">Profile</a></li>
+            <li><a class="dropdown-item" routerLink="#">Change Password</a></li>
+            <li>
+              <a class="dropdown-item" routerLink="/auth/login">Logout</a>
+            </li>
           </ul>
         </div>
         <span><i class="fa-solid fa-bell fa-lg"></i></span>
