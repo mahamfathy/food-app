@@ -45,14 +45,14 @@
         margin: 0 auto !important;
         border-radius: 50% !important ;
       }
-      img {
+      ::ng-deep img {
         max-height: none !important ;
         width: 100% !important ;
         height: 100% !important ;
         border-radius: 50% !important ;
       }
     }
-    ngx-dropzone-remove-badge {
+    ::ng-deep ngx-dropzone-remove-badge {
       top: 10px !important;
       right: 13px !important;
     }
