@@ -1,0 +1,90 @@
+@import "../../../assets/sass/abstract/variables";
+@import "../../../assets/sass/base/utilities";
+@import "../../../assets/sass/base/typography";
+@import "../../../assets/sass/components/button";
+section {
+  position: relative;
+  .first {
+    background-color: $color-green2;
+    .text-containter {
+      color: $color-white;
+      font-family: Roboto;
+      h1 {
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 46.88px;
+        span {
+          font-family: Roboto;
+          font-size: 32px;
+          font-weight: 400;
+          line-height: 37.5px;
+          text-decoration: underline;
+          text-transform: capitalize;
+        }
+      }
+      p {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        letter-spacing: 0.04em;
+      }
+    }
+  }
+  .circles {
+    width: 100%;
+    top: 0;
+    left: 0;
+    .img1,
+    .img2,
+    .img3,
+    .img4,
+    .img5,
+    .img6,
+    .img7 {
+      position: absolute;
+    }
+    .img1 {
+      bottom: 2.5rem;
+      left: -1rem;
+    }
+    .img2 {
+      top: 10%;
+      left: 2.5rem;
+    }
+    .img3 {
+      left: 50%;
+      top: 1rem;
+      transform: translateX(-50%);
+    }
+    .img4 {
+      bottom: 4.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .img5 {
+      right: 35%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .img6 {
+      right: 20%;
+      top: 1rem;
+    }
+    .img7 {
+      bottom: 2.5rem;
+      right: 0;
+    }
+  }
+  .second {
+    background-color: $light-green;
+    height: 9.5rem;
+    .col-md-6 {
+      .green-text {
+        font-size: inherit;
+      }
+    }
+    .col-md-3 {
+      height: 3rem;
+    }
+  }
+}

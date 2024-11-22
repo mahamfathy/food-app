@@ -1,9 +1,9 @@
-<div class="container-fluid radius-16">
+<nav class="radius-16 px-4">
   <div class="row h-100 align-items-center">
     <div class="col-md-7">
       <div class="search-wrapper">
         <span><i class="fa-solid fa-magnifying-glass"></i></span>
-        <input placeholder="Search Here..." type="text" />
+        <input class="radius-8" placeholder="Search Here..." type="text" />
       </div>
     </div>
     <div class="col-md-5">
@@ -13,12 +13,12 @@
         <span><img src="assets/img/avatar.svg" alt="avatar" /></span>
         <span>{{ userName }}</span>
         <div class="dropdown">
-          <button
+          <a
             class="btn dropdown-toggle border-0"
-            type="button"
+            role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
-          ></button>
+          ></a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" routerLink="#">Profile</a></li>
             <li><a class="dropdown-item" routerLink="#">Change Password</a></li>
@@ -31,4 +31,4 @@
       </div>
     </div>
   </div>
-</div>
+</nav>
