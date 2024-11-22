@@ -5,6 +5,7 @@
 section {
   position: relative;
   .first {
+    height: 20rem;
     background-color: $color-green2;
     .text-containter {
       color: $color-white;
@@ -28,6 +29,12 @@ section {
         line-height: 24px;
         letter-spacing: 0.04em;
       }
+    }
+    .image-container {
+      position: absolute;
+      animation: float 3s infinite ease-in-out;
+      top: 34%;
+      right: 5%;
     }
   }
   .circles {
@@ -85,6 +92,17 @@ section {
     }
     .col-md-3 {
       height: 3rem;
+    }
+  }
+  @keyframes float {
+    0% {
+      transform: translate(-10%, -50%) translateY(0);
+    }
+    50% {
+      transform: translate(-10%, -50%) translateY(-10px);
+    }
+    100% {
+      transform: translate(-10%, -50%) translateY(0);
     }
   }
 }
