@@ -43,6 +43,11 @@ nav {
             height: 8px;
           }
         }
+        .dropdown-menu {
+          li {
+            cursor: pointer;
+          }
+        }
       }
     }
   }
