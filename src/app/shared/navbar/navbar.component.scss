@@ -29,6 +29,11 @@ nav {
     .col-md-5 {
       .info-wrapper {
         color: $navbar-text-col;
+        img {
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: 50%;
+        }
         .fa-bell {
           position: relative;
           &::after {

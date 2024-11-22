@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from 'src/app/auth/service/auth.service';
 import { LocalStorageService } from 'src/app/auth/service/local-storage.service';
 
@@ -7,7 +7,7 @@ import { LocalStorageService } from 'src/app/auth/service/local-storage.service'
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   userName: string | null = '';
   imagePath: string | null = '';
   constructor(
@@ -20,13 +20,12 @@ export class NavbarComponent implements OnInit {
         next: (res) => {
           console.log(res);
 
-          this.imagePath = res.imagePath['name'];
-          console.log(res);
+          this.imagePath = `http://upskilling-egypt.com:3006/${res.imagePath}`;
+          console.log(this.imagePath);
         },
       });
     }
   }
-  ngOnInit(): void {}
   logout(): void {
     this._AuthService.onLogout();
   }
