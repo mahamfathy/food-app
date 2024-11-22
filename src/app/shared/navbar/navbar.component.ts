@@ -18,10 +18,7 @@ export class NavbarComponent {
     if (this._LocalStorageService.getItem('userToken') !== null) {
       this._AuthService.getUser().subscribe({
         next: (res) => {
-          console.log(res);
-
           this.imagePath = `http://upskilling-egypt.com:3006/${res.imagePath}`;
-          console.log(this.imagePath);
         },
       });
     }

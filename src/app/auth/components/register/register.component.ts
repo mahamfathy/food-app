@@ -49,14 +49,11 @@ export class RegisterComponent {
   ) {}
 
   onSelect(event: any) {
-    console.log(event);
     this.files.push(...event.addedFiles);
-    console.log(this.files);
     this.imgSrc = this.files[0];
   }
 
   onRemove(event: any) {
-    console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
 
@@ -71,9 +68,7 @@ export class RegisterComponent {
     if (this.files.length > 0) {
       myData.append('profileImage', this.files[0]);
     }
-    myData.forEach((value, key) => {
-      console.log(key, value);
-    });
+
     this._AuthService.onRegister(myData).subscribe({
       next: (res) => {
         this.resMessage = res.message;

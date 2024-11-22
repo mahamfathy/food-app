@@ -10,6 +10,7 @@ section {
     .text-containter {
       color: $color-white;
       font-family: Roboto;
+      z-index: 10;
       h1 {
         font-size: 40px;
         font-weight: 700;
@@ -46,6 +47,7 @@ section {
       animation: float 3s infinite ease-in-out;
       top: 34%;
       right: 3%;
+      z-index: 10;
     }
   }
   .circles {
@@ -58,25 +60,41 @@ section {
     .img4,
     .img5,
     .img6,
-    .img7 {
+    .img7,
+    .img8,
+    .img9 {
       position: absolute;
+    }
+    .img1,
+    .img3,
+    .img5,
+    .img7,
+    .img9 {
+      animation: clockwise-spin 10s infinite linear;
+    }
+
+    .img2,
+    .img4,
+    .img6,
+    .img8 {
+      animation: counterclockwise-spin 10s infinite linear;
     }
     .img1 {
       bottom: 2.5rem;
-      left: -1rem;
+      left: 2rem;
     }
     .img2 {
-      top: 10%;
-      left: 2.5rem;
+      top: 15%;
+      left: 11.5rem;
     }
     .img3 {
-      left: 50%;
+      left: 48%;
       top: 1rem;
       transform: translateX(-50%);
     }
     .img4 {
-      bottom: 4.5rem;
-      left: 50%;
+      bottom: 6.5rem;
+      left: 32%;
       transform: translateX(-50%);
     }
     .img5 {
@@ -86,11 +104,19 @@ section {
     }
     .img6 {
       right: 20%;
-      top: 1rem;
+      top: 3.5rem;
     }
     .img7 {
       bottom: 2.5rem;
-      right: 0;
+      right: 3rem;
+    }
+    .img8 {
+      top: 15%;
+      left: 38%;
+    }
+    .img9 {
+      top: 20%;
+      left: 20%;
     }
   }
   .second {
@@ -128,6 +154,44 @@ section {
     100% {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  /* Circular clockwise animation */
+  @keyframes clockwise-spin {
+    0% {
+      transform: rotate(0deg) translate(50px) rotate(0deg);
+    }
+    25% {
+      transform: rotate(90deg) translate(50px) rotate(-90deg);
+    }
+    50% {
+      transform: rotate(180deg) translate(50px) rotate(-180deg);
+    }
+    75% {
+      transform: rotate(270deg) translate(50px) rotate(-270deg);
+    }
+    100% {
+      transform: rotate(360deg) translate(50px) rotate(-360deg);
+    }
+  }
+
+  /* Circular counterclockwise animation */
+  @keyframes counterclockwise-spin {
+    0% {
+      transform: rotate(0deg) translate(50px) rotate(0deg);
+    }
+    25% {
+      transform: rotate(-90deg) translate(50px) rotate(90deg);
+    }
+    50% {
+      transform: rotate(-180deg) translate(50px) rotate(180deg);
+    }
+    75% {
+      transform: rotate(-270deg) translate(50px) rotate(270deg);
+    }
+    100% {
+      transform: rotate(-360deg) translate(50px) rotate(360deg);
     }
   }
 }
