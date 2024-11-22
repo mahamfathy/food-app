@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
 import { ILogin } from '../interface/ILogin';
-import { IRegister } from '../interface/IRegister';
 import { IResetPassword } from '../interface/IResetPassword';
 import { IVerify } from '../interface/IVerify';
 import { LocalStorageService } from './local-storage.service';
@@ -43,7 +42,7 @@ export class AuthService {
   onLogin(loginForm: ILogin): Observable<any> {
     return this._HttpClient.post('/Users/Login', loginForm);
   }
-  onRegister(registerForm: IRegister): Observable<any> {
+  onRegister(registerForm: FormData): Observable<any> {
     return this._HttpClient.post('/Users/Register', registerForm);
   }
   onResetRequest(resetReq: any): Observable<any> {

@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../service/auth.service';
@@ -12,8 +17,28 @@ import { LocalStorageService } from '../../service/local-storage.service';
 })
 export class RegisterComponent {
   hidePassword: boolean = true;
+  hideConfirmPassword: boolean = true;
+  imgSrc: any;
   files: File[] = [];
-  registerForm!: FormGroup;
+  registerForm = new FormGroup({
+    userName: new FormControl(null, Validators.required),
+    email: new FormControl(null, [Validators.required, Validators.email]),
+    phoneNumber: new FormControl(null, Validators.required),
+    country: new FormControl(null, Validators.required),
+    password: new FormControl(null, [
+      Validators.required,
+      Validators.pattern(
+        '^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){2,})(?=(.*[!@#$%^&*()-__+.]){1,}).{8,}$'
+      ),
+    ]),
+    confirmPassword: new FormControl(null, [
+      Validators.required,
+      Validators.pattern(
+        '^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){2,})(?=(.*[!@#$%^&*()-__+.]){1,}).{8,}$'
+      ),
+    ]),
+    profileImage: new FormControl(null),
+  });
   resMessage: string = '';
   constructor(
     private _FormBuilder: FormBuilder,
@@ -21,54 +46,39 @@ export class RegisterComponent {
     private _ToastrService: ToastrService,
     private _LocalStorageService: LocalStorageService,
     private _Router: Router
-  ) {
-    this.registerForm = this._FormBuilder.group({
-      userName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', Validators.required],
-      country: ['', Validators.required],
-      password: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(
-            '^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){2,})(?=(.*[!@#$%^&*()-__+.]){1,}).{8,}$'
-          ),
-        ],
-      ],
-      confirmPassword: ['', Validators.required],
-      profileImage: [''],
-    });
-  }
+  ) {}
 
-  onSelect(event: { addedFiles: File[] }) {
+  onSelect(event: any) {
+    console.log(event);
     this.files.push(...event.addedFiles);
+    console.log(this.files);
+    this.imgSrc = this.files[0];
   }
 
-  onRemove(event: File) {
+  onRemove(event: any) {
+    console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
+
   togglePasswordVisibility(): void {
     this.hidePassword = !this.hidePassword;
   }
-  onRegister(): void {
-    if (this.registerForm.valid) {
-      const formData = new FormData();
-      Object.keys(this.registerForm.value).forEach((key) => {
-        formData.append(key, this.registerForm.value[key]);
-      });
-      this.files.forEach((file, index) => {
-        formData.append('image', file, file.name);
-      });
-      formData.forEach((value, key) => {
-        console.log(key, value);
-      });
+  onRegister(data: FormGroup): void {
+    let myData = new FormData();
+    Object.keys(data.value).forEach((key) => {
+      myData.append(key, data.value[key]);
+    });
+    if (this.files.length > 0) {
+      myData.append('profileImage', this.files[0]);
     }
-    this._AuthService.onRegister(this.registerForm.value).subscribe({
+    myData.forEach((value, key) => {
+      console.log(key, value);
+    });
+    this._AuthService.onRegister(myData).subscribe({
       next: (res) => {
         this.resMessage = res.message;
-        const userName = this.registerForm.value.userName;
-        const email = this.registerForm.value.email;
+        const userName = data.value.userName;
+        const email = data.value.email;
         this._LocalStorageService.setItem('userName', userName);
         this._LocalStorageService.setItem('email', email);
       },

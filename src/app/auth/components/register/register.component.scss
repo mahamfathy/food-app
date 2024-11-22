@@ -17,7 +17,7 @@
       row-gap: 0.2rem;
       .logo {
         img {
-          width: 150px;
+          width: 225px;
           height: fit-content;
         }
       }
@@ -33,15 +33,15 @@
       }
     }
     .dropzone-container {
-      width: 85px;
-      height: 85px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       ngx-dropzone-image-preview {
         min-height: unset !important;
         min-width: unset !important;
         max-width: unset !important;
-        height: 75% !important;
-        width: 75% !important;
+        height: 95% !important;
+        width: 95% !important;
         margin: 0 auto !important;
         border-radius: 50% !important ;
       }

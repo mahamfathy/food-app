@@ -5,7 +5,7 @@
       <form
         class="form d-flex"
         [formGroup]="registerForm"
-        (ngSubmit)="onRegister()"
+        (ngSubmit)="onRegister(registerForm)"
       >
         <div class="logo text-center">
           <img src="assets/img/logo.svg" alt="logo" />
@@ -53,7 +53,7 @@
                 </span>
 
                 <input
-                  type="text"
+                  type="email"
                   class="form-control"
                   placeholder="Enter your E-mail"
                   aria-label="email"
@@ -192,13 +192,13 @@
                   aria-label="confirmPassword"
                   formControlName="confirmPassword"
                   aria-describedby="basic-addon1"
-                  [type]="hidePassword ? 'password' : 'text'"
+                  [type]="hideConfirmPassword ? 'password' : 'text'"
                 />
                 <span class="eye-icon">
                   <i
                     class="fa-solid"
-                    (click)="togglePasswordVisibility()"
-                    [ngClass]="hidePassword ? 'fa-eye-slash' : 'fa-eye'"
+                    (click)="hideConfirmPassword = !hideConfirmPassword"
+                    [ngClass]="hideConfirmPassword ? 'fa-eye-slash' : 'fa-eye'"
                   ></i>
                 </span>
               </div>
@@ -231,7 +231,9 @@
               class="dropzone-container"
               (change)="onSelect($event)"
             >
-              <ngx-dropzone-label>Drop your photo here!</ngx-dropzone-label>
+              <ngx-dropzone-label
+                >Drop Photo <i class="fa-solid fa-cloud-upload"></i
+              ></ngx-dropzone-label>
               <ngx-dropzone-image-preview
                 ngProjectAs="ngx-dropzone-preview"
                 *ngFor="let f of files"
@@ -253,7 +255,6 @@
             </div>
           </div>
         </div>
-
         <div class="col-md-7 m-auto">
           <button class="w-100 light-green-btn" type="submit">Register</button>
         </div>
