@@ -9,7 +9,7 @@ import { LocalStorageService } from 'src/app/auth/service/local-storage.service'
 })
 export class NavbarComponent {
   userName: string | null = '';
-  imagePath: string | null = '';
+  imagePath: string = '';
   constructor(
     private _LocalStorageService: LocalStorageService,
     private _AuthService: AuthService
@@ -18,7 +18,11 @@ export class NavbarComponent {
     if (this._LocalStorageService.getItem('userToken') !== null) {
       this._AuthService.getUser().subscribe({
         next: (res) => {
-          this.imagePath = `http://upskilling-egypt.com:3006/${res.imagePath}`;
+          if (res.imagePath === null) {
+            this.imagePath = 'assets/img/avatar.svg';
+          } else {
+            this.imagePath = `http://upskilling-egypt.com:3006/${res.imagePath}`;
+          }
         },
       });
     }

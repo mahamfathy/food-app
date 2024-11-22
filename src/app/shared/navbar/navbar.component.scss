@@ -36,6 +36,7 @@ nav {
         }
         .fa-bell {
           position: relative;
+          cursor: pointer;
           &::after {
             content: "";
             position: absolute;

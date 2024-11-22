@@ -19,6 +19,9 @@
       height: 80%;
       width: 33%;
       justify-content: space-evenly;
+      img {
+        cursor: pointer;
+      }
       .text-container {
         position: relative;
         h1,

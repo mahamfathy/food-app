@@ -129,6 +129,14 @@ section {
     }
     .col-md-3 {
       height: 3rem;
+      button {
+        background-color: $color-green2;
+        &:hover {
+          background-color: $color-green1;
+          color: $color-white;
+          box-shadow: 1px 1px 5px 0px $color-black;
+        }
+      }
     }
   }
   @keyframes float {
