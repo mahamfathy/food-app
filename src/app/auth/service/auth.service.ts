@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
 import { ILogin } from '../interface/ILogin';
@@ -15,7 +16,8 @@ export class AuthService {
 
   constructor(
     private _HttpClient: HttpClient,
-    private _LocalStorageService: LocalStorageService
+    private _LocalStorageService: LocalStorageService,
+    private _Router: Router
   ) {
     if (this._LocalStorageService.getItem('userToken') !== null) {
       this.getProfile();
@@ -52,5 +54,9 @@ export class AuthService {
   }
   onVerifyAccount(IVerifyForm: IVerify): Observable<any> {
     return this._HttpClient.put('/Users/verify', IVerifyForm);
+  }
+  onLogout(): void {
+    this._LocalStorageService.clearItem();
+    this._Router.navigate(['/auth']);
   }
 }
