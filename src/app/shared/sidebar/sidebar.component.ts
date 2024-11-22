@@ -12,6 +12,7 @@ interface IMenu {
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent {
+  isCollapsed: boolean = false;
   menu: IMenu[] = [
     {
       link: '/dashboard/home',
@@ -40,7 +41,7 @@ export class SidebarComponent {
     {
       link: '/dashboard/fav',
       text: 'Fav',
-      icon: 'fa-regular fa-heart',
+      icon: 'fa-solid fa-heart',
       isActive: this.isUser(),
     },
     {
@@ -62,5 +63,11 @@ export class SidebarComponent {
   }
   isUser(): boolean {
     return this._AuthService.role == 'SystemUser';
+  }
+  logout(): void {
+    this._AuthService.onLogout();
+  }
+  toggleSidebar(): void {
+    this.isCollapsed = !this.isCollapsed;
   }
 }

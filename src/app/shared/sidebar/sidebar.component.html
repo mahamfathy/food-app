@@ -1,12 +1,18 @@
-<aside>
+<aside [ngClass]="isCollapsed ? 'collapsed' : 'expanded'">
   <div class="h-75 d-flex flex-column justify-content-evenly">
-    <div><img src="assets/img/sidebar.svg" alt="" /></div>
+    <div (click)="toggleSidebar()">
+      <img src="assets/img/sidebar.svg" alt="" />
+    </div>
     <ul class="p-0 d-flex flex-column">
       <ng-container *ngFor="let menu of menu">
         <li *ngIf="menu.isActive">
-          <a class="px-4" [routerLink]="menu.link" routerLinkActive="active"
-            ><span><i [class]="menu.icon" class="me-2"></i></span>
-            {{ menu.text }}</a
+          <a
+            class="px-3 logout"
+            (click)="menu.text === 'Logout' ? logout() : null"
+            [routerLink]="menu.text === 'Logout' ? null : menu.link"
+            routerLinkActive="active"
+            ><span><i [class]="menu.icon" class="me-3"></i></span>
+            <span class="text"> {{ menu.text }} </span></a
           >
         </li>
       </ng-container>

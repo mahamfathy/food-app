@@ -1,36 +1,97 @@
 @import "../../../assets/sass/abstract/variables";
 aside {
   height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
   background-color: $sidebar-bg;
   border-top-right-radius: 65px;
-  ul {
-    list-style: none;
-    li {
-      position: relative;
-      line-height: 2.4rem;
-      a {
-        text-decoration: none;
-        color: $sidebar-text-col;
-        display: block;
-        font-size: 13px;
-        font-weight: 500;
-        &.active,
-        &:hover {
-          color: $color-white;
-          background-color: $color-green3;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 
-          &::before {
-            content: "";
-            position: absolute;
-            height: 100%;
-            width: 4px;
-            background-color: $color-green2;
-            top: 0;
-            left: 0;
+  div {
+    width: 100%;
+    img {
+      cursor: pointer;
+    }
+    ul {
+      list-style: none;
+
+      li {
+        position: relative;
+        line-height: 3.3rem;
+        a {
+          text-decoration: none;
+          color: $sidebar-text-col;
+          display: block;
+          font-size: 16px;
+          font-weight: 500;
+          cursor: pointer;
+          &.active,
+          &:hover {
+            color: $color-white;
+            background-color: $color-green3;
+
+            &::before {
+              content: "";
+              position: absolute;
+              height: 100%;
+              width: 4px;
+              background-color: $color-green2;
+              top: 0;
+              left: 0;
+            }
+          }
+          i {
+            color: $color-white;
           }
         }
-        i {
-          color: $color-white;
+      }
+    }
+  }
+  &.collapsed {
+    width: 100px;
+    div {
+      img {
+        width: 100px;
+      }
+      ul {
+        li {
+          line-height: 3.5rem;
+          text-align: center;
+          a {
+            i {
+              font-size: x-large;
+            }
+            .text {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+  &.expanded {
+    width: 230px;
+    div {
+      width: 100%;
+      img {
+        width: fit-content;
+      }
+      ul {
+        li {
+          width: 100%;
+          a {
+            .text {
+              display: inline-block;
+            }
+          }
         }
       }
     }

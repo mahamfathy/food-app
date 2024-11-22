@@ -13,6 +13,10 @@
       height: 100%;
       form {
         height: 100%;
+        row-gap: 0;
+        button {
+          height: 2.5rem;
+        }
       }
     }
   }
