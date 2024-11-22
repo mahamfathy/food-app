@@ -3,7 +3,17 @@
     <div class="col-md-12 d-flex justify-content-between align-items-center">
       <div class="col-md-6 text-containter">
         <h1>
-          Welcome <span>{{ userName }}! </span>
+          Welcome
+          <span class="animated-text">
+            <span
+              class="letter"
+              *ngFor="let letter of userName.split(''); let i = index"
+              [ngStyle]="{ 'animation-delay': i * 0.3 + 's' }"
+            >
+              {{ letter }}
+            </span>
+          </span>
+          !
         </h1>
         <p>
           This is a welcoming screen for the entry of the application , you can

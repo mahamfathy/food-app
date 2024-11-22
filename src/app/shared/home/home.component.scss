@@ -22,6 +22,17 @@ section {
           text-decoration: underline;
           text-transform: capitalize;
         }
+        .animated-text {
+          font-size: 40px;
+          font-weight: 700;
+          color: $color-white;
+
+          .letter {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-in-out forwards;
+          }
+        }
       }
       p {
         font-size: 16px;
@@ -34,7 +45,7 @@ section {
       position: absolute;
       animation: float 3s infinite ease-in-out;
       top: 34%;
-      right: 5%;
+      right: 3%;
     }
   }
   .circles {
@@ -103,6 +114,20 @@ section {
     }
     100% {
       transform: translate(-10%, -50%) translateY(0);
+    }
+  }
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 }
