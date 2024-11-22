@@ -9,11 +9,20 @@ import { LocalStorageService } from 'src/app/auth/service/local-storage.service'
 })
 export class NavbarComponent {
   userName: string | null = '';
+  imagePath: string | null = '';
   constructor(
     private _LocalStorageService: LocalStorageService,
     private _AuthService: AuthService
   ) {
     this.userName = this._LocalStorageService.getItem('userName');
+    if (this._LocalStorageService.getItem('userToken') === null) {
+      this._AuthService.getUser().subscribe({
+        next: (res) => {
+          console.log(res);
+          this.imagePath = res.imagePath || 'assets/img/avatar.svg';
+        },
+      });
+    }
   }
   logout(): void {
     this._AuthService.onLogout();

@@ -55,6 +55,9 @@ export class AuthService {
   onVerifyAccount(IVerifyForm: IVerify): Observable<any> {
     return this._HttpClient.put('/Users/verify', IVerifyForm);
   }
+  getUser(): Observable<any> {
+    return this._HttpClient.get('/Users/currentUser');
+  }
   onLogout(): void {
     this._LocalStorageService.clearItem();
     this._Router.navigate(['/auth']);

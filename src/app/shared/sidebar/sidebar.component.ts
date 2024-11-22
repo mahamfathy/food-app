@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthService } from 'src/app/auth/service/auth.service';
 interface IMenu {
   link: string;
@@ -13,6 +13,7 @@ interface IMenu {
 })
 export class SidebarComponent {
   isCollapsed: boolean = false;
+  @Output() toggleSidebar = new EventEmitter<boolean>();
   menu: IMenu[] = [
     {
       link: '/dashboard/home',
@@ -67,7 +68,8 @@ export class SidebarComponent {
   logout(): void {
     this._AuthService.onLogout();
   }
-  toggleSidebar(): void {
+  toggle(): void {
     this.isCollapsed = !this.isCollapsed;
+    this.toggleSidebar.emit(this.isCollapsed);
   }
 }

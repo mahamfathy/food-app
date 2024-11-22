@@ -1,0 +1,10 @@
+.col-1,
+.col-2,
+.col-10,
+.col-11 {
+  transition: width 0.3s ease;
+}
+.col-10,
+.col-11 {
+  margin-inline-start: auto;
+}
