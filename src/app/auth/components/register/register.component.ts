@@ -28,13 +28,13 @@ export class RegisterComponent {
     password: new FormControl(null, [
       Validators.required,
       Validators.pattern(
-        '^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){2,})(?=(.*[!@#$%^&*()-__+.]){1,}).{8,}$'
+        '^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[!@#$%^&*()-__+.]){1,}).{8,}$'
       ),
     ]),
     confirmPassword: new FormControl(null, [
       Validators.required,
       Validators.pattern(
-        '^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){2,})(?=(.*[!@#$%^&*()-__+.]){1,}).{8,}$'
+        '^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[!@#$%^&*()-__+.]){1,}).{8,}$'
       ),
     ]),
     profileImage: new FormControl(null),
@@ -78,7 +78,14 @@ export class RegisterComponent {
         this._LocalStorageService.setItem('email', email);
       },
       error: (err) => {
-        this._ToastrService.error(err.error.message, 'Error');
+        if (err.error.message && !err.error.additionalInfo) {
+          this._ToastrService.error(err.error.message, 'Error');
+        } else {
+          const map = new Map(Object.entries(err.error.additionalInfo.errors));
+          for (let [msg, val] of map) {
+            this._ToastrService.error(JSON.stringify(val), msg);
+          }
+        }
       },
       complete: () => {
         this._ToastrService.success(this.resMessage, 'Success');

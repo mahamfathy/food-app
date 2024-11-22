@@ -175,7 +175,8 @@
                   >Password is required.</small
                 >
                 <small *ngIf="registerForm.get('password')?.hasError('pattern')"
-                  >Password must be stronger.</small
+                  >Password must contain capital letters, small letters, numbers
+                  and special characters.</small
                 >
               </div>
             </div>
