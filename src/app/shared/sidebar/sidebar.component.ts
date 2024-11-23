@@ -40,7 +40,7 @@ export class SidebarComponent {
       isActive: this.isAdmin(),
     },
     {
-      link: '/dashboard/fav',
+      link: '/dashboard/user/fav',
       text: 'Fav Recipes',
       icon: 'fa-solid fa-heart',
       isActive: this.isUser(),
