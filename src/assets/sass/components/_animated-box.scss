@@ -1,0 +1,69 @@
+.circles {
+  width: 100%;
+  top: 0;
+  left: 0;
+  .img1,
+  .img2,
+  .img3,
+  .img4,
+  .img5,
+  .img6,
+  .img7,
+  .img8,
+  .img9 {
+    position: absolute;
+  }
+  .img1,
+  .img3,
+  .img5,
+  .img7,
+  .img9 {
+    animation: clockwise-spin 10s infinite linear;
+  }
+
+  .img2,
+  .img4,
+  .img6,
+  .img8 {
+    animation: counterclockwise-spin 10s infinite linear;
+  }
+  .img1 {
+    bottom: 2.5rem;
+    left: 2rem;
+  }
+  .img2 {
+    top: 15%;
+    left: 11.5rem;
+  }
+  .img3 {
+    left: 48%;
+    top: 1rem;
+    transform: translateX(-50%);
+  }
+  .img4 {
+    bottom: 6.5rem;
+    left: 32%;
+    transform: translateX(-50%);
+  }
+  .img5 {
+    right: 35%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .img6 {
+    right: 20%;
+    top: 3.5rem;
+  }
+  .img7 {
+    bottom: 2.5rem;
+    right: 3rem;
+  }
+  .img8 {
+    top: 15%;
+    left: 38%;
+  }
+  .img9 {
+    top: 20%;
+    left: 20%;
+  }
+}
