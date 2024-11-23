@@ -41,7 +41,7 @@ export class SidebarComponent {
     },
     {
       link: '/dashboard/fav',
-      text: 'Fav',
+      text: 'Fav Recipes',
       icon: 'fa-solid fa-heart',
       isActive: this.isUser(),
     },
