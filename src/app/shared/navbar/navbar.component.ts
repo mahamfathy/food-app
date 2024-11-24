@@ -23,6 +23,8 @@ export class NavbarComponent {
             res.imagePath !== null
           ) {
             this.imagePath = `http://upskilling-egypt.com:3006/${res.imagePath}`;
+          } else {
+            this.imagePath = 'assets/img/avatar.svg';
           }
         },
       });

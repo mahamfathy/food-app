@@ -17,11 +17,8 @@ section {
       }
     }
     .image-container {
-      position: absolute;
-      animation: float 3s infinite ease-in-out;
       top: 18%;
-      right: 6%;
-      z-index: 10;
+      right: 3%;
     }
   }
   .circles {
@@ -71,42 +68,5 @@ section {
     }
   }
   .third {
-    table {
-      --bs-table-bg: none !important;
-
-      & > :not(caption) > * > * {
-        border: none;
-      }
-
-      thead {
-        background-color: $table-bg;
-        tr {
-          & > :first-child {
-            padding-left: 1.5rem;
-            border-radius: 15px 0 0 15px;
-          }
-          & > :last-child {
-            border-radius: 0 15px 15px 0;
-          }
-          th {
-            padding: 2rem 1rem;
-            font-family: Poppins;
-            font-size: 16px;
-            font-weight: 500;
-            color: $sidebar-bg;
-          }
-        }
-      }
-      tbody {
-        tr:nth-child(even) {
-          background-color: $table-bg2;
-        }
-        tr {
-          td {
-            padding: 1.3rem;
-          }
-        }
-      }
-    }
   }
 }
