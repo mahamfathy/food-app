@@ -63,7 +63,46 @@
         <ng-container *ngIf="categoryNameList.length > 0; else noData">
           <tr *ngFor="let category of categoryNameList">
             <td>{{ category }}</td>
-            <td><i class="fa-solid fa-ellipsis"></i></td>
+            <td>
+              <div class="dropdown">
+                <i
+                  class="fa-solid fa-ellipsis"
+                  id="dropdownMenuButton"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  style="cursor: pointer"
+                ></i>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li>
+                    <button
+                      type="button"
+                      (click)="viewCategory()"
+                      class="dropdown-item text-success"
+                    >
+                      <i class="fa-solid fa-eye"></i> View
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      (click)="editCategory()"
+                      class="dropdown-item text-success"
+                    >
+                      <i class="fa-solid fa-pen-to-square"></i> Edit
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      (click)="deleteCategory()"
+                      class="dropdown-item text-danger"
+                    >
+                      <i class="fa-solid fa-trash-can"></i> Delete
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </td>
           </tr>
         </ng-container>
       </tbody>
@@ -101,7 +140,6 @@
             ngModel
             type="text"
             required
-            minlength="3"
             name="name"
             #nameInput="ngModel"
             aria-label="name"
@@ -115,9 +153,6 @@
           >
             <small *ngIf="nameInput.errors?.['required']"
               >Category Name is required.</small
-            >
-            <small *ngIf="nameInput.errors?.['minlength']"
-              >Category Name must be at least 3 characters.</small
             >
           </div>
         </div>
