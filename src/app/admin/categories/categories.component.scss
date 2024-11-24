@@ -1,4 +1,5 @@
 @import "../../../assets/sass/components/animated-box";
+@import "../../../assets/sass/components/table";
 
 section {
   .first {
@@ -17,12 +18,12 @@ section {
       }
     }
     .image-container {
-      top: 36%;
+      top: 18%;
       right: 3%;
     }
   }
   .circles {
-    height: 70%;
+    height: 38%;
 
     .img2 {
       top: 32%;
@@ -32,7 +33,7 @@ section {
       left: 52%;
     }
     .img4 {
-      bottom: 3.5rem;
+      bottom: 4.5rem;
       left: 26%;
     }
     .img5 {
@@ -66,41 +67,37 @@ section {
         color: $dark-grey2;
       }
     }
+    .light-green-btn {
+      background-color: $color-green2;
+      padding: 0.75rem;
+      width: 100%;
+      height: unset;
+      font-size: 16px;
+      font-weight: 700;
+      &:hover {
+        background-color: $color-green1;
+        box-shadow: 1px 1px 5px 1px $color-black;
+      }
+    }
   }
   .third {
     table {
-      --bs-table-bg: none !important;
-
-      & > :not(caption) > * > * {
-        border: none;
-      }
-
-      thead {
-        background-color: $table-bg;
-        tr {
-          & > :first-child {
-            padding-left: 1.5rem;
-            border-radius: 15px 0 0 15px;
-          }
-          & > :last-child {
-            border-radius: 0 15px 15px 0;
-          }
-          th {
-            padding: 2rem 1rem;
-            font-family: Poppins;
-            font-size: 16px;
-            font-weight: 500;
-            color: $sidebar-bg;
-          }
-        }
-      }
+      padding: 10rem;
+      thead,
       tbody {
-        tr:nth-child(even) {
-          background-color: $table-bg2;
+        tr {
+          th:last-child {
+            text-align: end;
+            padding-right: 10rem;
+          }
+          td:last-child {
+            padding-right: 11.5rem;
+            text-align: end;
+          }
         }
         tr {
           td {
-            padding: 1.3rem;
+            padding-left: 4rem;
           }
         }
       }

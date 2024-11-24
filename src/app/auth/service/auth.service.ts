@@ -61,9 +61,7 @@ export class AuthService {
       headers: this.headers,
     });
   }
-  getFavUserRecipes(): Observable<any> {
-    return this._HttpClient.get('/UserRecipe', { headers: this.headers });
-  }
+
   onLogout(): void {
     this._LocalStorageService.clearItem();
     this._Router.navigate(['/auth']);

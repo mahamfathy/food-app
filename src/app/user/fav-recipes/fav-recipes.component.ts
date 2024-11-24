@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/auth/service/auth.service';
+import { UserRecipeService } from '../services/user-recipe.service';
 
 @Component({
   selector: 'app-fav-recipes',
@@ -7,10 +7,10 @@ import { AuthService } from 'src/app/auth/service/auth.service';
   styleUrls: ['./fav-recipes.component.scss'],
 })
 export class FavRecipesComponent {
-  constructor(private _AuthService: AuthService) {}
+  constructor(private _UserRecipeService: UserRecipeService) {}
   recipes: any[] = [];
   recipe(): void {
-    this._AuthService.getFavUserRecipes().subscribe({
+    this._UserRecipeService.getFavUserRecipes().subscribe({
       next: (res) => {
         this.recipes = res.data;
         console.log(this.recipes);
