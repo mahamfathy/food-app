@@ -23,7 +23,7 @@ section {
     }
   }
   .circles {
-    height: 38%;
+    height: 29%;
 
     .img2 {
       top: 32%;
@@ -94,10 +94,14 @@ section {
             padding-right: 11.5rem;
             text-align: end;
           }
-        }
-        tr {
           td {
             padding-left: 4rem;
+          }
+          .text-center {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 24.2px;
+            color: $primary-grey;
           }
         }
       }
