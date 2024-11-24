@@ -29,8 +29,16 @@
       <h3>Categories Table Details</h3>
       <p>You can check all details</p>
     </div>
+
     <div class="col-md-3 text-end">
-      <button class="light-green-btn" type="button">Add New Category</button>
+      <button
+        type="button"
+        class="light-green-btn"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        Add New Category
+      </button>
     </div>
   </div>
   <div class="row third">
@@ -52,8 +60,8 @@
             <td colspan="2" class="text-center p-3">No Data!</td>
           </tr>
         </ng-template>
-        <ng-container *ngIf="categoryName.length > 0; else noData">
-          <tr *ngFor="let category of categoryName">
+        <ng-container *ngIf="categoryNameList.length > 0; else noData">
+          <tr *ngFor="let category of categoryNameList">
             <td>{{ category }}</td>
             <td><i class="fa-solid fa-ellipsis"></i></td>
           </tr>
@@ -62,3 +70,47 @@
     </table>
   </div>
 </section>
+
+<!-- Modal -->
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form (submit)="onSubmit(addCategoryForm)" #addCategoryForm="ngForm">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add Category</h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <div class="modal-body text-start">
+          <input
+            ngModel
+            type="text"
+            required
+            minlength="3"
+            name="name"
+            #nameInput="ngModel"
+            aria-label="name"
+            aria-describedby="basic-addon1"
+            name="name"
+            placeholder="Category Name"
+          />
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="light-green-btn">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

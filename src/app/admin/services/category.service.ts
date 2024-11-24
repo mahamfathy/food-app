@@ -19,4 +19,7 @@ export class CategoryService {
       headers: this.headers,
     });
   }
+  addCategory(CategoryName: string): Observable<any> {
+    return this._HttpClient.post('/Category', { name: CategoryName });
+  }
 }

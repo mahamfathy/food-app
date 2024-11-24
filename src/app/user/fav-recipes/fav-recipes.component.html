@@ -44,6 +44,17 @@
         </tr>
       </thead>
       <tbody>
+        <ng-template #noData>
+          <tr>
+            <td colspan="2" class="text-center p-0 pb-2 pt-5">
+              <img src="assets/img/no-data.svg" alt="No Data" />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="text-center p-3">No Data!</td>
+          </tr>
+        </ng-template>
+        <!-- <ng-container *ngIf="recipeName.length > 0; else noData"> -->
         <tr>
           <td>1</td>
           <td>Mark</td>
@@ -71,6 +82,7 @@
           <td>Larry the Bird</td>
           <td><i class="fa-solid fa-ellipsis"></i></td>
         </tr>
+        <!-- </ng-container> -->
       </tbody>
     </table>
   </div>

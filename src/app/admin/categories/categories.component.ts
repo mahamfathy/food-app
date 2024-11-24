@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { CategoryService } from '../services/category.service';
 
 @Component({
@@ -7,15 +8,25 @@ import { CategoryService } from '../services/category.service';
   styleUrls: ['./categories.component.scss'],
 })
 export class CategoriesComponent implements OnInit {
-  categoryName: string[] = [];
+  categoryNameList: string[] = [];
   constructor(private _CategoryService: CategoryService) {}
   ngOnInit(): void {
     this._CategoryService.getCategories().subscribe({
       next: (res) => {
         res.data.forEach((category: any) => {
-          this.categoryName.push(category.name);
+          this.categoryNameList.push(category.name);
         });
       },
     });
+  }
+  onSubmit(addCategoryForm: NgForm): void {
+    if (addCategoryForm.valid) {
+      const categoryName = addCategoryForm.value.name;
+      this._CategoryService.addCategory(categoryName).subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+      });
+    }
   }
 }
