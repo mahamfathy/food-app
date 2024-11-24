@@ -108,3 +108,59 @@ section {
     }
   }
 }
+.modal {
+  top: 20%;
+  .modal-content {
+    padding: 1rem 2rem;
+    .modal-header {
+      border-bottom: unset;
+      margin-bottom: 4rem;
+      h2 {
+        font-size: 25px;
+        font-weight: 700;
+        color: $primary-grey;
+      }
+      button {
+        border: unset;
+        background-color: $color-white;
+        i {
+          border: 1px solid $red-color;
+          color: $red-color;
+          border-radius: 50%;
+          padding: 0.4rem;
+        }
+      }
+    }
+    .modal-body {
+      margin-bottom: 1rem;
+      input {
+        background-color: $light-grey2;
+        border: none;
+        outline: none;
+        padding: 1rem 0.75rem;
+        width: 97%;
+        box-shadow: 1px 1px 5px 0px $color-black2;
+        &::placeholder {
+          color: $light-grey;
+          font-size: 15px;
+          font-weight: 500;
+        }
+      }
+    }
+    .modal-footer {
+      .light-green-btn {
+        background-color: $color-green2;
+        font-weight: 700;
+        width: 22% !important;
+        cursor: pointer;
+        &:disabled {
+          cursor: not-allowed;
+          background-color: $light-grey;
+        }
+        &:focus {
+          background-color: $color-green1;
+        }
+      }
+    }
+  }
+}
