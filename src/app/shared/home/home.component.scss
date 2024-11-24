@@ -1,58 +1,5 @@
-@import "../../../assets/sass/abstract/variables";
-@import "../../../assets/sass/base/utilities";
-@import "../../../assets/sass/base/typography";
-@import "../../../assets/sass/components/button";
-@import "../../../assets/sass/base/animations";
-@import "../../../assets/sass/components/_animated-box.scss";
+@import "../../../assets/sass/components/animated-box";
 section {
-  position: relative;
-  .first {
-    height: 20rem;
-    background-color: $color-green2;
-    .text-containter {
-      color: $color-white;
-      font-family: Roboto;
-      z-index: 10;
-      h1 {
-        font-size: 40px;
-        font-weight: 700;
-        line-height: 46.88px;
-        span {
-          font-family: Roboto;
-          font-size: 32px;
-          font-weight: 400;
-          line-height: 37.5px;
-          text-decoration: underline;
-          text-transform: capitalize;
-        }
-        .animated-text {
-          font-size: 40px;
-          font-weight: 700;
-          color: $color-white;
-
-          .letter {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s ease-in-out forwards;
-          }
-        }
-      }
-      p {
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 24px;
-        letter-spacing: 0.04em;
-      }
-    }
-    .image-container {
-      position: absolute;
-      animation: float 3s infinite ease-in-out;
-      top: 34%;
-      right: 3%;
-      z-index: 10;
-    }
-  }
-
   .second {
     background-color: $light-green;
     height: 9.5rem;
