@@ -2,7 +2,7 @@
 
 section {
   .first {
-    height: 15rem;
+    height: 13rem;
     .text-containter {
       h1 {
         span {
@@ -19,13 +19,13 @@ section {
     .image-container {
       position: absolute;
       animation: float 3s infinite ease-in-out;
-      top: 29%;
+      top: 18%;
       right: 6%;
       z-index: 10;
     }
   }
   .circles {
-    height: 58%;
+    height: 38%;
 
     .img2 {
       top: 23%;
@@ -50,6 +50,63 @@ section {
     .img9 {
       top: -45px;
       left: 26%;
+    }
+  }
+  .second {
+    .text-containter {
+      font-family: "Poppins", sans-serif;
+      h3 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 30px;
+        color: $sidebar-bg;
+      }
+      p {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 21px;
+        color: $dark-grey2;
+      }
+    }
+  }
+  .third {
+    table {
+      --bs-table-bg: none !important;
+
+      & > :not(caption) > * > * {
+        border: none;
+      }
+
+      thead {
+        background-color: $table-bg;
+        tr {
+          & > :first-child {
+            padding-left: 1.5rem;
+            border-radius: 15px 0 0 15px;
+          }
+          & > :last-child {
+            border-radius: 0 15px 15px 0;
+          }
+          th {
+            padding: 2rem 1rem;
+            font-family: Poppins;
+            font-size: 16px;
+            font-weight: 500;
+            color: $sidebar-bg;
+          }
+        }
+      }
+      tbody {
+        tr:nth-child(even) {
+          background-color: $table-bg2;
+        }
+        tr {
+          td {
+            padding: 1.3rem;
+          }
+        }
+      }
     }
   }
 }
