@@ -34,7 +34,7 @@ export class SidebarComponent {
       isActive: this.isUser(),
     },
     {
-      link: '/dashboard/admin/categories',
+      link: '/dashboard/admin/category',
       text: 'Categories',
       icon: 'fa-solid fa-lg fa-table-cells',
       isActive: this.isAdmin(),

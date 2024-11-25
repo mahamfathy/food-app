@@ -29,6 +29,8 @@ export class CategoryService {
     return this._HttpClient.put(`/Category/${id}`, { name: CategoryName });
   }
   deleteCategory(id: number): Observable<any> {
-    return this._HttpClient.delete(`/Category/${id}`);
+    return this._HttpClient.delete(`/Category/${id}`, {
+      headers: this.headers,
+    });
   }
 }

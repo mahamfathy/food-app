@@ -46,7 +46,22 @@ export class CategoriesComponent implements OnInit {
       });
     }
   }
-  viewCategory(): void {}
+  viewCategory(id: number): void {
+    this._CategoryService.getCategoryById(id).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+    });
+  }
   editCategory() {}
-  deleteCategory() {}
+  deleteCategory(id: number) {
+    this._CategoryService.deleteCategory(id).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.categoryNameList.splice(
+          this.categoryNameList.indexOf(res.data.name)
+        );
+      },
+    });
+  }
 }
