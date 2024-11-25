@@ -53,7 +53,14 @@ export class CategoriesComponent implements OnInit {
       },
     });
   }
-  editCategory() {}
+
+  updateCategory(id: number, categoryName: string): void {
+    this._CategoryService.updateCategory(id, categoryName).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+    });
+  }
   deleteCategory(id: number) {
     this._CategoryService.deleteCategory(id).subscribe({
       next: (res) => {

@@ -26,7 +26,13 @@ export class CategoryService {
     return this._HttpClient.get(`/Category/${id}`);
   }
   updateCategory(id: number, CategoryName: string): Observable<any> {
-    return this._HttpClient.put(`/Category/${id}`, { name: CategoryName });
+    return this._HttpClient.put(
+      `/Category/${id}`,
+      { name: CategoryName },
+      {
+        headers: this.headers,
+      }
+    );
   }
   deleteCategory(id: number): Observable<any> {
     return this._HttpClient.delete(`/Category/${id}`, {
