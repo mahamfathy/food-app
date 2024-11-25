@@ -7,7 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
-    children: [{ path: 'categories', component: CategoriesComponent }],
+    children: [
+      { path: 'category', component: CategoriesComponent },
+      { path: 'category/:id', component: CategoriesComponent },
+    ],
   },
 ];
 

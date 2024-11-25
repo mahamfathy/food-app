@@ -22,4 +22,13 @@ export class CategoryService {
   addCategory(CategoryName: string): Observable<any> {
     return this._HttpClient.post('/Category', { name: CategoryName });
   }
+  getCategoryById(id: number): Observable<any> {
+    return this._HttpClient.get(`/Category/${id}`);
+  }
+  updateCategory(id: number, CategoryName: string): Observable<any> {
+    return this._HttpClient.put(`/Category/${id}`, { name: CategoryName });
+  }
+  deleteCategory(id: number): Observable<any> {
+    return this._HttpClient.delete(`/Category/${id}`);
+  }
 }

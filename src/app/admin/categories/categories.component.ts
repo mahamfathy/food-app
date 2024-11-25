@@ -46,7 +46,7 @@ export class CategoriesComponent implements OnInit {
       });
     }
   }
-  viewCategory() {}
+  viewCategory(): void {}
   editCategory() {}
   deleteCategory() {}
 }
