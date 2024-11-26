@@ -28,10 +28,12 @@ export class SidebarComponent {
       isActive: this.isAdmin(),
     },
     {
-      link: '/dashboard/recipes',
+      link: this.isAdmin()
+        ? '/dashboard/admin/recipe'
+        : '/dashboard/user/recipe',
       text: 'Recipes',
       icon: 'fa-solid fa-lg fa-bowl-food',
-      isActive: this.isUser(),
+      isActive: this.isUser() || this.isAdmin(),
     },
     {
       link: '/dashboard/admin/category',

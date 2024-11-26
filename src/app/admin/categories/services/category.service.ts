@@ -14,11 +14,11 @@ export class CategoryService {
     private _HttpClient: HttpClient,
     private _LocalStorageService: LocalStorageService
   ) {}
-  getCategories(): Observable<any> {
-    return this._HttpClient.get('/Category', {
-      headers: this.headers,
-    });
+  getAllCategories(): Observable<any> {
+    let myParams = { pageSize: 10, pageNumber: 1 };
+    return this._HttpClient.get('/Category', { params: myParams });
   }
+
   addCategory(CategoryName: string): Observable<any> {
     return this._HttpClient.post('/Category', { name: CategoryName });
   }

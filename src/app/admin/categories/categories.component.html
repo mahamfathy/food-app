@@ -41,11 +41,14 @@
       </button>
     </div>
   </div>
+  <h1>{{ name }}</h1>
   <div class="row third">
     <table class="table">
       <thead>
         <tr>
           <th>Item Name</th>
+          <th>Creation Date</th>
+          <th>Modification Date</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -60,112 +63,43 @@
             <td colspan="2" class="text-center p-3">No Data!</td>
           </tr>
         </ng-template>
-        <ng-container *ngIf="categoryNameList.length > 0; else noData">
-          <tr *ngFor="let category of categoryNameList">
-            <td>{{ category }}</td>
-            <td>
-              <div class="dropdown">
-                <i
-                  class="fa-solid fa-ellipsis"
-                  id="dropdownMenuButton"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  style="cursor: pointer"
-                ></i>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <li>
-                    <button
-                      type="button"
-                      (click)="viewCategory(3263)"
-                      class="dropdown-item text-success"
-                    >
-                      <i class="fa-solid fa-eye"></i> View
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      type="button"
-                      (click)="updateCategory(3262, 'americannn')"
-                      class="dropdown-item text-success"
-                    >
-                      <i class="fa-solid fa-pen-to-square"></i> Edit
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      type="button"
-                      (click)="deleteCategory(3263)"
-                      class="dropdown-item text-danger"
-                    >
-                      <i class="fa-solid fa-trash-can"></i> Delete
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-        </ng-container>
+        <!-- <ng-container *ngIf="categoryNameList.length > 0; else noData"> -->
+        <!-- <tr *ngFor="let category of categoryNameList"> -->
+        <tr>
+          <td>hi</td>
+          <td>{{ "date" | date : "dd/MM/yyyy HH:mm a" }}</td>
+          <td>{{ "date" | date : "dd/MM/yyyy HH:mm a" }}</td>
+          <td>
+            <div class="dropdown">
+              <i
+                class="fa-solid fa-ellipsis"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="cursor: pointer"
+              ></i>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li>
+                  <button type="button" class="dropdown-item text-success">
+                    <i class="fa-solid fa-eye"></i> View
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item text-success">
+                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item text-danger">
+                    <i class="fa-solid fa-trash-can"></i> Delete
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        <!-- </ng-container> -->
       </tbody>
     </table>
   </div>
 </section>
-
-<!-- Modal -->
-
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form (submit)="onSubmit(addCategoryForm)" #addCategoryForm="ngForm">
-        <div class="modal-header">
-          <h2 class="modal-title" id="exampleModalLabel">Add Category</h2>
-          <button
-            class="ms-auto"
-            type="button"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          >
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </div>
-
-        <div class="modal-body text-start">
-          <input
-            class="radius-8"
-            ngModel
-            type="text"
-            required
-            name="name"
-            #nameInput="ngModel"
-            aria-label="name"
-            aria-describedby="basic-addon1"
-            name="name"
-            placeholder="Category Name"
-          />
-          <div
-            *ngIf="nameInput.invalid && nameInput.touched"
-            class="error-text"
-          >
-            <small *ngIf="nameInput.errors?.['required']"
-              >Category Name is required.</small
-            >
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="submit"
-            [disabled]="addCategoryForm.invalid"
-            class="light-green-btn"
-          >
-            Save
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>

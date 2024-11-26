@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RecipesComponent } from '../shared/recipes/recipes.component';
 import { AdminComponent } from './admin.component';
-import { CategoriesComponent } from './categories/categories.component';
 
 const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
-    children: [
-      { path: 'category', component: CategoriesComponent },
-      { path: 'category/:id', component: CategoriesComponent },
-    ],
+    children: [{ path: 'recipe', component: RecipesComponent }],
+  },
+  {
+    path: 'categories',
+    loadChildren: () =>
+      import('./categories/categories.module').then((m) => m.CategoriesModule),
   },
 ];
 
