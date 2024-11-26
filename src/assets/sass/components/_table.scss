@@ -1,5 +1,5 @@
 .table {
-  --bs-table-bg: none !important;
+  --bs-table-bg: transparent;
 
   & > :not(caption) > * > * {
     border: none;
@@ -25,9 +25,9 @@
     }
   }
   tbody {
-    tr:nth-child(even) {
-      background-color: $table-bg2;
-    }
+    // tr:nth-child(even) {
+    //   background-color: $table-bg2;
+    // }
     tr {
       td {
         padding: 1.3rem;

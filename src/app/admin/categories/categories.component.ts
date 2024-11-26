@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { ICategory } from './interfaces/ICategory';
 import { CategoryService } from './services/category.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { CategoryService } from './services/category.service';
 })
 export class CategoriesComponent {
   name: string = '';
+  listData: ICategory[] = [];
   constructor(
     private _CategoryService: CategoryService,
     private _ToastrService: ToastrService
@@ -20,6 +22,7 @@ export class CategoriesComponent {
     this._CategoryService.getAllCategories().subscribe({
       next: (res) => {
         console.log(res);
+        this.listData = res.data;
       },
       error: (err) => {
         this._ToastrService.error('Failed to load categories', 'Error');
