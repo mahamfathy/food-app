@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
@@ -12,9 +12,7 @@ import { LocalStorageService } from './local-storage.service';
 })
 export class AuthService {
   role: string | null = '';
-  headers: any = new HttpHeaders({
-    Authorization: `Bearer ${this._LocalStorageService.getItem('userToken')}`,
-  });
+
   constructor(
     private _HttpClient: HttpClient,
     private _LocalStorageService: LocalStorageService,
@@ -57,9 +55,7 @@ export class AuthService {
     return this._HttpClient.put('/Users/verify', IVerifyForm);
   }
   getUser(): Observable<any> {
-    return this._HttpClient.get('/Users/currentUser', {
-      headers: this.headers,
-    });
+    return this._HttpClient.get('/Users/currentUser');
   }
 
   onLogout(): void {
