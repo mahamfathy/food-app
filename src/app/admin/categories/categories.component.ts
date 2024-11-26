@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
+import { AddEditCategoryComponent } from './components/add-edit-category/add-edit-category.component';
 import { ICategory } from './interfaces/ICategory';
 import { CategoryService } from './services/category.service';
 
@@ -19,11 +21,22 @@ export class CategoriesComponent {
   searchVal: string = '';
   constructor(
     private _CategoryService: CategoryService,
-    private _ToastrService: ToastrService
+    private _ToastrService: ToastrService,
+    public dialog: MatDialog
   ) {}
   ngOnInit(): void {
     this.getCategories();
   }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AddEditCategoryComponent, {
+      data: { name: this.name },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
+  }
+
   getCategories(): void {
     let tableParams = {
       pageSize: this.pageSize,
@@ -48,6 +61,7 @@ export class CategoriesComponent {
     this.getCategories();
     console.log(e);
   }
+
   // onSubmit(addCategoryForm: NgForm): void {
   //   if (addCategoryForm.valid) {
   //     const categoryName = addCategoryForm.value.name;
