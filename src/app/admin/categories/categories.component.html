@@ -42,7 +42,21 @@
     </div>
   </div>
   <h1>{{ name }}</h1>
-  <div class="row third">
+
+  <div class="third">
+    <mat-card>
+      <div class="my-3 w-75 mx-auto">
+        <input
+          [(ngModel)]="searchVal"
+          (keydown.enter)="getCategories()"
+          placeholder="Search By Name"
+          class="form-control"
+          type="text"
+          name="search"
+          id="search"
+        />
+      </div>
+    </mat-card>
     <table class="table">
       <thead>
         <tr>
@@ -99,9 +113,9 @@
       </tbody>
     </table>
     <mat-paginator
-      [length]="100"
-      [pageSize]="10"
-      [pageIndex]="1"
+      [length]="tableRes?.totalNumberOfRecords"
+      [pageSize]="pageSize"
+      [pageIndex]="pageNumber"
       (page)="handlePageEvent($event)"
       [pageSizeOptions]="[5, 10, 25, 100]"
       aria-label="Select page"

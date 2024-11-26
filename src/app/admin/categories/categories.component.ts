@@ -12,8 +12,11 @@ import { CategoryService } from './services/category.service';
 export class CategoriesComponent {
   name: string = '';
   listData: ICategory[] = [];
-
+  tableRes: any;
+  pageSize: number = 10;
+  pageNumber: number = 1;
   pageEvent!: PageEvent;
+  searchVal: string = '';
   constructor(
     private _CategoryService: CategoryService,
     private _ToastrService: ToastrService
@@ -21,11 +24,16 @@ export class CategoriesComponent {
   ngOnInit(): void {
     this.getCategories();
   }
-  private getCategories(): void {
-    this._CategoryService.getAllCategories().subscribe({
+  getCategories(): void {
+    let tableParams = {
+      pageSize: this.pageSize,
+      pageNumber: this.pageNumber,
+      name: this.searchVal,
+    };
+    this._CategoryService.getAllCategories(tableParams).subscribe({
       next: (res) => {
-        console.log(res);
         this.listData = res.data;
+        this.tableRes = res;
       },
       error: (err) => {
         this._ToastrService.error('Failed to load categories', 'Error');
@@ -35,8 +43,9 @@ export class CategoriesComponent {
   handlePageEvent(e: PageEvent) {
     // this.pageEvent = e;
     // this.length = e.length;
-    // this.pageSize = e.pageSize;
-    // this.pageIndex = e.pageIndex;
+    this.pageSize = e.pageSize;
+    this.pageNumber = e.pageIndex;
+    this.getCategories();
     console.log(e);
   }
   // onSubmit(addCategoryForm: NgForm): void {

@@ -14,9 +14,9 @@ export class CategoryService {
     private _HttpClient: HttpClient,
     private _LocalStorageService: LocalStorageService
   ) {}
-  getAllCategories(): Observable<any> {
-    let myParams = { pageSize: 10, pageNumber: 1 };
-    return this._HttpClient.get('Category', { params: myParams });
+  getAllCategories(data: any): Observable<any> {
+    // let myParams = { pageSize: 10, pageNumber: 1 };
+    return this._HttpClient.get('Category', { params: data });
   }
 
   addCategory(CategoryName: string): Observable<any> {

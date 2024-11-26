@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -24,6 +27,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     MatButtonModule,
     MatMenuModule,
     MatIconModule,
+    MatCardModule,
+    FormsModule,
+    MatDialogModule,
   ],
   exports: [
     NavbarComponent,
@@ -32,6 +38,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     MatButtonModule,
     MatMenuModule,
     MatIconModule,
+    MatCardModule,
+    FormsModule,
+    MatDialogModule,
   ],
 })
 export class SharedModule {}
