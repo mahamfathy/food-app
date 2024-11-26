@@ -16,18 +16,18 @@ export class CategoryService {
   ) {}
   getAllCategories(): Observable<any> {
     let myParams = { pageSize: 10, pageNumber: 1 };
-    return this._HttpClient.get('/Category', { params: myParams });
+    return this._HttpClient.get('Category', { params: myParams });
   }
 
   addCategory(CategoryName: string): Observable<any> {
-    return this._HttpClient.post('/Category', { name: CategoryName });
+    return this._HttpClient.post('Category', { name: CategoryName });
   }
   getCategoryById(id: number): Observable<any> {
-    return this._HttpClient.get(`/Category/${id}`);
+    return this._HttpClient.get(`Category/${id}`);
   }
   updateCategory(id: number, CategoryName: string): Observable<any> {
     return this._HttpClient.put(
-      `/Category/${id}`,
+      `Category/${id}`,
       { name: CategoryName },
       {
         headers: this.headers,

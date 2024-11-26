@@ -80,7 +80,7 @@
               <mat-icon>more_horiz</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item>
+              <button mat-menu-item (click)="viewCategory(category.id)">
                 <mat-icon class="text-success">visibility</mat-icon>
                 <span class="text-success">View</span>
               </button>
@@ -98,11 +98,14 @@
         <!-- </ng-container> -->
       </tbody>
     </table>
+    <mat-paginator
+      [length]="100"
+      [pageSize]="10"
+      [pageIndex]="1"
+      (page)="handlePageEvent($event)"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page"
+    >
+    </mat-paginator>
   </div>
-  <!-- <mat-paginator 
-  [length]="100"
-              [pageSize]="10"
-              [pageSizeOptions]="[5, 10, 25, 100]"
-              aria-label="Select page">
-</mat-paginator> -->
 </section>

@@ -40,22 +40,22 @@ export class AuthService {
     return this.role;
   }
   onLogin(loginForm: ILogin): Observable<any> {
-    return this._HttpClient.post('/Users/Login', loginForm);
+    return this._HttpClient.post('Users/Login', loginForm);
   }
   onRegister(registerForm: FormData): Observable<any> {
-    return this._HttpClient.post('/Users/Register', registerForm);
+    return this._HttpClient.post('Users/Register', registerForm);
   }
   onResetRequest(resetReq: any): Observable<any> {
-    return this._HttpClient.post('/Users/Reset/Request', resetReq);
+    return this._HttpClient.post('Users/Reset/Request', resetReq);
   }
   onResetPassword(resetPasswordForm: IResetPassword): Observable<any> {
-    return this._HttpClient.post('/Users/Reset', resetPasswordForm);
+    return this._HttpClient.post('Users/Reset', resetPasswordForm);
   }
   onVerifyAccount(IVerifyForm: IVerify): Observable<any> {
-    return this._HttpClient.put('/Users/verify', IVerifyForm);
+    return this._HttpClient.put('Users/verify', IVerifyForm);
   }
   getUser(): Observable<any> {
-    return this._HttpClient.get('/Users/currentUser');
+    return this._HttpClient.get('Users/currentUser');
   }
 
   onLogout(): void {

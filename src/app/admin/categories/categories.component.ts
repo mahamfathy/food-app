@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
 import { ICategory } from './interfaces/ICategory';
 import { CategoryService } from './services/category.service';
@@ -11,6 +12,8 @@ import { CategoryService } from './services/category.service';
 export class CategoriesComponent {
   name: string = '';
   listData: ICategory[] = [];
+
+  pageEvent!: PageEvent;
   constructor(
     private _CategoryService: CategoryService,
     private _ToastrService: ToastrService
@@ -28,6 +31,13 @@ export class CategoriesComponent {
         this._ToastrService.error('Failed to load categories', 'Error');
       },
     });
+  }
+  handlePageEvent(e: PageEvent) {
+    // this.pageEvent = e;
+    // this.length = e.length;
+    // this.pageSize = e.pageSize;
+    // this.pageIndex = e.pageIndex;
+    console.log(e);
   }
   // onSubmit(addCategoryForm: NgForm): void {
   //   if (addCategoryForm.valid) {
@@ -49,13 +59,13 @@ export class CategoriesComponent {
   //     });
   //   }
   // }
-  // viewCategory(id: number): void {
-  //   this._CategoryService.getCategoryById(id).subscribe({
-  //     next: (res) => {
-  //       console.log(res);
-  //     },
-  //   });
-  // }
+  viewCategory(id: number): void {
+    this._CategoryService.getCategoryById(id).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+    });
+  }
 
   // updateCategory(id: number, categoryName: string): void {
   //   this._CategoryService.updateCategory(id, categoryName).subscribe({
