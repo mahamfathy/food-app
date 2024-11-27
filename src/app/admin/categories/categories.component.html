@@ -100,7 +100,11 @@
                 <mat-icon class="text-success">edit_note</mat-icon>
                 <span class="text-success">Edit</span>
               </button>
-              <button class="text-danger" mat-menu-item>
+              <button
+                class="text-danger"
+                mat-menu-item
+                (click)="deleteCategory(category.id)"
+              >
                 <mat-icon class="text-danger">delete</mat-icon>
                 <span>Delete</span>
               </button>

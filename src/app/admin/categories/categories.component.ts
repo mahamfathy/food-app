@@ -115,14 +115,14 @@ export class CategoriesComponent {
       },
     });
   }
-  // deleteCategory(id: number) {
-  //   this._CategoryService.deleteCategory(id).subscribe({
-  //     next: (res) => {
-  //       console.log(res);
-  //       this.categoryNameList.splice(
-  //         this.categoryNameList.indexOf(res.data.name)
-  //       );
-  //     },
-  //   });
-  // }
+  deleteCategory(id: number) {
+    this._CategoryService.deleteCategory(id).subscribe({
+      next: (res) => {},
+      error: () => {},
+      complete: () => {
+        this._ToastrService.success('Category deleted successfully', 'Success');
+        this.getCategories();
+      },
+    });
+  }
 }
