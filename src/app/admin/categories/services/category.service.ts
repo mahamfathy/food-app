@@ -19,20 +19,14 @@ export class CategoryService {
     return this._HttpClient.get('Category', { params: data });
   }
 
-  addCategory(CategoryName: string): Observable<any> {
-    return this._HttpClient.post('Category', { name: CategoryName });
+  onAddCategory(data: any): Observable<any> {
+    return this._HttpClient.post('Category', data);
   }
   getCategoryById(id: number): Observable<any> {
     return this._HttpClient.get(`Category/${id}`);
   }
   updateCategory(id: number, CategoryName: string): Observable<any> {
-    return this._HttpClient.put(
-      `Category/${id}`,
-      { name: CategoryName },
-      {
-        headers: this.headers,
-      }
-    );
+    return this._HttpClient.put(`Category/${id}`, { name: CategoryName });
   }
   deleteCategory(id: number): Observable<any> {
     return this._HttpClient.delete(`/Category/${id}`, {

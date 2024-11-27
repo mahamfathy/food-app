@@ -89,11 +89,14 @@
               <mat-icon>more_horiz</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="viewCategory(category.id)">
+              <button mat-menu-item (click)="viewCategory(category)">
                 <mat-icon class="text-success">visibility</mat-icon>
                 <span class="text-success">View</span>
               </button>
-              <button mat-menu-item>
+              <button
+                mat-menu-item
+                (click)="editCategory(category.id, category.name)"
+              >
                 <mat-icon class="text-success">edit_note</mat-icon>
                 <span class="text-success">Edit</span>
               </button>

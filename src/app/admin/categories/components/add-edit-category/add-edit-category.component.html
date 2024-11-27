@@ -1,14 +1,30 @@
-<!-- <h1 mat-dialog-title>Hi {{ data.name }}</h1> -->
+<h1 mat-dialog-title>
+  {{ isReadOnly ? "View Category" : "Add/Edit Category" }}
+</h1>
 <div mat-dialog-content>
-  <p>Add Category</p>
   <mat-form-field>
     <mat-label>Category Name</mat-label>
-    <input matInput [(ngModel)]="data.name" />
+    <input
+      [readonly]="isReadOnly"
+      required
+      #categoryName="ngModel"
+      matInput
+      [(ngModel)]="data.name"
+      [disabled]="isReadOnly"
+    />
+    <mat-error *ngIf="categoryName.invalid && categoryName.touched">
+      <small>Category name is required.</small>
+    </mat-error>
   </mat-form-field>
 </div>
 <div mat-dialog-actions [align]="'end'">
   <button mat-button (click)="onNoClick()">Close</button>
-  <button mat-button [mat-dialog-close]="data.name" cdkFocusInitial>
+  <button
+    mat-button
+    [mat-dialog-close]="data"
+    [disabled]="!isReadOnly && categoryName.invalid"
+    *ngIf="!isReadOnly"
+  >
     Save
   </button>
 </div>

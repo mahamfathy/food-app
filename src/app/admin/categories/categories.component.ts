@@ -29,11 +29,12 @@ export class CategoriesComponent {
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(AddEditCategoryComponent, {
-      data: { name: this.name },
+      data: { name: '' },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-      console.log(result);
+      if (result) {
+        this.addCategory(result);
+      }
     });
   }
 
@@ -61,42 +62,59 @@ export class CategoriesComponent {
     this.getCategories();
     console.log(e);
   }
-
-  // onSubmit(addCategoryForm: NgForm): void {
-  //   if (addCategoryForm.valid) {
-  //     const categoryName = addCategoryForm.value.name;
-  //     this._CategoryService.addCategory(categoryName).subscribe({
-  //       next: (res) => {
-  //         this.categoryNameList.push(categoryName);
-  //         addCategoryForm.reset();
-  //       },
-  //       error: (err) => {
-  //         this._ToastrService.error('An unexpected error occurred', 'Error');
-  //       },
-  //       complete: () => {
-  //         this._ToastrService.success(
-  //           `You have successfully added "${categoryName}"`,
-  //           'Success'
-  //         );
-  //       },
-  //     });
-  //   }
-  // }
-  viewCategory(id: number): void {
-    this._CategoryService.getCategoryById(id).subscribe({
+  addCategory(data: any): void {
+    this._CategoryService.onAddCategory(data).subscribe({
       next: (res) => {
-        console.log(res);
+        this.name = res.name;
+      },
+      error: (err) => {
+        this._ToastrService.error('An unexpected error occurred', 'Error');
+      },
+      complete: () => {
+        this.getCategories();
+
+        this._ToastrService.success(
+          `You have successfully added "${this.name}"`,
+          'Success'
+        );
       },
     });
   }
 
-  // updateCategory(id: number, categoryName: string): void {
-  //   this._CategoryService.updateCategory(id, categoryName).subscribe({
-  //     next: (res) => {
-  //       console.log(res);
-  //     },
-  //   });
-  // }
+  editCategory(id: number, categoryName: string): void {
+    const dialogRef = this.dialog.open(AddEditCategoryComponent, {
+      data: { name: categoryName, isReadOnly: false },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this._CategoryService.updateCategory(id, result.name).subscribe({
+          next: () => {},
+          error: () => {
+            this._ToastrService.error('Failed to update category', 'Error');
+          },
+          complete: () => {
+            this._ToastrService.success(
+              `Category "${result.name}" updated successfully!`,
+              'Success'
+            );
+            this.getCategories();
+          },
+        });
+      }
+    });
+  }
+  viewCategory(category: ICategory): void {
+    this._CategoryService.getCategoryById(category.id).subscribe({
+      next: (res) => {},
+      error: () => {},
+      complete: () => {
+        this.dialog.open(AddEditCategoryComponent, {
+          data: { name: category.name, isReadOnly: true },
+        });
+      },
+    });
+  }
   // deleteCategory(id: number) {
   //   this._CategoryService.deleteCategory(id).subscribe({
   //     next: (res) => {
