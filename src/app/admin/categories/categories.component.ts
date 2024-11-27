@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
 import { AddEditCategoryComponent } from './components/add-edit-category/add-edit-category.component';
+import { DeleteCategoryComponent } from './components/delete-category/delete-category.component';
 import { ICategory } from './interfaces/ICategory';
 import { CategoryService } from './services/category.service';
 
@@ -116,13 +117,34 @@ export class CategoriesComponent {
     });
   }
   deleteCategory(id: number) {
-    this._CategoryService.deleteCategory(id).subscribe({
-      next: (res) => {},
-      error: () => {},
-      complete: () => {
-        this._ToastrService.success('Category deleted successfully', 'Success');
-        this.getCategories();
-      },
+    const dialogRef = this.dialog.open(DeleteCategoryComponent, {
+      data: id,
     });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this._CategoryService.deleteCategory(id).subscribe({
+          next: () => {},
+          error: () => {
+            this._ToastrService.error('Failed to Delete category', 'Error');
+          },
+          complete: () => {
+            this._ToastrService.success(
+              `Category has been deleted successfully!`,
+              'Success'
+            );
+            this.getCategories();
+          },
+        });
+      }
+    });
+    // this._CategoryService.deleteCategory(id).subscribe({
+    //   next: (res) => {},
+    //   error: () => {},
+    //   complete: () => {
+    //     this._ToastrService.success('Category deleted successfully', 'Success');
+    //     this.getCategories();
+    //   },
+    // });
   }
 }
