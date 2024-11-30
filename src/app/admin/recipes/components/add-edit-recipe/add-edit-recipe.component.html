@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>
+  {{ isReadOnly ? "View recipe" : "Add/Edit recipe" }}
+</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Recipe name</mat-label>
+    <input
+      [readonly]="isReadOnly"
+      required
+      #recipeName="ngModel"
+      matInput
+      [(ngModel)]="data.name"
+      [disabled]="isReadOnly"
+    />
+    <mat-error *ngIf="recipeName.invalid && recipeName.touched">
+      <small>recipe name is required.</small>
+    </mat-error>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-button (click)="onNoClick()">Close</button>
+  <button
+    mat-button
+    [mat-dialog-close]="data"
+    [disabled]="!isReadOnly && recipeName.invalid"
+    *ngIf="!isReadOnly"
+  >
+    Save
+  </button>
+</div>

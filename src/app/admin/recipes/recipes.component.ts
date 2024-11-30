@@ -5,7 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { AddEditCategoryComponent } from '../categories/components/add-edit-category/add-edit-category.component';
 import { DeleteCategoryComponent } from '../categories/components/delete-category/delete-category.component';
 import { ICategory } from '../categories/interfaces/ICategory';
-import { CategoryService } from '../categories/services/category.service';
+import { IRecipe } from './interfaces/IRecipe';
+import { RecipeService } from './services/recipe.service';
 
 @Component({
   selector: 'app-recipes',
@@ -14,14 +15,14 @@ import { CategoryService } from '../categories/services/category.service';
 })
 export class RecipesComponent {
   name: string = '';
-  listData: ICategory[] = [];
+  listData: IRecipe[] = [];
   tableRes: any;
   pageSize: number = 10;
   pageNumber: number = 1;
   pageEvent!: PageEvent;
   searchVal: string = '';
   constructor(
-    private _CategoryService: CategoryService,
+    private _RecipeService: RecipeService,
     private _ToastrService: ToastrService,
     public dialog: MatDialog
   ) {}
@@ -45,7 +46,7 @@ export class RecipesComponent {
       pageNumber: this.pageNumber,
       name: this.searchVal,
     };
-    this._CategoryService.getAllCategories(tableParams).subscribe({
+    this._RecipeService.getRecipes(tableParams).subscribe({
       next: (res) => {
         this.listData = res.data;
         this.tableRes = res;
@@ -64,7 +65,7 @@ export class RecipesComponent {
     console.log(e);
   }
   addCategory(data: any): void {
-    this._CategoryService.onAddCategory(data).subscribe({
+    this._RecipeService.onAddRecipe(data).subscribe({
       next: (res) => {
         this.name = res.name;
       },
@@ -89,7 +90,7 @@ export class RecipesComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this._CategoryService.updateCategory(id, result.name).subscribe({
+        this._RecipeService.updateRecipe(id, result.name).subscribe({
           next: () => {},
           error: () => {
             this._ToastrService.error('Failed to update category', 'Error');
@@ -106,7 +107,7 @@ export class RecipesComponent {
     });
   }
   viewCategory(category: ICategory): void {
-    this._CategoryService.getCategoryById(category.id).subscribe({
+    this._RecipeService.getRecipeById(category.id).subscribe({
       next: (res) => {},
       error: () => {},
       complete: () => {
@@ -123,7 +124,7 @@ export class RecipesComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this._CategoryService.deleteCategory(id).subscribe({
+        this._RecipeService.deleteRecipe(id).subscribe({
           next: () => {},
           error: () => {
             this._ToastrService.error('Failed to Delete category', 'Error');
@@ -138,7 +139,7 @@ export class RecipesComponent {
         });
       }
     });
-    // this._CategoryService.deleteCategory(id).subscribe({
+    // this._RecipeService.deleteCategory(id).subscribe({
     //   next: (res) => {},
     //   error: () => {},
     //   complete: () => {
