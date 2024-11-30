@@ -54,7 +54,10 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Item name</th>
+          <th>Name</th>
+          <th>Image</th>
+          <th>Price</th>
+          <th>Description</th>
           <th>Creation date</th>
           <th>Modification date</th>
           <th>Actions</th>
@@ -77,6 +80,10 @@
             [class]="isEven ? 'bg-white' : 'bg-light'"
           >
             <td>{{ category.name }}</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+
             <td>{{ category.creationDate | date : "dd/MM/yyyy HH:mm a" }}</td>
             <td>
               {{ category.modificationDate | date : "dd/MM/yyyy HH:mm a" }}
