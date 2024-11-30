@@ -12,16 +12,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { RecipesComponent } from './recipes/recipes.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
-  declarations: [
-    NavbarComponent,
-    SidebarComponent,
-    HomeComponent,
-    RecipesComponent,
-  ],
+  declarations: [NavbarComponent, SidebarComponent, HomeComponent],
   imports: [
     CommonModule,
     RouterModule,
