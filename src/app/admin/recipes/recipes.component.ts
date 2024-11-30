@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
-import { AddEditCategoryComponent } from '../categories/components/add-edit-category/add-edit-category.component';
-import { DeleteCategoryComponent } from '../categories/components/delete-category/delete-category.component';
-import { ICategory } from '../categories/interfaces/ICategory';
+import { AddEditRecipeComponent } from './components/add-edit-recipe/add-edit-recipe.component';
+import { DeleteRecipeComponent } from './components/delete-recipe/delete-recipe.component';
 import { IRecipe } from './interfaces/IRecipe';
 import { RecipeService } from './services/recipe.service';
 
@@ -27,24 +26,26 @@ export class RecipesComponent {
     public dialog: MatDialog
   ) {}
   ngOnInit(): void {
-    this.getCategories();
+    this.getRecipes();
   }
   openDialog(): void {
-    const dialogRef = this.dialog.open(AddEditCategoryComponent, {
+    const dialogRef = this.dialog.open(AddEditRecipeComponent, {
       data: { name: '' },
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.addCategory(result);
+        this.addRecipe(result);
       }
     });
   }
 
-  getCategories(): void {
+  getRecipes(): void {
     let tableParams = {
       pageSize: this.pageSize,
       pageNumber: this.pageNumber,
       name: this.searchVal,
+      tagId: Number,
+      categoryId: Number,
     };
     this._RecipeService.getRecipes(tableParams).subscribe({
       next: (res) => {
@@ -61,10 +62,10 @@ export class RecipesComponent {
     // this.length = e.length;
     this.pageSize = e.pageSize;
     this.pageNumber = e.pageIndex;
-    this.getCategories();
+    this.getRecipes();
     console.log(e);
   }
-  addCategory(data: any): void {
+  addRecipe(data: any): void {
     this._RecipeService.onAddRecipe(data).subscribe({
       next: (res) => {
         this.name = res.name;
@@ -73,7 +74,7 @@ export class RecipesComponent {
         this._ToastrService.error('An unexpected error occurred', 'Error');
       },
       complete: () => {
-        this.getCategories();
+        this.getRecipes();
 
         this._ToastrService.success(
           `You have successfully added "${this.name}"`,
@@ -83,9 +84,9 @@ export class RecipesComponent {
     });
   }
 
-  editCategory(id: number, categoryName: string): void {
-    const dialogRef = this.dialog.open(AddEditCategoryComponent, {
-      data: { name: categoryName, isReadOnly: false },
+  editRecipe(id: number, recipeName: string): void {
+    const dialogRef = this.dialog.open(AddEditRecipeComponent, {
+      data: { name: recipeName, isReadOnly: false },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -93,32 +94,32 @@ export class RecipesComponent {
         this._RecipeService.updateRecipe(id, result.name).subscribe({
           next: () => {},
           error: () => {
-            this._ToastrService.error('Failed to update category', 'Error');
+            this._ToastrService.error('Failed to update recipe', 'Error');
           },
           complete: () => {
             this._ToastrService.success(
-              `Category "${result.name}" updated successfully!`,
+              `Recipe "${result.name}" updated successfully!`,
               'Success'
             );
-            this.getCategories();
+            this.getRecipes();
           },
         });
       }
     });
   }
-  viewCategory(category: ICategory): void {
-    this._RecipeService.getRecipeById(category.id).subscribe({
+  viewRecipes(recipe: IRecipe): void {
+    this._RecipeService.getRecipeById(recipe.id).subscribe({
       next: (res) => {},
       error: () => {},
       complete: () => {
-        this.dialog.open(AddEditCategoryComponent, {
-          data: { name: category.name, isReadOnly: true },
+        this.dialog.open(AddEditRecipeComponent, {
+          data: { name: recipe.name, isReadOnly: true },
         });
       },
     });
   }
-  deleteCategory(id: number) {
-    const dialogRef = this.dialog.open(DeleteCategoryComponent, {
+  deleteRecipe(id: number) {
+    const dialogRef = this.dialog.open(DeleteRecipeComponent, {
       data: id,
     });
 
@@ -127,14 +128,14 @@ export class RecipesComponent {
         this._RecipeService.deleteRecipe(id).subscribe({
           next: () => {},
           error: () => {
-            this._ToastrService.error('Failed to Delete category', 'Error');
+            this._ToastrService.error('Failed to delete recipe', 'Error');
           },
           complete: () => {
             this._ToastrService.success(
-              `Category has been deleted successfully!`,
+              `Recipe has been deleted successfully!`,
               'Success'
             );
-            this.getCategories();
+            this.getRecipes();
           },
         });
       }
