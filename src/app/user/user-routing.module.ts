@@ -8,7 +8,7 @@ const routes: Routes = [
     component: UserComponent,
   },
   {
-    path: 'favourie-recipes',
+    path: 'favourite-recipes',
     loadChildren: () =>
       import('./favourite-recipes/favourite-recipes.module').then(
         (m) => m.FavouriteRecipesModule

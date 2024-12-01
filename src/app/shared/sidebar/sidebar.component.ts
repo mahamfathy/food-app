@@ -60,10 +60,10 @@ export class SidebarComponent {
   ];
   constructor(private _AuthService: AuthService) {}
   isAdmin(): boolean {
-    return this._AuthService.role == 'SuperAdmin';
+    return this._AuthService.role === 'SuperAdmin';
   }
   isUser(): boolean {
-    return this._AuthService.role == 'SystemUser';
+    return this._AuthService.role === 'SystemUser';
   }
   logout(): void {
     this._AuthService.onLogout();

@@ -13,6 +13,6 @@ import { RecipesComponent } from './recipes.component';
     AddEditRecipeComponent,
     DeleteRecipeComponent,
   ],
-  imports: [CommonModule, RecipesRoutingModule, SharedModule, SharedModule],
+  imports: [CommonModule, RecipesRoutingModule, SharedModule],
 })
 export class RecipesModule {}

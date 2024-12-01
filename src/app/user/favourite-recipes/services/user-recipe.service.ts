@@ -8,6 +8,6 @@ import { Observable } from 'rxjs';
 export class UserRecipeService {
   constructor(private _HttpClient: HttpClient) {}
   getFavUserRecipes(): Observable<any> {
-    return this._HttpClient.get('/UserRecipe');
+    return this._HttpClient.get('UserRecipe');
   }
 }
