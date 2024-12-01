@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { UserRecipeService } from '../services/user-recipe.service';
+import { UserRecipeService } from './services/user-recipe.service';
 
 @Component({
-  selector: 'app-fav-recipes',
-  templateUrl: './fav-recipes.component.html',
-  styleUrls: ['./fav-recipes.component.scss'],
+  selector: 'app-favourite-recipes',
+  templateUrl: './favourite-recipes.component.html',
+  styleUrls: ['./favourite-recipes.component.scss'],
 })
-export class FavRecipesComponent {
+export class FavouriteRecipesComponent {
   constructor(private _UserRecipeService: UserRecipeService) {}
   recipes: any[] = [];
   recipe(): void {

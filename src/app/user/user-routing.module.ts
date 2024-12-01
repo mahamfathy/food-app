@@ -1,13 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FavRecipesComponent } from './fav-recipes/fav-recipes.component';
 import { UserComponent } from './user.component';
 
 const routes: Routes = [
   {
     path: '',
     component: UserComponent,
-    children: [{ path: 'fav', component: FavRecipesComponent }],
+  },
+  {
+    path: 'favourie-recipes',
+    loadChildren: () =>
+      import('./favourite-recipes/favourite-recipes.module').then(
+        (m) => m.FavouriteRecipesModule
+      ),
   },
 ];
 
