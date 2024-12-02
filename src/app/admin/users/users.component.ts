@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
+import { DeleteItemComponent } from 'src/app/shared/delete-item/delete-item.component';
 import { ViewUserComponent } from './components/view-user/view-user.component';
 import { IUser } from './interfaces/IUser';
 import { UserService } from './services/user.service';
@@ -125,35 +126,19 @@ export class UsersComponent {
       complete: () => {},
     });
   }
-  deleteUser(id: number) {
-    // const dialogRef = this.dialog.open(DeleteCategoryComponent, {
-    //   data: id,
-    // });
-    // dialogRef.afterClosed().subscribe((result) => {
-    // if (result) {
-    //   this._UserService.deleteUsers(id).subscribe({
-    //     next: () => {},
-    //     error: () => {
-    //       this._ToastrService.error('Failed to Delete category', 'Error');
-    //     },
-    //     complete: () => {
-    //       this._ToastrService.success(
-    //         `Category has been deleted successfully!`,
-    //         'Success'
-    //       );
-    //       this.getUsers();
-    //     },
-    //   });
-    // }
-    // }
-    // );
-    // this._UserService.deleteCategory(id).subscribe({
-    //   next: (res) => {},
-    //   error: () => {},
-    //   complete: () => {
-    //     this._ToastrService.success('Category deleted successfully', 'Success');
-    //     this.getUsers();
-    //   },
-    // });
+  deleteUser(user: IUser) {
+    const dialogRef = this.dialog.open(DeleteItemComponent, {
+      data: { text: 'User', id: user.id, userName: user.userName },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log(result);
+        // this._ToastrService.success(
+        //   `Category has been deleted successfully!`,
+        //   'Success'
+        // );
+        // this.getUsers();
+      }
+    });
   }
 }

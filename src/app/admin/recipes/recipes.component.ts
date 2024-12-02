@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/auth/service/auth.service';
 import { AddEditRecipeComponent } from './components/add-edit-recipe/add-edit-recipe.component';
 import { DeleteRecipeComponent } from './components/delete-recipe/delete-recipe.component';
 import { IRecipe } from './interfaces/IRecipe';
@@ -23,7 +24,8 @@ export class RecipesComponent {
   constructor(
     private _RecipeService: RecipeService,
     private _ToastrService: ToastrService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _AuthService: AuthService
   ) {}
   ngOnInit(): void {
     this.getRecipes();
@@ -38,7 +40,9 @@ export class RecipesComponent {
       }
     });
   }
-
+  isAdmin(): boolean {
+    return this._AuthService.role === 'SuperAdmin';
+  }
   getRecipes(): void {
     let tableParams = {
       pageSize: this.pageSize,

@@ -30,7 +30,7 @@
       <p>You can check all details</p>
     </div>
 
-    <div class="col-md-3 text-end">
+    <div *ngIf="isAdmin()" class="col-md-3 text-end">
       <button type="button" class="light-green-btn" (click)="openDialog()">
         Add new recipe
       </button>
@@ -102,6 +102,7 @@
                   <span class="text-success">View</span>
                 </button>
                 <button
+                  *ngIf="isAdmin()"
                   mat-menu-item
                   (click)="editRecipe(recipe.id, recipe.name)"
                 >
@@ -109,6 +110,7 @@
                   <span class="text-success">Edit</span>
                 </button>
                 <button
+                  *ngIf="isAdmin()"
                   class="text-danger"
                   mat-menu-item
                   (click)="deleteRecipe(recipe.id)"
