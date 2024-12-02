@@ -22,7 +22,7 @@ export class SidebarComponent {
       isActive: this.isAdmin() || this.isUser(),
     },
     {
-      link: '/dashboard/users',
+      link: '/dashboard/admin/users',
       text: 'Users',
       icon: 'fa-solid fa-lg fa-user-group',
       isActive: this.isAdmin(),

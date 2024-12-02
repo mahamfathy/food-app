@@ -2,11 +2,8 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
-import { AddEditCategoryComponent } from '../categories/components/add-edit-category/add-edit-category.component';
-import { DeleteCategoryComponent } from '../categories/components/delete-category/delete-category.component';
-import { ICategory } from '../categories/interfaces/ICategory';
-import { CategoryService } from '../categories/services/category.service';
 import { IUser } from './interfaces/IUser';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-users',
@@ -21,32 +18,38 @@ export class UsersComponent {
   pageNumber: number = 1;
   pageEvent!: PageEvent;
   searchVal: string = '';
+  email: string = '';
+  country: string = '';
+  roleId: number[] = [1, 2];
+  imagePath: string = 'https://upskilling-egypt.com:3006/';
   constructor(
-    private _CategoryService: CategoryService,
+    private _UserService: UserService,
     private _ToastrService: ToastrService,
     public dialog: MatDialog
   ) {}
   ngOnInit(): void {
-    this.getCategories();
+    this.getUsers();
   }
-  openDialog(): void {
-    const dialogRef = this.dialog.open(AddEditCategoryComponent, {
-      data: { name: '' },
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.addCategory(result);
-      }
-    });
-  }
+  // openDialog(): void {
+  //   const dialogRef = this.dialog.open(AddEditCategoryComponent, {
+  //     data: { name: '' },
+  //   });
+  //   dialogRef.afterClosed().subscribe((result) => {
+  //     if (result) {
+  //       this.addCategory(result);
+  //     }
+  //   });
+  // }
 
-  getCategories(): void {
+  getUsers(): void {
     let tableParams = {
       pageSize: this.pageSize,
       pageNumber: this.pageNumber,
-      name: this.searchVal,
+      userName: this.searchVal,
+      email: this.email,
+      country: this.country,
     };
-    this._CategoryService.getAllCategories(tableParams).subscribe({
+    this._UserService.getAllUsers(tableParams).subscribe({
       next: (res) => {
         this.listData = res.data;
         this.tableRes = res;
@@ -61,90 +64,90 @@ export class UsersComponent {
     // this.length = e.length;
     this.pageSize = e.pageSize;
     this.pageNumber = e.pageIndex;
-    this.getCategories();
+    this.getUsers();
     console.log(e);
   }
-  addCategory(data: any): void {
-    this._CategoryService.onAddCategory(data).subscribe({
-      next: (res) => {
-        this.name = res.name;
-      },
-      error: (err) => {
-        this._ToastrService.error('An unexpected error occurred', 'Error');
-      },
-      complete: () => {
-        this.getCategories();
+  // addCategory(data: any): void {
+  //   this._UserService.onAddCategory(data).subscribe({
+  //     next: (res) => {
+  //       this.name = res.name;
+  //     },
+  //     error: (err) => {
+  //       this._ToastrService.error('An unexpected error occurred', 'Error');
+  //     },
+  //     complete: () => {
+  //       this.getUsers();
 
-        this._ToastrService.success(
-          `You have successfully added "${this.name}"`,
-          'Success'
-        );
-      },
-    });
-  }
+  //       this._ToastrService.success(
+  //         `You have successfully added "${this.name}"`,
+  //         'Success'
+  //       );
+  //     },
+  //   });
+  // }
 
-  editCategory(id: number, categoryName: string): void {
-    const dialogRef = this.dialog.open(AddEditCategoryComponent, {
-      data: { name: categoryName, isReadOnly: false },
-    });
+  // editCategory(id: number, categoryName: string): void {
+  //   const dialogRef = this.dialog.open(AddEditCategoryComponent, {
+  //     data: { name: categoryName, isReadOnly: false },
+  //   });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this._CategoryService.updateCategory(id, result.name).subscribe({
-          next: () => {},
-          error: () => {
-            this._ToastrService.error('Failed to update category', 'Error');
-          },
-          complete: () => {
-            this._ToastrService.success(
-              `Category "${result.name}" updated successfully!`,
-              'Success'
-            );
-            this.getCategories();
-          },
-        });
-      }
-    });
-  }
-  viewCategory(category: ICategory): void {
-    this._CategoryService.getCategoryById(category.id).subscribe({
+  //   dialogRef.afterClosed().subscribe((result) => {
+  //     if (result) {
+  //       this._UserService.updateCategory(id, result.name).subscribe({
+  //         next: () => {},
+  //         error: () => {
+  //           this._ToastrService.error('Failed to update category', 'Error');
+  //         },
+  //         complete: () => {
+  //           this._ToastrService.success(
+  //             `Category "${result.name}" updated successfully!`,
+  //             'Success'
+  //           );
+  //           this.getUsers();
+  //         },
+  //       });
+  //     }
+  //   });
+  // }
+  viewUser(user: IUser): void {
+    this._UserService.getUsersById(user.id).subscribe({
       next: (res) => {},
       error: () => {},
       complete: () => {
-        this.dialog.open(AddEditCategoryComponent, {
-          data: { name: category.name, isReadOnly: true },
-        });
+        // this.dialog.open(AddEditCategoryComponent, {
+        //   data: { name: user, isReadOnly: true },
+        // });
       },
     });
   }
-  deleteCategory(id: number) {
-    const dialogRef = this.dialog.open(DeleteCategoryComponent, {
-      data: id,
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this._CategoryService.deleteCategory(id).subscribe({
-          next: () => {},
-          error: () => {
-            this._ToastrService.error('Failed to Delete category', 'Error');
-          },
-          complete: () => {
-            this._ToastrService.success(
-              `Category has been deleted successfully!`,
-              'Success'
-            );
-            this.getCategories();
-          },
-        });
-      }
-    });
-    // this._CategoryService.deleteCategory(id).subscribe({
+  deleteUser(id: number) {
+    // const dialogRef = this.dialog.open(DeleteCategoryComponent, {
+    //   data: id,
+    // });
+    // dialogRef.afterClosed().subscribe((result) => {
+    // if (result) {
+    //   this._UserService.deleteUsers(id).subscribe({
+    //     next: () => {},
+    //     error: () => {
+    //       this._ToastrService.error('Failed to Delete category', 'Error');
+    //     },
+    //     complete: () => {
+    //       this._ToastrService.success(
+    //         `Category has been deleted successfully!`,
+    //         'Success'
+    //       );
+    //       this.getUsers();
+    //     },
+    //   });
+    // }
+    // }
+    // );
+    // this._UserService.deleteCategory(id).subscribe({
     //   next: (res) => {},
     //   error: () => {},
     //   complete: () => {
     //     this._ToastrService.success('Category deleted successfully', 'Success');
-    //     this.getCategories();
+    //     this.getUsers();
     //   },
     // });
   }

@@ -1,1 +1,133 @@
-<p>users works!</p>
+<section class="container-fluid">
+  <div class="row radius-16 first px-5 my-4">
+    <div class="col-md-12 d-flex justify-content-between align-items-center">
+      <div class="col-md-6 text-containter">
+        <h1>Users <span class="animated-text">item!</span></h1>
+        <p>
+          You can now add your items that any user can order it from the
+          Application and you can edit
+        </p>
+      </div>
+      <div class="image-container">
+        <img src="assets/img/eating2.svg" alt="" />
+      </div>
+    </div>
+  </div>
+  <div class="circles position-absolute">
+    <img src="assets/img/1.svg" class="img1" />
+    <img src="assets/img/2.svg" class="img2" />
+    <img src="assets/img/3.svg" class="img3" />
+    <img src="assets/img/4.svg" class="img4" />
+    <img src="assets/img/5.svg" class="img5" />
+    <img src="assets/img/6.svg" class="img6" />
+    <img src="assets/img/3.svg" class="img7" />
+    <img src="assets/img/2.svg" class="img8" />
+    <img src="assets/img/3.svg" class="img9" />
+  </div>
+  <div class="row second d-flex justify-content-between">
+    <div class="col-md-6 text-containter">
+      <h3>Users table details</h3>
+      <p>You can check all details</p>
+    </div>
+  </div>
+
+  <div class="third">
+    <mat-card>
+      <div class="my-3 w-75 mx-auto">
+        <input
+          [(ngModel)]="searchVal"
+          (keydown.enter)="getUsers()"
+          placeholder="Search by name"
+          class="form-control"
+          type="text"
+          name="search"
+          id="search"
+        />
+      </div>
+    </mat-card>
+    <table class="table">
+      <thead>
+        <tr>
+          <th style="min-width: 8rem !important">User name</th>
+          <th>Image</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Country</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template #noData>
+          <tr>
+            <td colspan="4" class="text-center p-0 pb-2 pt-5">
+              <img src="assets/img/no-data.svg" alt="No Data" />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4" class="text-center p-3">No Data!</td>
+          </tr>
+        </ng-template>
+        <ng-container *ngIf="listData.length > 0; else noData">
+          <tr
+            *ngFor="let user of listData; let isEven = even"
+            [class]="isEven ? 'bg-white' : 'bg-light'"
+          >
+            <td>{{ user.userName }}</td>
+            <td>
+              <img
+                width="50px"
+                height="50px"
+                style="border-radius: 50%"
+                [src]="
+                  user.imagePath
+                    ? imagePath + user.imagePath
+                    : 'assets/img/default-avatar.avif'
+                "
+                alt=""
+              />
+            </td>
+            <td class="truncate">
+              {{ user.email }}
+            </td>
+            <td>{{ user.phoneNumber }}</td>
+            <td>{{ user.country }}</td>
+            <td>{{ roleId }}</td>
+            <td>
+              <button
+                mat-icon-button
+                [matMenuTriggerFor]="menu"
+                aria-label="Example icon-button with a menu"
+              >
+                <mat-icon>more_horiz</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                  <mat-icon class="text-success">visibility</mat-icon>
+                  <span class="text-success">View</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon class="text-success">edit_note</mat-icon>
+                  <span class="text-success">Edit</span>
+                </button>
+                <button class="text-danger" mat-menu-item>
+                  <mat-icon class="text-danger">delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+    <mat-paginator
+      [length]="tableRes?.totalNumberOfRecords"
+      [pageSize]="pageSize"
+      [pageIndex]="pageNumber"
+      (page)="handlePageEvent($event)"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </div>
+</section>

@@ -86,6 +86,10 @@ section {
       thead,
       tbody {
         tr {
+          vertical-align: middle;
+          th {
+            text-align: center;
+          }
           th:last-child {
             text-align: end;
             padding-right: 10rem;
@@ -107,4 +111,10 @@ section {
       }
     }
   }
+}
+.truncate {
+  max-width: 13rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
