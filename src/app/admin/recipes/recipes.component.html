@@ -38,19 +38,47 @@
   </div>
 
   <div class="third">
-    <mat-card>
-      <div class="my-3 w-75 mx-auto">
+    <div class="my-3 w-100 mx-auto">
+      <mat-form-field class="example-full-width me-2">
+        <mat-label>Search by name</mat-label>
         <input
           [(ngModel)]="searchVal"
           (keydown.enter)="getRecipes()"
-          placeholder="Search by name"
-          class="form-control"
-          type="text"
+          matInput
+          placeholder="abc"
           name="search"
-          id="search"
         />
-      </div>
-    </mat-card>
+      </mat-form-field>
+      <mat-form-field class="me-2">
+        <mat-label>Tag</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let tag of tagList" [value]="tag.name">{{
+            tag.name
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Category</mat-label>
+        <mat-select
+          [(ngModel)]="categoryId"
+          (selectionChange)="onCategoryChange($event.value)"
+        >
+          <mat-option
+            *ngFor="let category of categoriesList"
+            [value]="category.name"
+            >{{ category.name }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+      <button
+        type="button"
+        class="ms-3 btn btn-secondary"
+        (click)="clearFilter()"
+      >
+        Clear Filter
+      </button>
+    </div>
     <table class="table">
       <thead>
         <tr>

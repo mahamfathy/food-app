@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/auth/service/auth.service';
+import { ICategory } from '../categories/interfaces/ICategory';
+import { CategoryService } from '../categories/services/category.service';
 import { AddEditRecipeComponent } from './components/add-edit-recipe/add-edit-recipe.component';
 import { DeleteRecipeComponent } from './components/delete-recipe/delete-recipe.component';
 import { ViewRecipeComponent } from './components/view-recipe/view-recipe.component';
@@ -17,22 +19,25 @@ import { RecipeService } from './services/recipe.service';
 export class RecipesComponent {
   name: string = '';
   listData: IRecipe[] = [];
+  categoriesList: ICategory[] = [];
   tableRes: any;
   pageSize: number = 10;
   pageNumber: number = 1;
   pageEvent!: PageEvent;
   searchVal: string = '';
   tagList: ITag[] = [];
-  tagId = null;
-  categoryId = null;
+  tagId: number = 0;
+  categoryId: number = 0;
   constructor(
     private _RecipeService: RecipeService,
     private _ToastrService: ToastrService,
     public dialog: MatDialog,
-    private _AuthService: AuthService
+    private _AuthService: AuthService,
+    private _CategoryService: CategoryService
   ) {}
   ngOnInit(): void {
     this.getRecipes();
+    this.getAllCategories();
     this.getTag();
   }
   openDialog(recipe?: IRecipe): void {
@@ -168,5 +173,27 @@ export class RecipesComponent {
     //     this.getCategories();
     //   },
     // });
+  }
+  getAllCategories(): void {
+    let tableParams = {
+      pageSize: this.pageSize,
+      pageNumber: this.pageNumber,
+      name: this.searchVal,
+    };
+    this._CategoryService.getAllCategories(tableParams).subscribe({
+      next: (res) => {
+        this.listData = res.data;
+        this.tableRes = res;
+      },
+    });
+  }
+  onCategoryChange(categoryId: string): void {
+    this.categoryId = +categoryId;
+  }
+  clearFilter(): void {
+    this.searchVal = '';
+    this.tagId = 0;
+    this.categoryId = 0;
+    this.getRecipes();
   }
 }
