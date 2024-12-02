@@ -6,12 +6,14 @@ import { AddEditRecipeComponent } from './components/add-edit-recipe/add-edit-re
 import { DeleteRecipeComponent } from './components/delete-recipe/delete-recipe.component';
 import { RecipesRoutingModule } from './recipes-routing.module';
 import { RecipesComponent } from './recipes.component';
+import { ViewRecipeComponent } from './components/view-recipe/view-recipe.component';
 
 @NgModule({
   declarations: [
     RecipesComponent,
     AddEditRecipeComponent,
     DeleteRecipeComponent,
+    ViewRecipeComponent,
   ],
   imports: [CommonModule, RecipesRoutingModule, SharedModule],
 })
