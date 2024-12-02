@@ -108,3 +108,9 @@ section {
     }
   }
 }
+.truncate {
+  max-width: 13rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

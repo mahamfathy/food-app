@@ -31,7 +31,7 @@
     </div>
 
     <div *ngIf="isAdmin()" class="col-md-3 text-end">
-      <button type="button" class="light-green-btn" (click)="openDialog()">
+      <button type="button" class="light-green-btn" routerLink="add">
         Add new recipe
       </button>
     </div>
@@ -51,8 +51,8 @@
       </mat-form-field>
       <mat-form-field class="me-2">
         <mat-label>Tag</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let tag of tagList" [value]="tag.name">{{
+        <mat-select [(ngModel)]="tagId" (selectionChange)="getRecipes()">
+          <mat-option *ngFor="let tag of tagList" [value]="0">{{
             tag.name
           }}</mat-option>
         </mat-select>
@@ -60,13 +60,11 @@
 
       <mat-form-field>
         <mat-label>Category</mat-label>
-        <mat-select
-          [(ngModel)]="categoryId"
-          (selectionChange)="onCategoryChange($event.value)"
-        >
+        <mat-select [(ngModel)]="categoryId" (selectionChange)="getRecipes()">
+          <mat-option [value]="0"> All </mat-option>
           <mat-option
             *ngFor="let category of categoriesList"
-            [value]="category.name"
+            [value]="category.id"
             >{{ category.name }}</mat-option
           >
         </mat-select>
@@ -86,14 +84,15 @@
           <th>Image</th>
           <th>Price</th>
           <th>Description</th>
+          <th>Tag</th>
+          <th>Category</th>
           <th>Creation date</th>
-          <th>Modification date</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <ng-template #noData>
-          <tr>
+          <tr class="text-center">
             <td colspan="4" class="text-center p-0 pb-2 pt-5">
               <img src="assets/img/no-data.svg" alt="No Data" />
             </td>
@@ -104,18 +103,31 @@
         </ng-template>
         <ng-container *ngIf="listData.length > 0; else noData">
           <tr
+            style="vertical-align: middle"
             *ngFor="let recipe of listData; let isEven = even"
             [class]="isEven ? 'bg-white' : 'bg-light'"
           >
             <td>{{ recipe.name }}</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-
-            <td>{{ recipe.creationDate | date : "dd/MM/yyyy HH:mm a" }}</td>
             <td>
-              {{ recipe.modificationDate | date : "dd/MM/yyyy HH:mm a" }}
+              <img
+                width="70px"
+                height="70px"
+                [src]="
+                  recipe.imagePath
+                    ? imagePath + recipe.imagePath
+                    : 'assets/img/dummy-food.avif'
+                "
+                alt="img"
+              />
             </td>
+            <td>{{ recipe.price }}</td>
+            <td class="truncate">{{ recipe.description }}</td>
+            <td></td>
+            <td>
+              {{ categoriesList }}
+            </td>
+            <td>{{ recipe.creationDate | date : "dd/MM/yyyy" }}</td>
+
             <td>
               <button
                 mat-icon-button

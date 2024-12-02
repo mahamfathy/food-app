@@ -1,30 +1,89 @@
-<h1 mat-dialog-title>
-  {{ isReadOnly ? "View recipe" : "Add/Edit recipe" }}
-</h1>
-<div mat-dialog-content>
-  <mat-form-field>
-    <mat-label>Recipe name</mat-label>
-    <input
-      [readonly]="isReadOnly"
-      required
-      #recipeName="ngModel"
-      matInput
-      [(ngModel)]="data.name"
-      [disabled]="isReadOnly"
-    />
-    <mat-error *ngIf="recipeName.invalid && recipeName.touched">
-      <small>recipe name is required.</small>
-    </mat-error>
-  </mat-form-field>
-</div>
-<div mat-dialog-actions [align]="'end'">
-  <button mat-button (click)="onNoClick()">Close</button>
-  <button
-    mat-button
-    [mat-dialog-close]="data"
-    [disabled]="!isReadOnly && recipeName.invalid"
-    *ngIf="!isReadOnly"
-  >
-    Save
-  </button>
-</div>
+<section>
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-9 mx-auto">
+        <form
+          class="example-form"
+          [formGroup]="recipeForm"
+          (ngSubmit)="sendData(recipeForm)"
+        >
+          <div>
+            <mat-form-field class="example-full-width w-100">
+              <mat-label>Recipe Name</mat-label>
+              <input
+                matInput
+                placeholder="Enter recipe name"
+                formControlName="name"
+              />
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="example-full-width w-100">
+              <mat-label>Price</mat-label>
+              <input
+                matInput
+                placeholder="Enter price"
+                formControlName="price"
+                type="number"
+              />
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="me-2">
+              <mat-label>Tag</mat-label>
+              <mat-select formControlName="tagId" multiple>
+                <mat-option *ngFor="let tag of listTags" [value]="tag.id">{{
+                  tag.name
+                }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="me-2">
+              <mat-label>Category</mat-label>
+              <mat-select formControlName="categoriesIds" multiple>
+                <mat-option
+                  *ngFor="let category of listCategories"
+                  [value]="category.id"
+                  >{{ category.name }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <div class="col-md-4 mb-3">
+              <ngx-dropzone
+                class="dropzone-container"
+                (change)="onSelect($event)"
+              >
+                <ngx-dropzone-label
+                  >Drop Photo <i class="fa-solid fa-cloud-upload"></i
+                ></ngx-dropzone-label>
+                <ngx-dropzone-image-preview
+                  ngProjectAs="ngx-dropzone-preview"
+                  *ngFor="let f of files"
+                  [file]="f"
+                  class="dropzone-preview"
+                  [removable]="true"
+                  (removed)="onRemove(f)"
+                >
+                </ngx-dropzone-image-preview>
+              </ngx-dropzone>
+            </div>
+            <mat-form-field class="example-full-width w-100">
+              <mat-label>Description</mat-label>
+              <textarea
+                matInput
+                placeholder="Enter description"
+                formControlName="description"
+              ></textarea>
+            </mat-form-field>
+          </div>
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-success me-2" type="submit">Save</button>
+            <button class="btn btn-secondary" routerLink="../">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

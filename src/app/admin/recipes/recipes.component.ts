@@ -28,6 +28,8 @@ export class RecipesComponent {
   tagList: ITag[] = [];
   tagId: number = 0;
   categoryId: number = 0;
+  imagePath: string = 'https://upskilling-egypt.com:3006/';
+
   constructor(
     private _RecipeService: RecipeService,
     private _ToastrService: ToastrService,
@@ -69,6 +71,7 @@ export class RecipesComponent {
       next: (res) => {
         this.listData = res.data;
         this.tableRes = res;
+        // this.categoriesList = res.data.category.name;
       },
       error: (err) => {
         this._ToastrService.error('Failed to load categories', 'Error');
