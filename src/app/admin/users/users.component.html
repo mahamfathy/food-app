@@ -32,19 +32,35 @@
   </div>
 
   <div class="third">
-    <mat-card>
-      <div class="my-3 w-75 mx-auto">
+    <div class="my-3 w-100 mx-auto">
+      <mat-form-field class="example-full-width me-2">
+        <mat-label>Search by name</mat-label>
         <input
           [(ngModel)]="searchVal"
           (keydown.enter)="getUsers()"
-          placeholder="Search by name"
-          class="form-control"
-          type="text"
+          matInput
+          placeholder="abc"
           name="search"
-          id="search"
         />
-      </div>
-    </mat-card>
+      </mat-form-field>
+      <mat-form-field class="me-2">
+        <mat-label>Role</mat-label>
+        <mat-select>
+          <mat-option value="All">All</mat-option>
+          <mat-option value="Admin">Admin</mat-option>
+          <mat-option value="User">User</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Search by</mat-label>
+        <mat-select>
+          <mat-option value="All">User name</mat-option>
+          <mat-option value="Admin">Email</mat-option>
+          <mat-option value="User">Country</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
     <table class="table">
       <thead>
         <tr>
@@ -104,7 +120,9 @@
               <mat-menu #menu="matMenu">
                 <button mat-menu-item>
                   <mat-icon class="text-success">visibility</mat-icon>
-                  <span class="text-success">View</span>
+                  <span class="text-success" (click)="viewUser(user)"
+                    >View</span
+                  >
                 </button>
                 <button mat-menu-item>
                   <mat-icon class="text-success">edit_note</mat-icon>

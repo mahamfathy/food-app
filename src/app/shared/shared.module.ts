@@ -9,13 +9,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { DeleteItemComponent } from './delete-item/delete-item.component';
 
 @NgModule({
-  declarations: [NavbarComponent, SidebarComponent, HomeComponent],
+  declarations: [NavbarComponent, SidebarComponent, HomeComponent, DeleteItemComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -28,6 +30,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
   ],
   exports: [
     NavbarComponent,
@@ -41,6 +44,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     FormsModule,
     MatDialogModule,
     MatFormFieldModule,
+    MatSelectModule,
   ],
 })
 export class SharedModule {}

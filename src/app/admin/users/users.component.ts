@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
+import { ViewUserComponent } from './components/view-user/view-user.component';
 import { IUser } from './interfaces/IUser';
 import { UserService } from './services/user.service';
 
@@ -110,14 +111,18 @@ export class UsersComponent {
   //   });
   // }
   viewUser(user: IUser): void {
+    const dialogRef = this.dialog.open(ViewUserComponent, {
+      data: { user, role: this.roleId },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(result);
+    });
     this._UserService.getUsersById(user.id).subscribe({
-      next: (res) => {},
-      error: () => {},
-      complete: () => {
-        // this.dialog.open(AddEditCategoryComponent, {
-        //   data: { name: user, isReadOnly: true },
-        // });
+      next: (res) => {
+        console.log(res);
       },
+      error: () => {},
+      complete: () => {},
     });
   }
   deleteUser(id: number) {
