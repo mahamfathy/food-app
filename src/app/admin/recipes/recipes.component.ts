@@ -5,9 +5,10 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/auth/service/auth.service';
 import { AddEditRecipeComponent } from './components/add-edit-recipe/add-edit-recipe.component';
 import { DeleteRecipeComponent } from './components/delete-recipe/delete-recipe.component';
+import { ViewRecipeComponent } from './components/view-recipe/view-recipe.component';
 import { IRecipe } from './interfaces/IRecipe';
+import { ITag } from './interfaces/ITag';
 import { RecipeService } from './services/recipe.service';
-
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
@@ -21,6 +22,9 @@ export class RecipesComponent {
   pageNumber: number = 1;
   pageEvent!: PageEvent;
   searchVal: string = '';
+  tagList: ITag[] = [];
+  tagId = null;
+  categoryId = null;
   constructor(
     private _RecipeService: RecipeService,
     private _ToastrService: ToastrService,
@@ -29,10 +33,15 @@ export class RecipesComponent {
   ) {}
   ngOnInit(): void {
     this.getRecipes();
+    this.getTag();
   }
-  openDialog(): void {
-    const dialogRef = this.dialog.open(AddEditRecipeComponent, {
-      data: { name: '' },
+  openDialog(recipe?: IRecipe): void {
+    const dialogRef = this.dialog.open(ViewRecipeComponent, {
+      data: {
+        name: recipe?.name,
+        imagePath: recipe?.imagePath,
+        description: recipe?.description,
+      },
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
@@ -48,8 +57,8 @@ export class RecipesComponent {
       pageSize: this.pageSize,
       pageNumber: this.pageNumber,
       name: this.searchVal,
-      tagId: Number,
-      categoryId: Number,
+      tagId: this.tagId,
+      categoryId: this.categoryId,
     };
     this._RecipeService.getRecipes(tableParams).subscribe({
       next: (res) => {
@@ -58,6 +67,13 @@ export class RecipesComponent {
       },
       error: (err) => {
         this._ToastrService.error('Failed to load categories', 'Error');
+      },
+    });
+  }
+  getTag(): void {
+    this._RecipeService.getAllTags().subscribe({
+      next: (res) => {
+        this.tagList = res;
       },
     });
   }

@@ -12,8 +12,8 @@ export class RecipeService {
     return this._HttpClient.get('Recipe', { params: data });
   }
 
-  onAddRecipe(data: any): Observable<any> {
-    return this._HttpClient.post('Recipe', data);
+  onAddRecipe(formData: FormData): Observable<any> {
+    return this._HttpClient.post('Recipe', formData);
   }
   getRecipeById(id: number): Observable<any> {
     return this._HttpClient.get(`Recipe/${id}`);
@@ -23,5 +23,8 @@ export class RecipeService {
   }
   deleteRecipe(id: number): Observable<any> {
     return this._HttpClient.delete(`Recipe/${id}`);
+  }
+  getAllTags(): Observable<any> {
+    return this._HttpClient.get('tag');
   }
 }
