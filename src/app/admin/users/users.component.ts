@@ -1,4 +1,12 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
+import { ToastrService } from 'ngx-toastr';
+import { AddEditCategoryComponent } from '../categories/components/add-edit-category/add-edit-category.component';
+import { DeleteCategoryComponent } from '../categories/components/delete-category/delete-category.component';
+import { ICategory } from '../categories/interfaces/ICategory';
+import { CategoryService } from '../categories/services/category.service';
+import { IUser } from './interfaces/IUser';
 
 @Component({
   selector: 'app-users',
@@ -7,7 +15,7 @@ import { Component } from '@angular/core';
 })
 export class UsersComponent {
   name: string = '';
-  listData: ICategory[] = [];
+  listData: IUser[] = [];
   tableRes: any;
   pageSize: number = 10;
   pageNumber: number = 1;
