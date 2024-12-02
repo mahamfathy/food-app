@@ -10,4 +10,10 @@ export class UserRecipeService {
   getFavUserRecipes(): Observable<any> {
     return this._HttpClient.get('UserRecipe');
   }
+  postFavUserRecipe(recipeId: number): Observable<any> {
+    return this._HttpClient.post('UserRecipe', recipeId);
+  }
+  deleteFavUserRecipe(id: number): Observable<any> {
+    return this._HttpClient.delete(`UserRecipe/${id}`);
+  }
 }
