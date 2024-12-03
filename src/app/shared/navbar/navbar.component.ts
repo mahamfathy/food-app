@@ -18,10 +18,7 @@ export class NavbarComponent {
     if (this._LocalStorageService.getItem('userToken') !== null) {
       this._AuthService.getUser().subscribe({
         next: (res) => {
-          if (
-            this._AuthService.role === 'SystemUser' &&
-            res.imagePath !== null
-          ) {
+          if (res.imagePath !== null) {
             this.imagePath = `http://upskilling-egypt.com:3006/${res.imagePath}`;
           } else {
             this.imagePath = 'assets/img/avatar.svg';

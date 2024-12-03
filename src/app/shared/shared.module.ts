@@ -11,12 +11,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 import { DeleteItemComponent } from './delete-item/delete-item.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ProfileComponent } from './profile/profile.component';
     MatInputModule,
     MatSelectModule,
     ReactiveFormsModule,
+    NgxDropzoneModule,
   ],
   exports: [
     NavbarComponent,
@@ -56,6 +58,7 @@ import { ProfileComponent } from './profile/profile.component';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatSelectModule,
+    NgxDropzoneModule,
   ],
 })
 export class SharedModule {}

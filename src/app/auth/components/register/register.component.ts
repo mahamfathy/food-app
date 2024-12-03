@@ -1,10 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../service/auth.service';
@@ -41,7 +36,6 @@ export class RegisterComponent {
   });
   resMessage: string = '';
   constructor(
-    private _FormBuilder: FormBuilder,
     private _AuthService: AuthService,
     private _ToastrService: ToastrService,
     private _LocalStorageService: LocalStorageService,

@@ -1,0 +1,59 @@
+@import "../../../assets/sass/components/button";
+@import "../../../assets/sass/abstract/variables";
+@import "../../../assets/sass/base/utilities";
+@import "../../../assets/sass/abstract/mixins";
+@import "../../../assets/sass/base/typography";
+@import "../../../assets/sass/components/form";
+.container-fluid {
+  margin-top: 1rem;
+  .col-md-12 {
+    height: 80%;
+    background-color: $color-white;
+    i {
+      color: $secondary-grey;
+    }
+    .form {
+      row-gap: 0.2rem;
+      .logo {
+        img {
+          width: 225px;
+          height: fit-content;
+        }
+      }
+
+      .auth-header {
+        font-size: 22px;
+      }
+      .auth-paragraph {
+        font-size: 12px;
+      }
+    }
+    .dropzone-container {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      ngx-dropzone-image-preview {
+        min-height: unset !important;
+        min-width: unset !important;
+        max-width: unset !important;
+        height: 95% !important;
+        width: 95% !important;
+        margin: 0 auto !important;
+        border-radius: 50% !important ;
+      }
+      ::ng-deep img {
+        max-height: none !important ;
+        width: 100% !important ;
+        height: 100% !important ;
+        border-radius: 50% !important ;
+      }
+    }
+    ::ng-deep ngx-dropzone-remove-badge {
+      top: 10px !important;
+      right: 13px !important;
+    }
+    ngx-dropzone-label {
+      font-size: 12px !important;
+    }
+  }
+}
