@@ -77,7 +77,7 @@ export class CreateAdminComponent {
       },
       complete: () => {
         this._ToastrService.success(this.resMessage, 'Success');
-        this._Router.navigateByUrl('../');
+        this._Router.navigateByUrl('/dashboard/admin/users');
       },
     });
   }

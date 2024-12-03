@@ -27,7 +27,6 @@ export class AuthService {
     let token: any = this._LocalStorageService.getItem('userToken');
     let decoded: any = jwtDecode(token);
     this._LocalStorageService.setItem('email', decoded.userEmail);
-    this._LocalStorageService.setItem('userName', decoded.userName);
     this._LocalStorageService.setItem('role', decoded.userGroup);
     this.getRole();
   }
@@ -55,9 +54,7 @@ export class AuthService {
   onVerifyAccount(verifyForm: IVerify): Observable<any> {
     return this._HttpClient.put('Users/verify', verifyForm);
   }
-  getUser(): Observable<any> {
-    return this._HttpClient.get('Users/currentUser');
-  }
+
   onChangePassword(changePassword: IChangePassword): Observable<any> {
     return this._HttpClient.put('Users/ChangePassword', changePassword);
   }

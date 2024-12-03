@@ -68,7 +68,6 @@ export class RegisterComponent {
         this.resMessage = res.message;
         const userName = data.value.userName;
         const email = data.value.email;
-        this._LocalStorageService.setItem('userName', userName);
         this._LocalStorageService.setItem('email', email);
       },
       error: (err) => {

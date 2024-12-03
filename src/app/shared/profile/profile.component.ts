@@ -44,10 +44,8 @@ export class ProfileComponent {
     }
     this._AuthService.onUpdateProfile(myData).subscribe({
       next: (res) => {
-        if (res && res.userName) {
-          this._UserService.updateUserName(res.userName);
-        }
-        this._AuthService.getUser().subscribe();
+        this._UserService.fetchUser().subscribe();
+        this.resMessage = res.message;
       },
       error: (err) => {
         if (err.error.message && !err.error.additionalInfo) {

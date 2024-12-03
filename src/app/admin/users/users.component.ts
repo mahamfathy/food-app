@@ -71,48 +71,7 @@ export class UsersComponent {
     this.getUsers();
     console.log(e);
   }
-  // addCategory(data: any): void {
-  //   this._UserService.onAddCategory(data).subscribe({
-  //     next: (res) => {
-  //       this.name = res.name;
-  //     },
-  //     error: (err) => {
-  //       this._ToastrService.error('An unexpected error occurred', 'Error');
-  //     },
-  //     complete: () => {
-  //       this.getUsers();
 
-  //       this._ToastrService.success(
-  //         `You have successfully added "${this.name}"`,
-  //         'Success'
-  //       );
-  //     },
-  //   });
-  // }
-
-  // editCategory(id: number, categoryName: string): void {
-  //   const dialogRef = this.dialog.open(AddEditCategoryComponent, {
-  //     data: { name: categoryName, isReadOnly: false },
-  //   });
-
-  //   dialogRef.afterClosed().subscribe((result) => {
-  //     if (result) {
-  //       this._UserService.updateCategory(id, result.name).subscribe({
-  //         next: () => {},
-  //         error: () => {
-  //           this._ToastrService.error('Failed to update category', 'Error');
-  //         },
-  //         complete: () => {
-  //           this._ToastrService.success(
-  //             `Category "${result.name}" updated successfully!`,
-  //             'Success'
-  //           );
-  //           this.getUsers();
-  //         },
-  //       });
-  //     }
-  //   });
-  // }
   viewUser(user: IUser): void {
     const dialogRef = this.dialog.open(ViewUserComponent, {
       data: { user, role: this.roleId },
