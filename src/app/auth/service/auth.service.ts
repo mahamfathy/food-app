@@ -65,4 +65,7 @@ export class AuthService {
     this._LocalStorageService.clearItem();
     this._Router.navigate(['/auth']);
   }
+  updateProfole(profileForm: FormData): Observable<any> {
+    return this._HttpClient.put('Users', profileForm);
+  }
 }
