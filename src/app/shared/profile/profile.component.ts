@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/admin/users/services/user.service';
 import { AuthService } from 'src/app/auth/service/auth.service';
-import { LocalStorageService } from 'src/app/auth/service/local-storage.service';
 
 @Component({
   selector: 'app-profile',
@@ -31,8 +31,8 @@ export class ProfileComponent {
   constructor(
     private _AuthService: AuthService,
     private _ToastrService: ToastrService,
-    private _LocalStorageService: LocalStorageService,
-    private _Router: Router
+    private _Router: Router,
+    private _UserService: UserService
   ) {}
   onUpdate(data: FormGroup): void {
     let myData = new FormData();
@@ -42,8 +42,11 @@ export class ProfileComponent {
     if (this.files.length > 0) {
       myData.append('profileImage', this.files[0]);
     }
-    this._AuthService.onUpdateProfole(myData).subscribe({
+    this._AuthService.onUpdateProfile(myData).subscribe({
       next: (res) => {
+        if (res && res.userName) {
+          this._UserService.updateUserName(res.userName);
+        }
         this._AuthService.getUser().subscribe();
       },
       error: (err) => {
@@ -58,8 +61,7 @@ export class ProfileComponent {
       },
       complete: () => {
         this._ToastrService.success(this.resMessage, 'Success');
-        this._LocalStorageService.removeItem('userToken');
-        this._Router.navigateByUrl('/auth');
+        this._Router.navigateByUrl('/dashboard/home');
       },
     });
   }

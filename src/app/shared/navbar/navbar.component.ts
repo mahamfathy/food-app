@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/admin/users/services/user.service';
 import { AuthService } from 'src/app/auth/service/auth.service';
 import { LocalStorageService } from 'src/app/auth/service/local-storage.service';
 
@@ -7,14 +8,18 @@ import { LocalStorageService } from 'src/app/auth/service/local-storage.service'
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   userName: string | null = '';
   imagePath: string = '';
   constructor(
     private _LocalStorageService: LocalStorageService,
-    private _AuthService: AuthService
-  ) {
-    this.userName = this._LocalStorageService.getItem('userName');
+    private _AuthService: AuthService,
+    private _UserService: UserService
+  ) {}
+  ngOnInit(): void {
+    this._UserService.userName$.subscribe((name) => {
+      this.userName = name;
+    });
     if (this._LocalStorageService.getItem('userToken') !== null) {
       this._AuthService.getUser().subscribe({
         next: (res) => {
