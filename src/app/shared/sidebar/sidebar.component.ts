@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/auth/service/auth.service';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 interface IMenu {
   link: string;
   text: string;
@@ -48,8 +50,8 @@ export class SidebarComponent {
       isActive: this.isUser(),
     },
     {
-      link: '/dashboard/change-password',
-      text: 'Change Password',
+      link: '/dashboard/profile',
+      text: 'Change password',
       icon: 'fa-solid fa-lg fa-unlock-keyhole',
       isActive: this.isAdmin() || this.isUser(),
     },
@@ -60,7 +62,7 @@ export class SidebarComponent {
       isActive: this.isAdmin() || this.isUser(),
     },
   ];
-  constructor(private _AuthService: AuthService) {}
+  constructor(private _AuthService: AuthService, public dialog: MatDialog) {}
   isAdmin(): boolean {
     return this._AuthService.role === 'SuperAdmin';
   }
@@ -73,5 +75,14 @@ export class SidebarComponent {
   toggle(): void {
     this.isCollapsed = !this.isCollapsed;
     this.toggleSidebar.emit(this.isCollapsed);
+  }
+  openChangePasswordDialog(): void {
+    const dialogRef = this.dialog.open(ChangePasswordComponent, {
+      data: {},
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+      }
+    });
   }
 }

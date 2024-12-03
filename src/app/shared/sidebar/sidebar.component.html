@@ -8,7 +8,13 @@
         <li *ngIf="menu.isActive">
           <a
             class="px-3 logout"
-            (click)="menu.text === 'Logout' ? logout() : null"
+            (click)="
+              menu.text === 'Logout'
+                ? logout()
+                : menu.text === 'Change password'
+                ? openChangePasswordDialog()
+                : null
+            "
             [routerLink]="menu.text === 'Logout' ? null : menu.link"
             routerLinkActive="active"
             ><span><i [class]="menu.icon" class="me-3"></i></span>
