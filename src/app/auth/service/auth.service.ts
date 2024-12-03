@@ -57,7 +57,7 @@ export class AuthService {
   getUser(): Observable<any> {
     return this._HttpClient.get('Users/currentUser');
   }
-
+  onchangePassword() {}
   onLogout(): void {
     this._LocalStorageService.clearItem();
     this._Router.navigate(['/auth']);

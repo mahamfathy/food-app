@@ -45,10 +45,10 @@
       </mat-form-field>
       <mat-form-field class="me-2">
         <mat-label>Role</mat-label>
-        <mat-select>
-          <mat-option value="All">All</mat-option>
-          <mat-option value="Admin">Admin</mat-option>
-          <mat-option value="User">User</mat-option>
+        <mat-select [(ngModel)]="roleId" (selectionChange)="getUsers()">
+          <mat-option [value]="roleId">All</mat-option>
+          <mat-option [value]="1">Admin</mat-option>
+          <mat-option [value]="2">User</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -100,15 +100,15 @@
                     ? imagePath + user.imagePath
                     : 'assets/img/default-avatar.avif'
                 "
-                alt=""
+                alt="img"
               />
             </td>
-            <td>
+            <td class="truncate">
               {{ user.email }}
             </td>
             <td>{{ user.phoneNumber }}</td>
             <td>{{ user.country }}</td>
-            <td>{{ roleId }}</td>
+            <td>{{ user.group.name }}</td>
             <td>
               <button
                 mat-icon-button

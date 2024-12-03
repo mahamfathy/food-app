@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { IUser } from '../../interfaces/IUser';
 
 @Component({
   selector: 'app-view-user',
@@ -9,7 +10,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class ViewUserComponent {
   constructor(
     public dialogRef: MatDialogRef<ViewUserComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: IUser
   ) {
     console.log('Dialog data:', data);
     if (this.data.imagePath) {

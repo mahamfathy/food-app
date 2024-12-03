@@ -52,20 +52,20 @@
       <mat-form-field class="me-2">
         <mat-label>Tag</mat-label>
         <mat-select [(ngModel)]="tagId" (selectionChange)="getRecipes()">
-          <mat-option *ngFor="let tag of tagList" [value]="0">{{
+          <mat-option [value]="0">All Tags</mat-option>
+          <mat-option *ngFor="let tag of tagList" [value]="tag.id">{{
             tag.name
           }}</mat-option>
         </mat-select>
       </mat-form-field>
-
       <mat-form-field>
         <mat-label>Category</mat-label>
         <mat-select [(ngModel)]="categoryId" (selectionChange)="getRecipes()">
-          <mat-option [value]="0"> All </mat-option>
+          <mat-option [value]="0">All Categories</mat-option>
           <mat-option
             *ngFor="let category of categoriesList"
             [value]="category.id"
-            >{{ category.name }}</mat-option
+            >{{ tableRes.category.name }}</mat-option
           >
         </mat-select>
       </mat-form-field>
@@ -86,7 +86,7 @@
           <th>Description</th>
           <th>Tag</th>
           <th>Category</th>
-          <th>Creation date</th>
+          <th style="min-width: 9rem; width: fit-content">Creation date</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -121,7 +121,9 @@
               />
             </td>
             <td>{{ recipe.price }}</td>
-            <td class="truncate">{{ recipe.description }}</td>
+            <td class="truncate" [title]="recipe.description">
+              {{ recipe.description }}
+            </td>
             <td></td>
             <td>
               {{ categoriesList }}

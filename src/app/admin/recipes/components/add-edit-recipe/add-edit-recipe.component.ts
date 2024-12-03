@@ -67,7 +67,7 @@ export class AddEditRecipeComponent implements OnInit {
   }
   sendData(data: FormGroup): void {
     let myData = new FormData();
-    myData.append('categoriesIds', data.value.categoriesIds);
+
     Object.keys(data.value).forEach((key) => {
       myData.append(key, data.value[key]);
     });
@@ -75,7 +75,7 @@ export class AddEditRecipeComponent implements OnInit {
       myData.append('recipeImage', this.files[0]);
     }
 
-    this._RecipeService.onAddRecipe(data.value).subscribe({
+    this._RecipeService.onAddRecipe(myData).subscribe({
       next: () => {
         this._ToastrService.success(
           'You have successfully added a new recipe',

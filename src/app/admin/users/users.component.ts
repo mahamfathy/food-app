@@ -50,11 +50,13 @@ export class UsersComponent {
       userName: this.searchVal,
       email: this.email,
       country: this.country,
+      roleId: this.roleId,
     };
     this._UserService.getAllUsers(tableParams).subscribe({
       next: (res) => {
         this.listData = res.data;
         this.tableRes = res;
+        console.log(this.tableRes);
       },
       error: (err) => {
         this._ToastrService.error('Failed to load categories', 'Error');
@@ -128,7 +130,7 @@ export class UsersComponent {
   }
   deleteUser(user: IUser) {
     const dialogRef = this.dialog.open(DeleteItemComponent, {
-      data: { text: 'User', id: user.id, userName: user.userName },
+      data: user,
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {

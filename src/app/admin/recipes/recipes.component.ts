@@ -52,7 +52,6 @@ export class RecipesComponent {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.addRecipe(result);
       }
     });
   }
@@ -71,7 +70,7 @@ export class RecipesComponent {
       next: (res) => {
         this.listData = res.data;
         this.tableRes = res;
-        // this.categoriesList = res.data.category.name;
+        console.log(res);
       },
       error: (err) => {
         this._ToastrService.error('Failed to load categories', 'Error');
@@ -92,24 +91,6 @@ export class RecipesComponent {
     this.pageNumber = e.pageIndex;
     this.getRecipes();
     console.log(e);
-  }
-  addRecipe(data: any): void {
-    this._RecipeService.onAddRecipe(data).subscribe({
-      next: (res) => {
-        this.name = res.name;
-      },
-      error: (err) => {
-        this._ToastrService.error('An unexpected error occurred', 'Error');
-      },
-      complete: () => {
-        this.getRecipes();
-
-        this._ToastrService.success(
-          `You have successfully added "${this.name}"`,
-          'Success'
-        );
-      },
-    });
   }
 
   editRecipe(id: number, recipeName: string): void {
@@ -168,14 +149,6 @@ export class RecipesComponent {
         });
       }
     });
-    // this._RecipeService.deleteCategory(id).subscribe({
-    //   next: (res) => {},
-    //   error: () => {},
-    //   complete: () => {
-    //     this._ToastrService.success('Category deleted successfully', 'Success');
-    //     this.getCategories();
-    //   },
-    // });
   }
   getAllCategories(): void {
     let tableParams = {
@@ -185,14 +158,12 @@ export class RecipesComponent {
     };
     this._CategoryService.getAllCategories(tableParams).subscribe({
       next: (res) => {
-        this.listData = res.data;
+        this.categoriesList = res.data.name;
         this.tableRes = res;
       },
     });
   }
-  onCategoryChange(categoryId: string): void {
-    this.categoryId = +categoryId;
-  }
+
   clearFilter(): void {
     this.searchVal = '';
     this.tagId = 0;
