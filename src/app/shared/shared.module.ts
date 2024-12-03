@@ -16,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     HomeComponent,
     DeleteItemComponent,
     ChangePasswordComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
