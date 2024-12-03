@@ -15,6 +15,7 @@ import { DeleteItemComponent } from './delete-item/delete-item.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     SidebarComponent,
     HomeComponent,
     DeleteItemComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     CommonModule,

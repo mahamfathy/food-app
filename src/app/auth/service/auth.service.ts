@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
+import { IChangePassword } from '../interface/IChangePassword';
 import { ILogin } from '../interface/ILogin';
 import { IResetPassword } from '../interface/IResetPassword';
 import { IVerify } from '../interface/IVerify';
@@ -51,13 +52,15 @@ export class AuthService {
   onResetPassword(resetPasswordForm: IResetPassword): Observable<any> {
     return this._HttpClient.post('Users/Reset', resetPasswordForm);
   }
-  onVerifyAccount(IVerifyForm: IVerify): Observable<any> {
-    return this._HttpClient.put('Users/verify', IVerifyForm);
+  onVerifyAccount(verifyForm: IVerify): Observable<any> {
+    return this._HttpClient.put('Users/verify', verifyForm);
   }
   getUser(): Observable<any> {
     return this._HttpClient.get('Users/currentUser');
   }
-  onchangePassword() {}
+  onChangePassword(changePassword: IChangePassword): Observable<any> {
+    return this._HttpClient.put('Users/ChangePassword', changePassword);
+  }
   onLogout(): void {
     this._LocalStorageService.clearItem();
     this._Router.navigate(['/auth']);
