@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UserService } from 'src/app/admin/users/services/user.service';
 import { AuthService } from 'src/app/auth/service/auth.service';
-import { LocalStorageService } from 'src/app/auth/service/local-storage.service';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
 
 @Component({
@@ -14,7 +13,6 @@ export class NavbarComponent implements OnInit {
   userName: string | null = '';
   imagePath: string = 'assets/img/avatar.svg';
   constructor(
-    private _LocalStorageService: LocalStorageService,
     private _AuthService: AuthService,
     private _UserService: UserService,
     public dialog: MatDialog

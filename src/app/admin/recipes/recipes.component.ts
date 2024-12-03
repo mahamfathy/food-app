@@ -55,9 +55,7 @@ export class RecipesComponent {
       }
     });
   }
-  isAdmin(): boolean {
-    return this._AuthService.role === 'SuperAdmin';
-  }
+
   getRecipes(): void {
     let tableParams = {
       pageSize: this.pageSize,
