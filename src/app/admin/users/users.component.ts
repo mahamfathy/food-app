@@ -89,7 +89,7 @@ export class UsersComponent {
   }
   deleteUser(user: IUser) {
     const dialogRef = this.dialog.open(DeleteItemComponent, {
-      data: user,
+      data: { text: 'user', userName: user.userName },
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {

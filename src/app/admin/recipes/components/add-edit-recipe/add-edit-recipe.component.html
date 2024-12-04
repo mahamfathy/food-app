@@ -83,7 +83,12 @@
             <button class="btn btn-success me-2" type="submit">
               {{ recipeId ? "Update Recipe" : "Save Recipe" }}
             </button>
-            <button class="btn btn-secondary" routerLink="../">Cancel</button>
+            <button
+              class="btn btn-secondary"
+              [routerLink]="recipeId ? '/dashboard/admin/recipes' : '../'"
+            >
+              Cancel
+            </button>
           </div>
         </form>
       </div>

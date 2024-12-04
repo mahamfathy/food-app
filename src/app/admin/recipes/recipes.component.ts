@@ -3,9 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { DeleteItemComponent } from 'src/app/shared/delete-item/delete-item.component';
 import { ICategory } from '../categories/interfaces/ICategory';
 import { CategoryService } from '../categories/services/category.service';
-import { DeleteRecipeComponent } from './components/delete-recipe/delete-recipe.component';
 import { ViewRecipeComponent } from './components/view-recipe/view-recipe.component';
 import { IRecipe } from './interfaces/IRecipe';
 import { ITag } from './interfaces/ITag';
@@ -141,14 +141,14 @@ export class RecipesComponent {
       },
     });
   }
-  deleteRecipe(id: number) {
-    const dialogRef = this.dialog.open(DeleteRecipeComponent, {
-      data: id,
+  deleteRecipe(recipe: IRecipe) {
+    const dialogRef = this.dialog.open(DeleteItemComponent, {
+      data: { text: 'recipe', userName: recipe.name },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this._RecipeService.deleteRecipe(id).subscribe({
+        this._RecipeService.deleteRecipe(recipe.id).subscribe({
           next: () => {},
           error: () => {
             this._ToastrService.error('Failed to delete recipe', 'Error');
