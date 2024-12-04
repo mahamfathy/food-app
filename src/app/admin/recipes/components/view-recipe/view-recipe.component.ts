@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { IRecipe } from '../../interfaces/IRecipe';
 
 @Component({
   selector: 'app-view-recipe',
@@ -10,10 +9,18 @@ import { IRecipe } from '../../interfaces/IRecipe';
 export class ViewRecipeComponent {
   constructor(
     public dialogRef: MatDialogRef<ViewRecipeComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: IRecipe
+    @Inject(MAT_DIALOG_DATA)
+    public data: {
+      name: string;
+      id: number;
+      imagePath: string;
+      description: string;
+      creationDate: string;
+      modificationDate: string;
+    }
   ) {}
 
-  onNoClick(): void {
-    this.dialogRef.close();
+  close(): void {
+    this.dialogRef.close(false);
   }
 }

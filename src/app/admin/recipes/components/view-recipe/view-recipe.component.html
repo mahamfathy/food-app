@@ -1,6 +1,19 @@
-<h1 mat-dialog-title>View recipe</h1>
-<div mat-dialog-content></div>
-<div mat-dialog-actions [align]="'end'">
-  <button mat-button (click)="onNoClick()">Close</button>
-  <button mat-button [mat-dialog-close]="data">Save</button>
+<div class="d-flex justify-content-between align-items-center">
+  <h1 mat-dialog-title class="fw-bold">Recipe details</h1>
+  <button mat-button class="me-3 text-danger" (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content>
+  <div class="text-center">
+    <img width="250px" height="200px" [src]="data.imagePath" alt="recipe" />
+  </div>
+  <div>
+    <p class="fw-bold m-0 text-decoration-underline mt-3">Description:</p>
+    <ul>
+      <li>{{ data.description }}</li>
+    </ul>
+    <p>Creation date: {{ data.creationDate | date : "dd/MM/yyyy" }}</p>
+    <p>Modification date: {{ data.modificationDate | date : "dd/MM/yyyy" }}</p>
+  </div>
 </div>

@@ -66,9 +66,15 @@ export class RecipesComponent {
     };
     this._RecipeService.getRecipes(tableParams).subscribe({
       next: (res) => {
-        this.listData = res.data;
+        this.listData = res.data.map((recipe: IRecipe) => ({
+          ...recipe,
+          tag: Array.isArray(recipe.tag) ? recipe.tag : [recipe.tag],
+          category: Array.isArray(recipe.category)
+            ? recipe.category
+            : [recipe.category],
+        }));
         this.tableRes = res;
-        console.log(res);
+        console.log(this.listData);
       },
       error: (err) => {
         this._ToastrService.error('Failed to load categories', 'Error');
@@ -119,8 +125,17 @@ export class RecipesComponent {
       next: (res) => {},
       error: () => {},
       complete: () => {
-        this.dialog.open(AddEditRecipeComponent, {
-          data: { name: recipe.name, isReadOnly: true },
+        const dialogRef = this.dialog.open(ViewRecipeComponent, {
+          data: {
+            name: recipe.name,
+            id: recipe.id,
+            imagePath: recipe.imagePath
+              ? this.imagePath + recipe.imagePath
+              : 'assets/img/dummy-image.svg',
+            description: recipe.description,
+            creationDate: recipe.creationDate,
+            modificationDate: recipe.modificationDate,
+          },
         });
       },
     });
@@ -150,14 +165,12 @@ export class RecipesComponent {
   }
   getAllCategories(): void {
     let tableParams = {
-      pageSize: this.pageSize,
-      pageNumber: this.pageNumber,
-      name: this.searchVal,
+      pageSize: 2000,
+      pageNumber: 1,
     };
     this._CategoryService.getAllCategories(tableParams).subscribe({
       next: (res) => {
-        this.categoriesList = res.data.name;
-        this.tableRes = res;
+        this.categoriesList = res.data;
       },
     });
   }
