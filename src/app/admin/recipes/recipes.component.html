@@ -127,8 +127,11 @@
             <td *ngFor="let tag of recipe.tag">
               {{ tag.name }}
             </td>
-            <td *ngFor="let cat of recipe.category">
-              {{ cat.name }}
+            <td>
+              <ng-container *ngFor="let cat of recipe.category; let i = index">
+                {{ cat.name
+                }}<span *ngIf="i < recipe.category.length - 1">, </span>
+              </ng-container>
             </td>
             <td>{{ recipe.creationDate | date : "dd/MM/yyyy" }}</td>
 
@@ -145,10 +148,7 @@
                   <mat-icon class="text-success">visibility</mat-icon>
                   <span class="text-success">View</span>
                 </button>
-                <button
-                  mat-menu-item
-                  (click)="editRecipe(recipe.id, recipe.name)"
-                >
+                <button mat-menu-item (click)="editRecipe(recipe.id)">
                   <mat-icon class="text-success">edit_note</mat-icon>
                   <span class="text-success">Edit</span>
                 </button>

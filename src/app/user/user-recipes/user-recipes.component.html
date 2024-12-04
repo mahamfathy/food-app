@@ -121,8 +121,11 @@
             <td *ngFor="let tag of recipe.tag">
               {{ tag.name }}
             </td>
-            <td *ngFor="let cat of recipe.category">
-              {{ cat.name }}
+            <td>
+              <ng-container *ngFor="let cat of recipe.category; let i = index">
+                {{ cat.name
+                }}<span *ngIf="i < recipe.category.length - 1">, </span>
+              </ng-container>
             </td>
             <td>{{ recipe.creationDate | date : "dd/MM/yyyy" }}</td>
 

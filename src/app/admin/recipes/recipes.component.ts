@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from 'src/app/auth/service/auth.service';
 import { ICategory } from '../categories/interfaces/ICategory';
 import { CategoryService } from '../categories/services/category.service';
-import { AddEditRecipeComponent } from './components/add-edit-recipe/add-edit-recipe.component';
 import { DeleteRecipeComponent } from './components/delete-recipe/delete-recipe.component';
 import { ViewRecipeComponent } from './components/view-recipe/view-recipe.component';
 import { IRecipe } from './interfaces/IRecipe';
@@ -34,7 +33,7 @@ export class RecipesComponent {
     private _RecipeService: RecipeService,
     private _ToastrService: ToastrService,
     public dialog: MatDialog,
-    private _AuthService: AuthService,
+    private _Router: Router,
     private _CategoryService: CategoryService
   ) {}
   ngOnInit(): void {
@@ -97,28 +96,30 @@ export class RecipesComponent {
     console.log(e);
   }
 
-  editRecipe(id: number, recipeName: string): void {
-    const dialogRef = this.dialog.open(AddEditRecipeComponent, {
-      data: { name: recipeName, isReadOnly: false },
-    });
+  editRecipe(id: number): void {
+    // editRecipe(id: number, recipeName: string): void {
+    // const dialogRef = this.dialog.open(AddEditRecipeComponent, {
+    //   data: { name: recipeName, isReadOnly: false },
+    // });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this._RecipeService.updateRecipe(id, result.name).subscribe({
-          next: () => {},
-          error: () => {
-            this._ToastrService.error('Failed to update recipe', 'Error');
-          },
-          complete: () => {
-            this._ToastrService.success(
-              `Recipe "${result.name}" updated successfully!`,
-              'Success'
-            );
-            this.getRecipes();
-          },
-        });
-      }
-    });
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   if (result) {
+    //     this._RecipeService.updateRecipe(id, result.name).subscribe({
+    //       next: () => {},
+    //       error: () => {
+    //         this._ToastrService.error('Failed to update recipe', 'Error');
+    //       },
+    //       complete: () => {
+    //         this._ToastrService.success(
+    //           `Recipe "${result.name}" updated successfully!`,
+    //           'Success'
+    //         );
+    //         this.getRecipes();
+    //       },
+    //     });
+    //   }
+    // });
+    this._Router.navigate([`/dashboard/admin/recipes/edit/${id}`]);
   }
   viewRecipes(recipe: IRecipe): void {
     this._RecipeService.getRecipeById(recipe.id).subscribe({

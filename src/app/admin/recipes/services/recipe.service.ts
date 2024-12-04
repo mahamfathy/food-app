@@ -18,8 +18,8 @@ export class RecipeService {
   getRecipeById(id: number): Observable<any> {
     return this._HttpClient.get(`Recipe/${id}`);
   }
-  updateRecipe(id: number, RecipeName: string): Observable<any> {
-    return this._HttpClient.put(`Recipe/${id}`, { name: RecipeName });
+  updateRecipe(id: number, formData: FormData): Observable<any> {
+    return this._HttpClient.put(`Recipe/${id}`, formData);
   }
   deleteRecipe(id: number): Observable<any> {
     return this._HttpClient.delete(`Recipe/${id}`);
