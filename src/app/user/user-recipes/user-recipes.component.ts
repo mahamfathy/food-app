@@ -53,10 +53,6 @@ export class UserRecipesComponent {
         description: recipe?.description,
       },
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-      }
-    });
   }
 
   getRecipes(): void {
@@ -69,9 +65,15 @@ export class UserRecipesComponent {
     };
     this._RecipeService.getRecipes(tableParams).subscribe({
       next: (res) => {
-        this.listData = res.data;
+        this.listData = res.data.map((recipe: IRecipe) => ({
+          ...recipe,
+          tag: Array.isArray(recipe.tag) ? recipe.tag : [recipe.tag],
+          category: Array.isArray(recipe.category)
+            ? recipe.category
+            : [recipe.category],
+        }));
         this.tableRes = res;
-        console.log(res);
+        console.log(this.listData);
       },
       error: (err) => {
         this._ToastrService.error('Failed to load categories', 'Error');
@@ -82,6 +84,7 @@ export class UserRecipesComponent {
     this._RecipeService.getAllTags().subscribe({
       next: (res) => {
         this.tagList = res;
+        console.log(this.tagList);
       },
     });
   }
@@ -108,14 +111,12 @@ export class UserRecipesComponent {
 
   getAllCategories(): void {
     let tableParams = {
-      pageSize: this.pageSize,
-      pageNumber: this.pageNumber,
-      name: this.searchVal,
+      pageSize: 2000,
+      pageNumber: 1,
     };
     this._CategoryService.getAllCategories(tableParams).subscribe({
       next: (res) => {
-        this.categoriesList = res.data.name;
-        this.tableRes = res;
+        this.categoriesList = res.data;
       },
     });
   }
@@ -128,7 +129,14 @@ export class UserRecipesComponent {
   }
   addToFavorites(recipe: IRecipe): void {
     const dialogRef = this.dialog.open(AddToFavComponent, {
-      data: { name: recipe.name, id: recipe.id },
+      data: {
+        name: recipe.name,
+        id: recipe.id,
+        imagePath: recipe.imagePath
+          ? this.imagePath + recipe.imagePath
+          : 'assets/img/dummy-image.svg',
+        description: recipe.description,
+      },
     });
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {

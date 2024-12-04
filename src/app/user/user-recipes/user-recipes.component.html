@@ -59,7 +59,7 @@
           <mat-option
             *ngFor="let category of categoriesList"
             [value]="category.id"
-            >{{ tableRes.category.name }}</mat-option
+            >{{ category.name }}</mat-option
           >
         </mat-select>
       </mat-form-field>
@@ -87,12 +87,12 @@
       <tbody>
         <ng-template #noData>
           <tr class="text-center">
-            <td colspan="4" class="text-center p-0 pb-2 pt-5">
+            <td colspan="8" class="text-center p-0 pb-2 pt-5">
               <img src="assets/img/no-data.svg" alt="No Data" />
             </td>
           </tr>
           <tr>
-            <td colspan="4" class="text-center p-3">No Data!</td>
+            <td colspan="8" class="text-center p-3">No Data!</td>
           </tr>
         </ng-template>
         <ng-container *ngIf="listData.length > 0; else noData">
@@ -101,7 +101,7 @@
             *ngFor="let recipe of listData; let isEven = even"
             [class]="isEven ? 'bg-white' : 'bg-light'"
           >
-            <td>{{ recipe.name }}</td>
+            <td class="text-truncate">{{ recipe.name }}</td>
             <td>
               <img
                 width="70px"
@@ -109,18 +109,20 @@
                 [src]="
                   recipe.imagePath
                     ? imagePath + recipe.imagePath
-                    : 'assets/img/dummy-food.avif'
+                    : 'assets/img/dummy-image.svg'
                 "
                 alt="img"
               />
             </td>
             <td>{{ recipe.price }}</td>
-            <td class="truncate" [title]="recipe.description">
+            <td class="text-truncate" [title]="recipe.description">
               {{ recipe.description }}
             </td>
-            <td></td>
-            <td>
-              {{ categoriesList }}
+            <td *ngFor="let tag of recipe.tag">
+              {{ tag.name }}
+            </td>
+            <td *ngFor="let cat of recipe.category">
+              {{ cat.name }}
             </td>
             <td>{{ recipe.creationDate | date : "dd/MM/yyyy" }}</td>
 
@@ -147,5 +149,14 @@
         </ng-container>
       </tbody>
     </table>
+    <mat-paginator
+      [length]="tableRes?.totalNumberOfRecords"
+      [pageSize]="pageSize"
+      [pageIndex]="pageNumber"
+      (page)="handlePageEvent($event)"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page"
+    >
+    </mat-paginator>
   </div>
 </section>

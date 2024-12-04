@@ -1,11 +1,31 @@
-<h1 mat-dialog-title>Recipe Added</h1>
-<div mat-dialog-content>
-  <p>The recipe has been successfully added to your favorites.</p>
+<div class="d-flex justify-content-between align-items-center">
+  <h1 mat-dialog-title class="fw-bold">Recipe details</h1>
+  <button mat-button class="me-3 text-danger" (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="confirmAddToFavorites()" class="text-success">
+<div mat-dialog-content>
+  <div class="text-center">
+    <img width="200px" height="200px" [src]="data.imagePath" alt="recipe" />
+  </div>
+  <div>
+    <p class="fw-bold m-0 text-decoration-underline mt-3">Description:</p>
+    <ul>
+      <li>{{ data.description }}</li>
+    </ul>
+  </div>
+  <p class="fw-bold">
+    Do you want to add this recipe:
+    <span class="fw-bold text-success">{{ data.name }}</span> to your favorites.
+  </p>
+</div>
+
+<div mat-dialog-actions class="mb-3">
+  <button
+    mat-stroked-button
+    (click)="confirmAddToFavorites()"
+    class="w-50 mx-0 mx-auto text-success"
+  >
     Add to fav
   </button>
-
-  <button mat-button (click)="close()">Close</button>
 </div>

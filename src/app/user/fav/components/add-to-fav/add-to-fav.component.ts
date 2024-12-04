@@ -7,9 +7,16 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./add-to-fav.component.scss'],
 })
 export class AddToFavComponent {
+  imagePath = 'https://upskilling-egypt.com:3006/';
   constructor(
     public dialogRef: MatDialogRef<AddToFavComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { name: string; id: number }
+    @Inject(MAT_DIALOG_DATA)
+    public data: {
+      name: string;
+      id: number;
+      imagePath: string;
+      description: string;
+    }
   ) {}
 
   confirmAddToFavorites(): void {

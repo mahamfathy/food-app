@@ -87,12 +87,12 @@ section {
       tbody {
         tr {
           th:last-child {
-            text-align: end;
-            padding-right: 10rem;
+            text-align: center;
+            // padding-right: rem;
           }
           td:last-child {
-            padding-right: 11.5rem;
-            text-align: end;
+            // padding-right: 11.5rem;
+            text-align: center;
           }
           td {
             padding-left: 1.5rem;
@@ -108,9 +108,6 @@ section {
     }
   }
 }
-.truncate {
-  max-width: 10rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.text-truncate {
+  max-width: 9rem;
 }

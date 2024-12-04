@@ -11,7 +11,11 @@
       <img
         class="my-4"
         mat-card-image
-        [src]="imagePath + fav.recipe.imagePath"
+        [src]="
+          fav.recipe.imagePath
+            ? imagePath + fav.recipe.imagePath
+            : 'assets/img/dummy-image.svg'
+        "
         alt="Photo of a Shiba Inu"
       />
       <mat-card-content class="text-center">
@@ -20,6 +24,7 @@
       </mat-card-content>
       <mat-card-footer>
         <button
+          title="Remove Favorite"
           (click)="removeFavorite(fav.id)"
           style="border: 1px solid black; background-color: aliceblue"
           mat-button
@@ -29,6 +34,14 @@
       </mat-card-footer>
     </mat-card>
   </div>
+  <mat-paginator
+    [length]="totalNumberOfRecords"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 20]"
+    (page)="handlePageEvent($event)"
+    [pageIndex]="pageNumber"
+  >
+  </mat-paginator>
 </section>
 <ng-template #noData>
   <div class="text-center p-0 pb-2 pt-5">

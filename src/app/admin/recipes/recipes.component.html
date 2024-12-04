@@ -115,13 +115,13 @@
                 [src]="
                   recipe.imagePath
                     ? imagePath + recipe.imagePath
-                    : 'assets/img/dummy-food.avif'
+                    : 'assets/img/dummy-image.svg'
                 "
                 alt="img"
               />
             </td>
             <td>{{ recipe.price }}</td>
-            <td class="truncate" [title]="recipe.description">
+            <td class="text-truncate" [title]="recipe.description">
               {{ recipe.description }}
             </td>
             <td></td>
