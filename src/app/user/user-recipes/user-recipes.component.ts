@@ -6,11 +6,11 @@ import { ToastrService } from 'ngx-toastr';
 import { ICategory } from 'src/app/admin/categories/interfaces/ICategory';
 import { CategoryService } from 'src/app/admin/categories/services/category.service';
 import { AddEditRecipeComponent } from 'src/app/admin/recipes/components/add-edit-recipe/add-edit-recipe.component';
-import { DeleteRecipeComponent } from 'src/app/admin/recipes/components/delete-recipe/delete-recipe.component';
 import { ViewRecipeComponent } from 'src/app/admin/recipes/components/view-recipe/view-recipe.component';
 import { IRecipe } from 'src/app/admin/recipes/interfaces/IRecipe';
 import { ITag } from 'src/app/admin/recipes/interfaces/ITag';
 import { RecipeService } from 'src/app/admin/recipes/services/recipe.service';
+import { AddToFavComponent } from '../fav/components/add-to-fav/add-to-fav.component';
 import { FavService } from '../fav/services/fav.service';
 
 @Component({
@@ -94,29 +94,6 @@ export class UserRecipesComponent {
     console.log(e);
   }
 
-  editRecipe(id: number, recipeName: string): void {
-    const dialogRef = this.dialog.open(AddEditRecipeComponent, {
-      data: { name: recipeName, isReadOnly: false },
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this._RecipeService.updateRecipe(id, result.name).subscribe({
-          next: () => {},
-          error: () => {
-            this._ToastrService.error('Failed to update recipe', 'Error');
-          },
-          complete: () => {
-            this._ToastrService.success(
-              `Recipe "${result.name}" updated successfully!`,
-              'Success'
-            );
-            this.getRecipes();
-          },
-        });
-      }
-    });
-  }
   viewRecipes(recipe: IRecipe): void {
     this._RecipeService.getRecipeById(recipe.id).subscribe({
       next: (res) => {},
@@ -128,29 +105,7 @@ export class UserRecipesComponent {
       },
     });
   }
-  deleteRecipe(id: number) {
-    const dialogRef = this.dialog.open(DeleteRecipeComponent, {
-      data: id,
-    });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this._RecipeService.deleteRecipe(id).subscribe({
-          next: () => {},
-          error: () => {
-            this._ToastrService.error('Failed to delete recipe', 'Error');
-          },
-          complete: () => {
-            this._ToastrService.success(
-              `Recipe has been deleted successfully!`,
-              'Success'
-            );
-            this.getRecipes();
-          },
-        });
-      }
-    });
-  }
   getAllCategories(): void {
     let tableParams = {
       pageSize: this.pageSize,
@@ -171,22 +126,34 @@ export class UserRecipesComponent {
     this.categoryId = 0;
     this.getRecipes();
   }
-  addToFavorites(recipeId: number): void {
-    this._FavService.onAddFav(recipeId).subscribe({
-      next: (res) => {
-        this.snackBar.open(
-          `#${res.recipe.id}: ${res.recipe.name} added to favorites!`,
-          'Close',
-          {
-            duration: 3000,
-            verticalPosition: 'bottom',
-            horizontalPosition: 'right',
-          }
-        );
-      },
-      error: (err) => {
-        this._ToastrService.error('Failed to add recipe to favorites', 'Error');
-      },
+  addToFavorites(recipe: IRecipe): void {
+    const dialogRef = this.dialog.open(AddToFavComponent, {
+      data: { name: recipe.name, id: recipe.id },
     });
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.addRecipeToFavorites(recipe.id);
+      }
+    });
+  }
+  private addRecipeToFavorites(recipeId: number): void {
+    this._FavService.onAddFav(recipeId).subscribe({
+      next: (res) => this.showSnackBar(res),
+      error: (err) => this.handleAddToFavoritesError(err),
+    });
+  }
+  private showSnackBar(res: any): void {
+    this.snackBar.open(
+      `#${res.recipe.id}: ${res.recipe.name} added to favorites!`,
+      'Close',
+      {
+        duration: 3000,
+        verticalPosition: 'bottom',
+        horizontalPosition: 'right',
+      }
+    );
+  }
+  private handleAddToFavoritesError(err: any): void {
+    this._ToastrService.error('Failed to add recipe to favorites', 'Error');
   }
 }
