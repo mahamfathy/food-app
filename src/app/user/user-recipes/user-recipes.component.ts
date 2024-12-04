@@ -5,7 +5,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ToastrService } from 'ngx-toastr';
 import { ICategory } from 'src/app/admin/categories/interfaces/ICategory';
 import { CategoryService } from 'src/app/admin/categories/services/category.service';
-import { AddEditRecipeComponent } from 'src/app/admin/recipes/components/add-edit-recipe/add-edit-recipe.component';
 import { ViewRecipeComponent } from 'src/app/admin/recipes/components/view-recipe/view-recipe.component';
 import { IRecipe } from 'src/app/admin/recipes/interfaces/IRecipe';
 import { ITag } from 'src/app/admin/recipes/interfaces/ITag';
@@ -102,8 +101,20 @@ export class UserRecipesComponent {
       next: (res) => {},
       error: () => {},
       complete: () => {
-        this.dialog.open(AddEditRecipeComponent, {
-          data: { name: recipe.name, isReadOnly: true },
+        const dialogRef = this.dialog.open(AddToFavComponent, {
+          data: {
+            name: recipe.name,
+            id: recipe.id,
+            imagePath: recipe.imagePath
+              ? this.imagePath + recipe.imagePath
+              : 'assets/img/dummy-image.svg',
+            description: recipe.description,
+          },
+        });
+        dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+          if (confirmed) {
+            this.addRecipeToFavorites(recipe.id);
+          }
         });
       },
     });
@@ -128,21 +139,7 @@ export class UserRecipesComponent {
     this.getRecipes();
   }
   addToFavorites(recipe: IRecipe): void {
-    const dialogRef = this.dialog.open(AddToFavComponent, {
-      data: {
-        name: recipe.name,
-        id: recipe.id,
-        imagePath: recipe.imagePath
-          ? this.imagePath + recipe.imagePath
-          : 'assets/img/dummy-image.svg',
-        description: recipe.description,
-      },
-    });
-    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
-      if (confirmed) {
-        this.addRecipeToFavorites(recipe.id);
-      }
-    });
+    this.addRecipeToFavorites(recipe.id);
   }
   private addRecipeToFavorites(recipeId: number): void {
     this._FavService.onAddFav(recipeId).subscribe({
