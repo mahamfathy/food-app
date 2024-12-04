@@ -1,0 +1,19 @@
+.example-card {
+  max-width: 300px;
+  min-width: 300px;
+}
+
+img {
+  width: 100px;
+}
+::ng-deep mat-icon {
+  margin: 0 !important;
+}
+mat-card {
+  position: relative;
+  button {
+    position: absolute;
+    top: 15px;
+    right: 22px;
+  }
+}

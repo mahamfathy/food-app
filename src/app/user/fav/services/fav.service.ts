@@ -10,4 +10,10 @@ export class FavService {
   onAddFav(recipeId: number): Observable<any> {
     return this._HttpClient.post('userRecipe', { recipeId });
   }
+  getAllfavRecipes(): Observable<any> {
+    return this._HttpClient.get('userRecipe');
+  }
+  onRemoveFav(id: number): Observable<any> {
+    return this._HttpClient.delete(`userRecipe/${id}`);
+  }
 }

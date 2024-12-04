@@ -1,1 +1,29 @@
-<p>fav works!</p>
+<section class="mt-5">
+  <div class="container d-flex justify-content-evenly flex-wrap row-gap-4">
+    <mat-card
+      *ngFor="let fav of favResData"
+      class="example-card justify-content-between align-items-center"
+      appearance="outlined"
+    >
+      <img
+        class="my-4"
+        mat-card-image
+        [src]="imagePath + fav.recipe.imagePath"
+        alt="Photo of a Shiba Inu"
+      />
+      <mat-card-content class="text-center">
+        <h5>{{ fav.recipe.name }}</h5>
+        <p class="mb-4">{{ fav.recipe.description }}</p>
+      </mat-card-content>
+      <mat-card-footer>
+        <button
+          (click)="removeFavorite(fav.id)"
+          style="border: 1px solid black; background-color: aliceblue"
+          mat-button
+        >
+          <mat-icon class="text-success">favorite</mat-icon>
+        </button>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</section>
