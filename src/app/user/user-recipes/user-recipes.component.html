@@ -1,1 +1,151 @@
-<p>user-recipes works!</p>
+<section class="container-fluid">
+  <div class="row radius-16 first px-5 my-4">
+    <div class="col-md-12 d-flex justify-content-between align-items-center">
+      <div class="col-md-6 text-containter">
+        <h1>Recipes <span class="animated-text">item!</span></h1>
+        <p>
+          You can now add your items that any user can order it from the
+          Application and you can edit
+        </p>
+      </div>
+      <div class="image-container">
+        <img src="assets/img/eating2.svg" alt="" />
+      </div>
+    </div>
+  </div>
+  <div class="circles position-absolute">
+    <img src="assets/img/1.svg" class="img1" />
+    <img src="assets/img/2.svg" class="img2" />
+    <img src="assets/img/3.svg" class="img3" />
+    <img src="assets/img/4.svg" class="img4" />
+    <img src="assets/img/5.svg" class="img5" />
+    <img src="assets/img/6.svg" class="img6" />
+    <img src="assets/img/3.svg" class="img7" />
+    <img src="assets/img/2.svg" class="img8" />
+    <img src="assets/img/3.svg" class="img9" />
+  </div>
+  <div class="row second d-flex justify-content-between">
+    <div class="col-md-6 text-containter">
+      <h3>Recipes table details</h3>
+      <p>You can check all details</p>
+    </div>
+  </div>
+
+  <div class="third">
+    <div class="my-3 w-100 mx-auto">
+      <mat-form-field class="example-full-width me-2">
+        <mat-label>Search by name</mat-label>
+        <input
+          [(ngModel)]="searchVal"
+          (keydown.enter)="getRecipes()"
+          matInput
+          placeholder="abc"
+          name="search"
+        />
+      </mat-form-field>
+      <mat-form-field class="me-2">
+        <mat-label>Tag</mat-label>
+        <mat-select [(ngModel)]="tagId" (selectionChange)="getRecipes()">
+          <mat-option [value]="0">All Tags</mat-option>
+          <mat-option *ngFor="let tag of tagList" [value]="tag.id">{{
+            tag.name
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Category</mat-label>
+        <mat-select [(ngModel)]="categoryId" (selectionChange)="getRecipes()">
+          <mat-option [value]="0">All Categories</mat-option>
+          <mat-option
+            *ngFor="let category of categoriesList"
+            [value]="category.id"
+            >{{ tableRes.category.name }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+      <button
+        type="button"
+        class="ms-3 btn btn-secondary"
+        (click)="clearFilter()"
+      >
+        Clear Filter
+      </button>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Image</th>
+          <th>Price</th>
+          <th>Description</th>
+          <th>Tag</th>
+          <th>Category</th>
+          <th style="min-width: 9rem; width: fit-content">Creation date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template #noData>
+          <tr class="text-center">
+            <td colspan="4" class="text-center p-0 pb-2 pt-5">
+              <img src="assets/img/no-data.svg" alt="No Data" />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4" class="text-center p-3">No Data!</td>
+          </tr>
+        </ng-template>
+        <ng-container *ngIf="listData.length > 0; else noData">
+          <tr
+            style="vertical-align: middle"
+            *ngFor="let recipe of listData; let isEven = even"
+            [class]="isEven ? 'bg-white' : 'bg-light'"
+          >
+            <td>{{ recipe.name }}</td>
+            <td>
+              <img
+                width="70px"
+                height="70px"
+                [src]="
+                  recipe.imagePath
+                    ? imagePath + recipe.imagePath
+                    : 'assets/img/dummy-food.avif'
+                "
+                alt="img"
+              />
+            </td>
+            <td>{{ recipe.price }}</td>
+            <td class="truncate" [title]="recipe.description">
+              {{ recipe.description }}
+            </td>
+            <td></td>
+            <td>
+              {{ categoriesList }}
+            </td>
+            <td>{{ recipe.creationDate | date : "dd/MM/yyyy" }}</td>
+
+            <td>
+              <button
+                mat-icon-button
+                [matMenuTriggerFor]="menu"
+                aria-label="Example icon-button with a menu"
+              >
+                <mat-icon>more_horiz</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="viewRecipes(recipe)">
+                  <mat-icon class="text-success">visibility</mat-icon>
+                  <span class="text-success">View</span>
+                </button>
+                <button mat-menu-item (click)="addToFavorites(recipe.id)">
+                  <mat-icon class="text-success">favorite</mat-icon>
+                  <span class="text-success">Add to fav</span>
+                </button>
+              </mat-menu>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</section>

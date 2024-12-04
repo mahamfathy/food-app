@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RecipesComponent } from '../admin/recipes/recipes.component';
 import { UserComponent } from './user.component';
 
 const routes: Routes = [
@@ -8,14 +7,8 @@ const routes: Routes = [
     path: '',
     component: UserComponent,
   },
-  { path: 'recipes', component: RecipesComponent },
-  {
-    path: 'favourite-recipes',
-    loadChildren: () =>
-      import('./favourite-recipes/favourite-recipes.module').then(
-        (m) => m.FavouriteRecipesModule
-      ),
-  },
+  { path: 'user-recipes', loadChildren: () => import('./user-recipes/user-recipes.module').then(m => m.UserRecipesModule) },
+  { path: 'fav', loadChildren: () => import('./fav/fav.module').then(m => m.FavModule) },
 ];
 
 @NgModule({

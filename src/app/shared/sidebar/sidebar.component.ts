@@ -33,7 +33,7 @@ export class SidebarComponent {
       link: '/dashboard/admin/recipes',
       text: 'Recipes',
       icon: 'fa-solid fa-lg fa-bowl-food',
-      isActive: this.isAdmin() || this.isUser(),
+      isActive: this.isAdmin(),
     },
     {
       link: '/dashboard/admin/categories',
@@ -42,7 +42,13 @@ export class SidebarComponent {
       isActive: this.isAdmin(),
     },
     {
-      link: '/dashboard/user/favourite-recipes',
+      link: '/dashboard/user/user-recipes',
+      text: 'User recipes',
+      icon: 'fa-solid fa-lg fa-bowl-food',
+      isActive: this.isUser(),
+    },
+    {
+      link: '/dashboard/user/fav',
       text: 'Fav Recipes',
       icon: 'fa-solid fa-heart',
       isActive: this.isUser(),

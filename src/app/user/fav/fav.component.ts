@@ -3,8 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-fav',
   templateUrl: './fav.component.html',
-  styleUrls: ['./fav.component.scss']
+  styleUrls: ['./fav.component.scss'],
 })
-export class FavComponent {
-
-}
+export class FavComponent {}
