@@ -3,9 +3,6 @@
   min-width: 300px;
 }
 
-img {
-  width: 100px;
-}
 ::ng-deep mat-icon {
   margin: 0 !important;
 }
@@ -15,5 +12,8 @@ mat-card {
     position: absolute;
     top: 15px;
     right: 22px;
+  }
+  img {
+    width: 100px;
   }
 }

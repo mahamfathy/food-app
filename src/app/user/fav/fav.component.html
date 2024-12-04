@@ -1,5 +1,8 @@
 <section class="mt-5">
-  <div class="container d-flex justify-content-evenly flex-wrap row-gap-4">
+  <div
+    *ngIf="favResData.length > 0; else noData"
+    class="container d-flex justify-content-evenly flex-wrap row-gap-4"
+  >
     <mat-card
       *ngFor="let fav of favResData"
       class="example-card justify-content-between align-items-center"
@@ -27,3 +30,9 @@
     </mat-card>
   </div>
 </section>
+<ng-template #noData>
+  <div class="text-center p-0 pb-2 pt-5">
+    <img src="assets/img/no-data.svg" alt="No Data" />
+  </div>
+  <p class="text-center p-3">No Data!</p>
+</ng-template>
