@@ -61,48 +61,50 @@
             <td colspan="4" class="text-center p-3">No Data!</td>
           </tr>
         </ng-template>
-        <ng-container *ngIf="listData.length > 0; else noData">
-          <tr
-            *ngFor="let category of listData; let isEven = even"
-            [class]="isEven ? 'bg-white' : 'bg-light'"
-          >
-            <td>{{ category.name }}</td>
-            <td>{{ category.creationDate | date : "dd/MM/yyyy HH:mm a" }}</td>
-            <td>
-              {{ category.modificationDate | date : "dd/MM/yyyy HH:mm a" }}
-            </td>
-            <td>
-              <button
-                mat-icon-button
-                [matMenuTriggerFor]="menu"
-                aria-label="Example icon-button with a menu"
-              >
-                <mat-icon>more_horiz</mat-icon>
-              </button>
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="viewCategory(category)">
-                  <mat-icon class="text-success">visibility</mat-icon>
-                  <span class="text-success">View</span>
-                </button>
+        <ng-container *ngIf="!loading">
+          <ng-container *ngIf="listData.length > 0; else noData">
+            <tr
+              *ngFor="let category of listData; let isEven = even"
+              [class]="isEven ? 'bg-white' : 'bg-light'"
+            >
+              <td>{{ category.name }}</td>
+              <td>{{ category.creationDate | date : "dd/MM/yyyy HH:mm a" }}</td>
+              <td>
+                {{ category.modificationDate | date : "dd/MM/yyyy HH:mm a" }}
+              </td>
+              <td>
                 <button
-                  mat-menu-item
-                  (click)="editCategory(category.id, category.name)"
+                  mat-icon-button
+                  [matMenuTriggerFor]="menu"
+                  aria-label="Example icon-button with a menu"
                 >
-                  <mat-icon class="text-success">edit_note</mat-icon>
-                  <span class="text-success">Edit</span>
+                  <mat-icon>more_horiz</mat-icon>
                 </button>
-                <button
-                  class="text-danger"
-                  mat-menu-item
-                  (click)="deleteCategory(category.id)"
-                >
-                  <mat-icon class="text-danger">delete</mat-icon>
-                  <span>Delete</span>
-                </button>
-              </mat-menu>
-            </td>
-          </tr>
-        </ng-container>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="viewCategory(category)">
+                    <mat-icon class="text-success">visibility</mat-icon>
+                    <span class="text-success">View</span>
+                  </button>
+                  <button
+                    mat-menu-item
+                    (click)="editCategory(category.id, category.name)"
+                  >
+                    <mat-icon class="text-success">edit_note</mat-icon>
+                    <span class="text-success">Edit</span>
+                  </button>
+                  <button
+                    class="text-danger"
+                    mat-menu-item
+                    (click)="deleteCategory(category.id)"
+                  >
+                    <mat-icon class="text-danger">delete</mat-icon>
+                    <span>Delete</span>
+                  </button>
+                </mat-menu>
+              </td>
+            </tr>
+          </ng-container></ng-container
+        >
       </tbody>
     </table>
     <mat-paginator
@@ -116,3 +118,8 @@
     </mat-paginator>
   </div>
 </section>
+<div *ngIf="loading" class="loader-container">
+  <mat-progress-spinner mode="indeterminate" color="primary" diameter="50">
+    <p class="loading-text">Loading data, please wait...</p>
+  </mat-progress-spinner>
+</div>

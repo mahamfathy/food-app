@@ -27,6 +27,7 @@ export class UsersComponent {
   searchPlaceholder: string = 'Abc';
   searchIcon: string = 'person';
   imagePath: string = 'https://upskilling-egypt.com:3006/';
+  loading: boolean = false;
   constructor(
     private _UserService: UserService,
     private _ToastrService: ToastrService,
@@ -51,6 +52,7 @@ export class UsersComponent {
     }
   }
   getUsers(): void {
+    this.loading = true;
     let tableParams = {
       pageSize: this.pageSize,
       pageNumber: this.pageNumber,
@@ -59,12 +61,16 @@ export class UsersComponent {
     };
     this._UserService.getAllUsers(tableParams).subscribe({
       next: (res) => {
+        this.loading = false;
+
         this.listData = res.data;
         this.tableRes = res;
         console.log(this.tableRes);
       },
       error: (err) => {
-        this._ToastrService.error('Failed to load categories', 'Error');
+        this.loading = false;
+
+        this._ToastrService.error('Failed to load users', 'Error');
       },
     });
   }

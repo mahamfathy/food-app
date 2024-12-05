@@ -1,4 +1,4 @@
-<section class="mt-5">
+<section *ngIf="!loading" class="mt-5">
   <div
     *ngIf="favResData.length > 0; else noData"
     class="container d-flex justify-content-evenly flex-wrap row-gap-4"
@@ -34,18 +34,15 @@
       </mat-card-footer>
     </mat-card>
   </div>
-  <mat-paginator
-    [length]="totalNumberOfRecords"
-    [pageSize]="pageSize"
-    [pageSizeOptions]="[5, 10, 20]"
-    (page)="handlePageEvent($event)"
-    [pageIndex]="pageNumber"
-  >
-  </mat-paginator>
 </section>
 <ng-template #noData>
   <div class="text-center p-0 pb-2 pt-5">
     <img src="assets/img/no-data.svg" alt="No Data" />
+    <p class="text-center p-3">No Data!</p>
   </div>
-  <p class="text-center p-3">No Data!</p>
 </ng-template>
+<div *ngIf="loading" class="loader-container">
+  <mat-progress-spinner mode="indeterminate" color="primary" diameter="50">
+    <p class="loading-text">Loading data, please wait...</p>
+  </mat-progress-spinner>
+</div>

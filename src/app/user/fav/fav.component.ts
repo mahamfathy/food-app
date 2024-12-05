@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
 import { FavService } from './services/fav.service';
 
@@ -12,10 +11,7 @@ export class FavComponent implements OnInit {
   imagePath: string = 'https://upskilling-egypt.com:3006/';
   favResData: any[] = [];
   tableRes: any;
-  pageSize: number = 5;
-  pageNumber: number = 1;
-  totalNumberOfRecords: number = 0;
-  totalNumberOfPages: number = 0;
+  loading: boolean = false;
   constructor(
     private _FavService: FavService,
     private _ToastrService: ToastrService
@@ -24,12 +20,13 @@ export class FavComponent implements OnInit {
     this.getFavRecipes();
   }
   getFavRecipes(): void {
+    this.loading = true;
     this._FavService.getAllfavRecipes().subscribe({
       next: (res) => {
+        this.loading = false;
+
         this.favResData = res.data;
         this.tableRes = res;
-        this.totalNumberOfRecords = res.totalNumberOfRecords;
-        this.totalNumberOfPages = res.totalNumberOfPages;
       },
     });
   }
@@ -51,13 +48,5 @@ export class FavComponent implements OnInit {
         });
       },
     });
-  }
-  handlePageEvent(e: PageEvent) {
-    // this.pageEvent = e;
-    // this.length = e.length;
-    this.pageSize = e.pageSize;
-    this.pageNumber = e.pageIndex;
-    this.getFavRecipes();
-    console.log(e);
   }
 }

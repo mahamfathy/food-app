@@ -21,6 +21,7 @@ export class CategoriesComponent {
   pageNumber: number = 1;
   pageEvent!: PageEvent;
   searchVal: string = '';
+  loading: boolean = false;
   constructor(
     private _CategoryService: CategoryService,
     private _ToastrService: ToastrService,
@@ -42,6 +43,7 @@ export class CategoriesComponent {
   }
 
   getCategories(): void {
+    this.loading = true;
     let tableParams = {
       pageSize: this.pageSize,
       pageNumber: this.pageNumber,
@@ -49,10 +51,12 @@ export class CategoriesComponent {
     };
     this._HelperService.getAllCategories(tableParams).subscribe({
       next: (res) => {
+        this.loading = false;
         this.listData = res.data;
         this.tableRes = res;
       },
       error: (err) => {
+        this.loading = false;
         this._ToastrService.error('Failed to load categories', 'Error');
       },
     });

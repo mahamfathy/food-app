@@ -4,11 +4,9 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ToastrService } from 'ngx-toastr';
 import { ICategory } from 'src/app/admin/categories/interfaces/ICategory';
-import { CategoryService } from 'src/app/admin/categories/services/category.service';
 import { ViewRecipeComponent } from 'src/app/admin/recipes/components/view-recipe/view-recipe.component';
 import { IRecipe } from 'src/app/admin/recipes/interfaces/IRecipe';
 import { ITag } from 'src/app/admin/recipes/interfaces/ITag';
-import { RecipeService } from 'src/app/admin/recipes/services/recipe.service';
 import { HelperService } from 'src/app/shared/services/helper.service';
 import { AddToFavComponent } from '../fav/components/add-to-fav/add-to-fav.component';
 import { FavService } from '../fav/services/fav.service';
@@ -19,6 +17,7 @@ import { FavService } from '../fav/services/fav.service';
   styleUrls: ['./user-recipes.component.scss'],
 })
 export class UserRecipesComponent {
+  loading:boolean= false
   name: string = '';
   listData: IRecipe[] = [];
   categoriesList: ICategory[] = [];
@@ -32,11 +31,8 @@ export class UserRecipesComponent {
   categoryId: number = 0;
   imagePath: string = 'https://upskilling-egypt.com:3006/';
   resMsg: string = '';
-  constructor(
-    private _RecipeService: RecipeService,
-    private _ToastrService: ToastrService,
+  constructor(    private _ToastrService: ToastrService,
     public dialog: MatDialog,
-    private _CategoryService: CategoryService,
     private _FavService: FavService,
     private snackBar: MatSnackBar,
     private _HelperService: HelperService
@@ -57,6 +53,7 @@ export class UserRecipesComponent {
   }
 
   getRecipes(): void {
+    this.loading=true
     let tableParams = {
       pageSize: this.pageSize,
       pageNumber: this.pageNumber,
@@ -66,6 +63,7 @@ export class UserRecipesComponent {
     };
     this._HelperService.getRecipes(tableParams).subscribe({
       next: (res) => {
+    this.loading=false
         this.listData = res.data.map((recipe: IRecipe) => ({
           ...recipe,
           tag: Array.isArray(recipe.tag) ? recipe.tag : [recipe.tag],
@@ -74,10 +72,10 @@ export class UserRecipesComponent {
             : [recipe.category],
         }));
         this.tableRes = res;
-        console.log(this.listData);
       },
       error: (err) => {
-        this._ToastrService.error('Failed to load categories', 'Error');
+    this.loading=false
+        this._ToastrService.error('Failed to load recipes', 'Error');
       },
     });
   }

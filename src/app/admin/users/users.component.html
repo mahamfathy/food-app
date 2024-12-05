@@ -94,57 +94,59 @@
             <td colspan="8" class="text-center p-3">No Data!</td>
           </tr>
         </ng-template>
-        <ng-container *ngIf="listData.length > 0; else noData">
-          <tr
-            *ngFor="let user of listData; let isEven = even"
-            [class]="isEven ? 'bg-white' : 'bg-light'"
-          >
-            <td>{{ user.userName }}</td>
-            <td>
-              <img
-                width="50px"
-                height="50px"
-                style="border-radius: 50%"
-                [src]="
-                  user.imagePath
-                    ? imagePath + user.imagePath
-                    : 'assets/img/default-avatar.avif'
-                "
-                alt="img"
-              />
-            </td>
-            <td class="text-truncate">
-              {{ user.email }}
-            </td>
-            <td>{{ user.phoneNumber }}</td>
-            <td>{{ user.country }}</td>
-            <td>{{ user.group.name }}</td>
-            <td>
-              <button
-                mat-icon-button
-                [matMenuTriggerFor]="menu"
-                aria-label="Example icon-button with a menu"
-              >
-                <mat-icon>more_horiz</mat-icon>
-              </button>
-              <mat-menu #menu="matMenu">
-                <button (click)="viewUser(user)" mat-menu-item>
-                  <mat-icon class="text-success">visibility</mat-icon>
-                  <span class="text-success">View</span>
-                </button>
-
+        <ng-container *ngIf="!loading">
+          <ng-container *ngIf="listData.length > 0; else noData">
+            <tr
+              *ngFor="let user of listData; let isEven = even"
+              [class]="isEven ? 'bg-white' : 'bg-light'"
+            >
+              <td>{{ user.userName }}</td>
+              <td>
+                <img
+                  width="50px"
+                  height="50px"
+                  style="border-radius: 50%"
+                  [src]="
+                    user.imagePath
+                      ? imagePath + user.imagePath
+                      : 'assets/img/default-avatar.avif'
+                  "
+                  alt="img"
+                />
+              </td>
+              <td class="text-truncate">
+                {{ user.email }}
+              </td>
+              <td>{{ user.phoneNumber }}</td>
+              <td>{{ user.country }}</td>
+              <td>{{ user.group.name }}</td>
+              <td>
                 <button
-                  (click)="deleteUser(user)"
-                  class="text-danger"
-                  mat-menu-item
+                  mat-icon-button
+                  [matMenuTriggerFor]="menu"
+                  aria-label="Example icon-button with a menu"
                 >
-                  <mat-icon class="text-danger">delete</mat-icon>
-                  <span>Delete</span>
+                  <mat-icon>more_horiz</mat-icon>
                 </button>
-              </mat-menu>
-            </td>
-          </tr>
-        </ng-container>
+                <mat-menu #menu="matMenu">
+                  <button (click)="viewUser(user)" mat-menu-item>
+                    <mat-icon class="text-success">visibility</mat-icon>
+                    <span class="text-success">View</span>
+                  </button>
+
+                  <button
+                    (click)="deleteUser(user)"
+                    class="text-danger"
+                    mat-menu-item
+                  >
+                    <mat-icon class="text-danger">delete</mat-icon>
+                    <span>Delete</span>
+                  </button>
+                </mat-menu>
+              </td>
+            </tr>
+          </ng-container></ng-container
+        >
       </tbody>
     </table>
     <mat-paginator
@@ -158,3 +160,8 @@
     </mat-paginator>
   </div>
 </section>
+<div *ngIf="loading" class="loader-container">
+  <mat-progress-spinner mode="indeterminate" color="primary" diameter="50">
+    <p class="loading-text">Loading data, please wait...</p>
+  </mat-progress-spinner>
+</div>

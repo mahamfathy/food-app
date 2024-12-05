@@ -29,7 +29,7 @@ export class RecipesComponent {
   tagId: number = 0;
   categoryId: number = 0;
   imagePath: string = 'https://upskilling-egypt.com:3006/';
-
+  loading: boolean = false;
   constructor(
     private _RecipeService: RecipeService,
     private _ToastrService: ToastrService,
@@ -58,6 +58,7 @@ export class RecipesComponent {
   }
 
   getRecipes(): void {
+    this.loading = true;
     let tableParams = {
       pageSize: this.pageSize,
       pageNumber: this.pageNumber,
@@ -67,6 +68,7 @@ export class RecipesComponent {
     };
     this._HelperService.getRecipes(tableParams).subscribe({
       next: (res) => {
+        this.loading = false;
         this.listData = res.data.map((recipe: IRecipe) => ({
           ...recipe,
           tag: Array.isArray(recipe.tag) ? recipe.tag : [recipe.tag],
@@ -75,10 +77,10 @@ export class RecipesComponent {
             : [recipe.category],
         }));
         this.tableRes = res;
-        console.log(this.listData);
       },
       error: (err) => {
-        this._ToastrService.error('Failed to load categories', 'Error');
+        this.loading = false;
+        this._ToastrService.error('Failed to load recipes', 'Error');
       },
     });
   }
@@ -99,28 +101,6 @@ export class RecipesComponent {
   }
 
   editRecipe(id: number): void {
-    // editRecipe(id: number, recipeName: string): void {
-    // const dialogRef = this.dialog.open(AddEditRecipeComponent, {
-    //   data: { name: recipeName, isReadOnly: false },
-    // });
-
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   if (result) {
-    //     this._RecipeService.updateRecipe(id, result.name).subscribe({
-    //       next: () => {},
-    //       error: () => {
-    //         this._ToastrService.error('Failed to update recipe', 'Error');
-    //       },
-    //       complete: () => {
-    //         this._ToastrService.success(
-    //           `Recipe "${result.name}" updated successfully!`,
-    //           'Success'
-    //         );
-    //         this.getRecipes();
-    //       },
-    //     });
-    //   }
-    // });
     this._Router.navigate([`/dashboard/admin/recipes/edit/${id}`]);
   }
   viewRecipes(recipe: IRecipe): void {
@@ -128,7 +108,7 @@ export class RecipesComponent {
       next: (res) => {},
       error: () => {},
       complete: () => {
-        const dialogRef = this.dialog.open(ViewRecipeComponent, {
+        this.dialog.open(ViewRecipeComponent, {
           data: {
             name: recipe.name,
             id: recipe.id,
