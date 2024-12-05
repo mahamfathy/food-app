@@ -1,55 +1,13 @@
-@import "../../../assets/sass/components/animated-box";
+// @import "../../../assets/sass/components/animated-box";
+@import "../../../assets/sass/abstract/variables";
+@import "../../../assets/sass/base/utilities";
+@import "../../../assets/sass/base/typography";
+@import "../../../assets/sass/components/button";
+@import "../../../assets/sass/base/animations";
 @import "../../../assets/sass/components/table";
+@import "../../../assets/sass/components/box";
 
 section {
-  .first {
-    height: 13rem;
-    .text-containter {
-      h1 {
-        span {
-          font-size: 40px;
-          font-weight: lighter !important;
-          color: $color-white;
-          text-decoration: none;
-        }
-      }
-      p {
-        width: 95%;
-      }
-    }
-    .image-container {
-      top: 8%;
-      right: 3%;
-    }
-  }
-  .circles {
-    height: 15%;
-
-    .img2 {
-      top: 32%;
-      left: 5.5rem;
-    }
-    .img3 {
-      left: 52%;
-    }
-    .img4 {
-      bottom: 4.5rem;
-      left: 26%;
-    }
-    .img5 {
-      right: 30%;
-      bottom: 25%;
-      transform: unset;
-    }
-    .img8 {
-      top: 27%;
-      left: 47%;
-    }
-    .img9 {
-      top: -45px;
-      left: 26%;
-    }
-  }
   .second {
     .text-containter {
       font-family: "Poppins", sans-serif;

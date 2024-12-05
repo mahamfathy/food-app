@@ -1,0 +1,32 @@
+.first {
+  height: 13rem;
+  background-image: url("../../../assets/img/header-bg.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  .text-containter {
+    color: $color-white;
+    font-family: Roboto;
+    z-index: 10;
+    h1 {
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 46.88px;
+      span {
+        font-size: 40px;
+        font-weight: lighter !important;
+        color: $color-white;
+        text-decoration: none;
+      }
+    }
+    p {
+      width: 95%;
+    }
+  }
+  .image-container {
+    position: absolute;
+    animation: float 3s infinite ease-in-out;
+    top: 50%;
+    right: 6%;
+    z-index: 10;
+  }
+}

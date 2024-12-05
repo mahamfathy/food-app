@@ -13,7 +13,6 @@ export class ViewUserComponent {
     @Inject(MAT_DIALOG_DATA)
     public data: IUser
   ) {
-    console.log('Dialog data:', data);
     if (this.data.imagePath) {
       this.data.imagePath =
         'https://upskilling-egypt.com:3006/' + this.data.imagePath;

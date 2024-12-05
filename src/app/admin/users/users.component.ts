@@ -78,8 +78,9 @@ export class UsersComponent {
   }
 
   viewUser(user: IUser): void {
+    const userCopy = JSON.parse(JSON.stringify(user));
     const dialogRef = this.dialog.open(ViewUserComponent, {
-      data: user,
+      data: userCopy,
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log(result);
@@ -101,11 +102,11 @@ export class UsersComponent {
         this._UserService.deleteUsers(user.id).subscribe({
           next: () => {},
           error: () => {
-            this._ToastrService.error('Failed to Delete category', 'Error');
+            this._ToastrService.error('Failed to delete user', 'Error');
           },
           complete: () => {
             this._ToastrService.success(
-              `Category has been deleted successfully!`,
+              `${user.userName} has been deleted successfully!`,
               'Success'
             );
             this.getUsers();
