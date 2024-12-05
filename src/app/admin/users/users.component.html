@@ -36,35 +36,41 @@
     </div>
   </div>
 
-  <div class="third">
-    <div class="my-3 w-100 mx-auto">
-      <mat-form-field class="example-full-width me-2">
-        <mat-label>Search by name</mat-label>
-        <input
-          [(ngModel)]="searchVal"
-          (keydown.enter)="getUsers()"
-          matInput
-          placeholder="abc"
-          name="search"
-        />
-      </mat-form-field>
-      <mat-form-field class="me-2">
-        <mat-label>Role</mat-label>
-        <mat-select [(ngModel)]="roleId" (selectionChange)="getUsers()">
-          <mat-option [value]="roleId">All</mat-option>
-          <mat-option [value]="1">Admin</mat-option>
-          <mat-option [value]="2">User</mat-option>
-        </mat-select>
-      </mat-form-field>
+  <div class="row third">
+    <div class="my-3 mx-auto d-flex column-gap-2">
+      <div class="col-md-2">
+        <mat-form-field class="w-100">
+          <mat-label>Search by</mat-label>
+          <mat-select (selectionChange)="getUsers()">
+            <mat-option [value]="name">{{ name }}</mat-option>
+            <mat-option [value]="email">{{ email }}</mat-option>
+            <mat-option [value]="country">{{ country }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field class="w-100 example-full-width">
+          <mat-label>Search by name</mat-label>
+          <input
+            [(ngModel)]="searchVal"
+            (keydown.enter)="getUsers()"
+            matInput
+            placeholder="abc"
+            name="search"
+          />
+        </mat-form-field>
+      </div>
 
-      <mat-form-field>
-        <mat-label>Search by</mat-label>
-        <mat-select>
-          <mat-option value="All">User name</mat-option>
-          <mat-option value="Admin">Email</mat-option>
-          <mat-option value="User">Country</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div class="col-md-2">
+        <mat-form-field class="w-100">
+          <mat-label>Role</mat-label>
+          <mat-select [(ngModel)]="roleId" (selectionChange)="getUsers()">
+            <mat-option [value]="roleId">All</mat-option>
+            <mat-option [value]="1">Super admin</mat-option>
+            <mat-option [value]="2">User System</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </div>
     <table class="table">
       <thead>

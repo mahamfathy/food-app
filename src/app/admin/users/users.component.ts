@@ -23,6 +23,7 @@ export class UsersComponent {
   email: string = '';
   country: string = '';
   roleId: number[] = [1, 2];
+  searchByList: string[] = ['userName', 'email', 'country'];
   imagePath: string = 'https://upskilling-egypt.com:3006/';
   constructor(
     private _UserService: UserService,
@@ -32,16 +33,6 @@ export class UsersComponent {
   ngOnInit(): void {
     this.getUsers();
   }
-  // openDialog(): void {
-  //   const dialogRef = this.dialog.open(AddEditCategoryComponent, {
-  //     data: { name: '' },
-  //   });
-  //   dialogRef.afterClosed().subscribe((result) => {
-  //     if (result) {
-  //       this.addCategory(result);
-  //     }
-  //   });
-  // }
 
   getUsers(): void {
     let tableParams = {
@@ -50,7 +41,7 @@ export class UsersComponent {
       userName: this.searchVal,
       email: this.email,
       country: this.country,
-      roleId: this.roleId,
+      groups: this.roleId,
     };
     this._UserService.getAllUsers(tableParams).subscribe({
       next: (res) => {
@@ -93,13 +84,24 @@ export class UsersComponent {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log(result);
-        // this._ToastrService.success(
-        //   `Category has been deleted successfully!`,
-        //   'Success'
-        // );
-        // this.getUsers();
+        this._UserService.deleteUsers(user.id).subscribe({
+          next: () => {},
+          error: () => {
+            this._ToastrService.error('Failed to Delete category', 'Error');
+          },
+          complete: () => {
+            this._ToastrService.success(
+              `Category has been deleted successfully!`,
+              'Success'
+            );
+            this.getUsers();
+          },
+        });
       }
     });
+  }
+  clearFilter(): void {
+    this.searchVal = '';
+    this.getUsers();
   }
 }
