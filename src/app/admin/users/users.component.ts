@@ -13,7 +13,6 @@ import { UserService } from './services/user.service';
   styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent {
-  name: string = '';
   listData: IUser[] = [];
   tableRes: any;
   pageSize: number = 10;
@@ -23,7 +22,9 @@ export class UsersComponent {
   email: string = '';
   country: string = '';
   roleId: number[] = [1, 2];
-  searchByList: string[] = ['userName', 'email', 'country'];
+  searchBy: string = 'userName';
+  searchPlaceholder: string = 'Search by name';
+  searchIcon: string = '';
   imagePath: string = 'https://upskilling-egypt.com:3006/';
   constructor(
     private _UserService: UserService,
@@ -33,14 +34,23 @@ export class UsersComponent {
   ngOnInit(): void {
     this.getUsers();
   }
-
+  updateSearchPlaceholder(): void {
+    if (this.searchBy === 'userName') {
+      this.searchPlaceholder = 'Search by name';
+      this.searchIcon = 'person';
+    } else if (this.searchBy === 'email') {
+      this.searchPlaceholder = 'Search by email';
+      this.searchIcon = 'email';
+    } else if (this.searchBy === 'country') {
+      this.searchPlaceholder = 'Search by country';
+      this.searchIcon = 'public';
+    }
+  }
   getUsers(): void {
     let tableParams = {
       pageSize: this.pageSize,
       pageNumber: this.pageNumber,
-      userName: this.searchVal,
-      email: this.email,
-      country: this.country,
+      [this.searchBy]: this.searchVal,
       groups: this.roleId,
     };
     this._UserService.getAllUsers(tableParams).subscribe({
@@ -102,6 +112,10 @@ export class UsersComponent {
   }
   clearFilter(): void {
     this.searchVal = '';
+    this.searchBy = 'userName';
+    this.searchPlaceholder = 'Search by name';
+    this.searchIcon = 'person';
+    this.roleId = [1, 2];
     this.getUsers();
   }
 }

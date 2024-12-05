@@ -41,16 +41,20 @@
       <div class="col-md-2">
         <mat-form-field class="w-100">
           <mat-label>Search by</mat-label>
-          <mat-select (selectionChange)="getUsers()">
-            <mat-option [value]="name">{{ name }}</mat-option>
-            <mat-option [value]="email">{{ email }}</mat-option>
-            <mat-option [value]="country">{{ country }}</mat-option>
+          <mat-select
+            [(ngModel)]="searchBy"
+            (selectionChange)="updateSearchPlaceholder()"
+          >
+            <mat-option value="userName">Name </mat-option>
+            <mat-option value="email">Email </mat-option>
+            <mat-option value="country">Country </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
       <div class="col-md-4">
         <mat-form-field class="w-100 example-full-width">
-          <mat-label>Search by name</mat-label>
+          <mat-icon matPrefix>{{ searchIcon }}</mat-icon>
+          <mat-label>{{ searchPlaceholder }}</mat-label>
           <input
             [(ngModel)]="searchVal"
             (keydown.enter)="getUsers()"
@@ -70,6 +74,11 @@
             <mat-option [value]="2">User System</mat-option>
           </mat-select>
         </mat-form-field>
+      </div>
+      <div class="col-md-1">
+        <button class="w-100 btn btn-outline-secondary" (click)="clearFilter()">
+          Clear filter
+        </button>
       </div>
     </div>
     <table class="table">
