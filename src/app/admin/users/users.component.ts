@@ -23,8 +23,9 @@ export class UsersComponent {
   country: string = '';
   roleId: number[] = [1, 2];
   searchBy: string = 'userName';
-  searchPlaceholder: string = 'Search by name';
-  searchIcon: string = '';
+  searchLabel: string = 'Search by name';
+  searchPlaceholder: string = 'Abc';
+  searchIcon: string = 'person';
   imagePath: string = 'https://upskilling-egypt.com:3006/';
   constructor(
     private _UserService: UserService,
@@ -36,14 +37,17 @@ export class UsersComponent {
   }
   updateSearchPlaceholder(): void {
     if (this.searchBy === 'userName') {
-      this.searchPlaceholder = 'Search by name';
+      this.searchLabel = 'Search by name';
       this.searchIcon = 'person';
+      this.searchPlaceholder = 'Abc';
     } else if (this.searchBy === 'email') {
-      this.searchPlaceholder = 'Search by email';
+      this.searchLabel = 'Search by email';
       this.searchIcon = 'email';
+      this.searchPlaceholder = 'Abc@gmail.com';
     } else if (this.searchBy === 'country') {
-      this.searchPlaceholder = 'Search by country';
+      this.searchLabel = 'Search by country';
       this.searchIcon = 'public';
+      this.searchPlaceholder = 'Egypt';
     }
   }
   getUsers(): void {
@@ -75,7 +79,7 @@ export class UsersComponent {
 
   viewUser(user: IUser): void {
     const dialogRef = this.dialog.open(ViewUserComponent, {
-      data: { user, role: this.roleId },
+      data: user,
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log(result);
@@ -113,8 +117,9 @@ export class UsersComponent {
   clearFilter(): void {
     this.searchVal = '';
     this.searchBy = 'userName';
-    this.searchPlaceholder = 'Search by name';
+    this.searchLabel = 'Search by name';
     this.searchIcon = 'person';
+    this.searchPlaceholder = 'Abc';
     this.roleId = [1, 2];
     this.getUsers();
   }

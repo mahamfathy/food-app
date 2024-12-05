@@ -54,12 +54,12 @@
       <div class="col-md-4">
         <mat-form-field class="w-100 example-full-width">
           <mat-icon matPrefix>{{ searchIcon }}</mat-icon>
-          <mat-label>{{ searchPlaceholder }}</mat-label>
+          <mat-label>{{ searchLabel }}</mat-label>
           <input
             [(ngModel)]="searchVal"
             (keydown.enter)="getUsers()"
             matInput
-            placeholder="abc"
+            [placeholder]="searchPlaceholder"
             name="search"
           />
         </mat-form-field>

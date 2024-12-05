@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminComponent } from './admin.component';
+import { HomeComponent } from '../shared/home/home.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AdminComponent,
+    // component: AdminComponent,
+    redirectTo: 'home',
+    pathMatch: 'full',
   },
+  { path: 'home', component: HomeComponent },
   {
     path: 'categories',
     loadChildren: () =>
@@ -17,7 +20,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./recipes/recipes.module').then((m) => m.RecipesModule),
   },
-  { path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
+  {
+    path: 'users',
+    loadChildren: () =>
+      import('./users/users.module').then((m) => m.UsersModule),
+  },
 ];
 
 @NgModule({

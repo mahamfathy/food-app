@@ -1,5 +1,5 @@
-<div class="card mb-3" style="width: 33rem">
-  <div class="row g-0">
+<div class="card" style="width: 33rem">
+  <div class="row p-2 g-0 align-items-center">
     <div class="col-md-4">
       <img
         [src]="data.imagePath"
@@ -9,10 +9,19 @@
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">{{ data.userName }}</h5>
-        <p class="card-text">User email: {{ data.email }}</p>
+        <h4 class="card-title">{{ data.userName }}</h4>
+        <p class="card-text">User name: {{ data.userName }}</p>
+        <p class="card-text">Email: {{ data.email }}</p>
         <p class="card-text">Phone: {{ data.phoneNumber }}</p>
         <p class="card-text">Country: {{ data.country }}</p>
+        <p class="card-text">
+          Creation date: {{ data.creationDate | date : "dd/MM/yyyy HH:mm a" }}
+        </p>
+        <p class="card-text">
+          Modification date:
+          {{ data.modificationDate | date : "dd/MM/yyyy HH:mm a" }}
+        </p>
+
         <button class="btn btn-secondary" (click)="onNoClick()">Close</button>
       </div>
     </div>

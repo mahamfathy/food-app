@@ -1,14 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserComponent } from './user.component';
+import { HomeComponent } from '../shared/home/home.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: UserComponent,
+    // component: UserComponent,
+    redirectTo: 'home',
+    pathMatch: 'full',
   },
-  { path: 'user-recipes', loadChildren: () => import('./user-recipes/user-recipes.module').then(m => m.UserRecipesModule) },
-  { path: 'fav', loadChildren: () => import('./fav/fav.module').then(m => m.FavModule) },
+  { path: 'home', component: HomeComponent },
+  {
+    path: 'user-recipes',
+    loadChildren: () =>
+      import('./user-recipes/user-recipes.module').then(
+        (m) => m.UserRecipesModule
+      ),
+  },
+  {
+    path: 'fav',
+    loadChildren: () => import('./fav/fav.module').then((m) => m.FavModule),
+  },
 ];
 
 @NgModule({

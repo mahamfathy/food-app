@@ -10,7 +10,8 @@ import { IUser } from '../../interfaces/IUser';
 export class ViewUserComponent {
   constructor(
     public dialogRef: MatDialogRef<ViewUserComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: IUser
+    @Inject(MAT_DIALOG_DATA)
+    public data: IUser
   ) {
     console.log('Dialog data:', data);
     if (this.data.imagePath) {
