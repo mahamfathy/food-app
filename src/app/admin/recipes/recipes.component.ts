@@ -4,6 +4,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DeleteItemComponent } from 'src/app/shared/delete-item/delete-item.component';
+import { HelperService } from 'src/app/shared/services/helper.service';
 import { ICategory } from '../categories/interfaces/ICategory';
 import { CategoryService } from '../categories/services/category.service';
 import { ViewRecipeComponent } from './components/view-recipe/view-recipe.component';
@@ -34,7 +35,8 @@ export class RecipesComponent {
     private _ToastrService: ToastrService,
     public dialog: MatDialog,
     private _Router: Router,
-    private _CategoryService: CategoryService
+    private _CategoryService: CategoryService,
+    private _HelperService: HelperService
   ) {}
   ngOnInit(): void {
     this.getRecipes();
@@ -63,7 +65,7 @@ export class RecipesComponent {
       tagId: this.tagId,
       categoryId: this.categoryId,
     };
-    this._RecipeService.getRecipes(tableParams).subscribe({
+    this._HelperService.getRecipes(tableParams).subscribe({
       next: (res) => {
         this.listData = res.data.map((recipe: IRecipe) => ({
           ...recipe,
@@ -81,7 +83,7 @@ export class RecipesComponent {
     });
   }
   getTag(): void {
-    this._RecipeService.getAllTags().subscribe({
+    this._HelperService.getAllTags().subscribe({
       next: (res) => {
         this.tagList = res;
       },
@@ -122,7 +124,7 @@ export class RecipesComponent {
     this._Router.navigate([`/dashboard/admin/recipes/edit/${id}`]);
   }
   viewRecipes(recipe: IRecipe): void {
-    this._RecipeService.getRecipeById(recipe.id).subscribe({
+    this._HelperService.getRecipeById(recipe.id).subscribe({
       next: (res) => {},
       error: () => {},
       complete: () => {
@@ -169,7 +171,7 @@ export class RecipesComponent {
       pageSize: 2000,
       pageNumber: 1,
     };
-    this._CategoryService.getAllCategories(tableParams).subscribe({
+    this._HelperService.getAllCategories(tableParams).subscribe({
       next: (res) => {
         this.categoriesList = res.data;
       },

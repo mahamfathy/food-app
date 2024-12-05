@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ICategory } from 'src/app/admin/categories/interfaces/ICategory';
 import { CategoryService } from 'src/app/admin/categories/services/category.service';
+import { HelperService } from 'src/app/shared/services/helper.service';
 import { IRecipe } from '../../interfaces/IRecipe';
 import { ITag } from '../../interfaces/ITag';
 import { RecipeService } from '../../services/recipe.service';
@@ -37,7 +38,8 @@ export class AddEditRecipeComponent implements OnInit {
     private _RecipeService: RecipeService,
     private _ToastrService: ToastrService,
     private _ActivatedRoute: ActivatedRoute,
-    private _Router: Router
+    private _Router: Router,
+    private _HelperService: HelperService
   ) {}
   ngOnInit(): void {
     this.getAllCategories();
@@ -45,7 +47,7 @@ export class AddEditRecipeComponent implements OnInit {
     this.recipeId = Number(this._ActivatedRoute.snapshot.paramMap.get('id'));
 
     if (this.recipeId) {
-      this._RecipeService.getRecipeById(this.recipeId).subscribe((res) => {
+      this._HelperService.getRecipeById(this.recipeId).subscribe((res) => {
         this.recipeForm.patchValue({
           name: res.name,
           description: res.description,
@@ -64,7 +66,7 @@ export class AddEditRecipeComponent implements OnInit {
       tagId: this.recipeForm.get('tagId')?.value,
       categoriesIds: this.recipeForm.get('categoriesIds')?.value,
     };
-    this._RecipeService.getRecipes(tableParams).subscribe({
+    this._HelperService.getRecipes(tableParams).subscribe({
       next: (res) => {
         this.listData = res.data;
         // this.tableRes = res;
@@ -76,7 +78,7 @@ export class AddEditRecipeComponent implements OnInit {
     });
   }
   getTag(): void {
-    this._RecipeService.getAllTags().subscribe({
+    this._HelperService.getAllTags().subscribe({
       next: (res) => {
         this.listTags = res;
       },
@@ -135,7 +137,7 @@ export class AddEditRecipeComponent implements OnInit {
       pageSize: this.pageSize,
       pageNumber: this.pageNumber,
     };
-    this._CategoryService.getAllCategories(tableParams).subscribe({
+    this._HelperService.getAllCategories(tableParams).subscribe({
       next: (res) => {
         this.listCategories = res.data;
       },
@@ -150,7 +152,7 @@ export class AddEditRecipeComponent implements OnInit {
     this.files.splice(this.files.indexOf(event), 1);
   }
   getRecipeById(id: number): void {
-    this._RecipeService.getRecipeById(id).subscribe({
+    this._HelperService.getRecipeById(id).subscribe({
       next: (res) => {
         this.recipeForm.patchValue({
           name: res.name,

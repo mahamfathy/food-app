@@ -9,6 +9,7 @@ import { ViewRecipeComponent } from 'src/app/admin/recipes/components/view-recip
 import { IRecipe } from 'src/app/admin/recipes/interfaces/IRecipe';
 import { ITag } from 'src/app/admin/recipes/interfaces/ITag';
 import { RecipeService } from 'src/app/admin/recipes/services/recipe.service';
+import { HelperService } from 'src/app/shared/services/helper.service';
 import { AddToFavComponent } from '../fav/components/add-to-fav/add-to-fav.component';
 import { FavService } from '../fav/services/fav.service';
 
@@ -37,7 +38,8 @@ export class UserRecipesComponent {
     public dialog: MatDialog,
     private _CategoryService: CategoryService,
     private _FavService: FavService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private _HelperService: HelperService
   ) {}
   ngOnInit(): void {
     this.getRecipes();
@@ -62,7 +64,7 @@ export class UserRecipesComponent {
       tagId: this.tagId,
       categoryId: this.categoryId,
     };
-    this._RecipeService.getRecipes(tableParams).subscribe({
+    this._HelperService.getRecipes(tableParams).subscribe({
       next: (res) => {
         this.listData = res.data.map((recipe: IRecipe) => ({
           ...recipe,
@@ -80,7 +82,7 @@ export class UserRecipesComponent {
     });
   }
   getTag(): void {
-    this._RecipeService.getAllTags().subscribe({
+    this._HelperService.getAllTags().subscribe({
       next: (res) => {
         this.tagList = res;
         console.log(this.tagList);
@@ -97,7 +99,7 @@ export class UserRecipesComponent {
   }
 
   viewRecipes(recipe: IRecipe): void {
-    this._RecipeService.getRecipeById(recipe.id).subscribe({
+    this._HelperService.getRecipeById(recipe.id).subscribe({
       next: (res) => {},
       error: () => {},
       complete: () => {
@@ -125,7 +127,7 @@ export class UserRecipesComponent {
       pageSize: 2000,
       pageNumber: 1,
     };
-    this._CategoryService.getAllCategories(tableParams).subscribe({
+    this._HelperService.getAllCategories(tableParams).subscribe({
       next: (res) => {
         this.categoriesList = res.data;
       },

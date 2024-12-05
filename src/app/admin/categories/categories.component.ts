@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
+import { HelperService } from 'src/app/shared/services/helper.service';
 import { AddEditCategoryComponent } from './components/add-edit-category/add-edit-category.component';
 import { DeleteCategoryComponent } from './components/delete-category/delete-category.component';
 import { ICategory } from './interfaces/ICategory';
@@ -23,7 +24,8 @@ export class CategoriesComponent {
   constructor(
     private _CategoryService: CategoryService,
     private _ToastrService: ToastrService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _HelperService: HelperService
   ) {}
   ngOnInit(): void {
     this.getCategories();
@@ -45,7 +47,7 @@ export class CategoriesComponent {
       pageNumber: this.pageNumber,
       name: this.searchVal,
     };
-    this._CategoryService.getAllCategories(tableParams).subscribe({
+    this._HelperService.getAllCategories(tableParams).subscribe({
       next: (res) => {
         this.listData = res.data;
         this.tableRes = res;
