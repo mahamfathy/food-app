@@ -7,10 +7,10 @@ import { Observable } from 'rxjs';
 })
 export class CategoryService {
   constructor(private _HttpClient: HttpClient) {}
-  getAllCategories(data: any): Observable<any> {
-    // let myParams = { pageSize: 10, pageNumber: 1 };
-    return this._HttpClient.get('Category', { params: data });
-  }
+  // getAllCategories(data: any): Observable<any> {
+  //   // let myParams = { pageSize: 10, pageNumber: 1 };
+  //   return this._HttpClient.get('Category', { params: data });
+  // }
 
   onAddCategory(data: any): Observable<any> {
     return this._HttpClient.post('Category', data);
