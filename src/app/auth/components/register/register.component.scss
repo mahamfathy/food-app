@@ -6,7 +6,15 @@
 @import "../../../../assets/sass/components/form";
 .container-fluid {
   height: 100%;
-  @include bd-overlay(false);
+  .overlay {
+    background: linear-gradient(
+        51.22deg,
+        rgba(47, 140, 96, 0.63) -22.39%,
+        rgba(0, 0, 0, 0.6237) 61.76%
+      ),
+      url("../../../../assets/img/login.svg") center center / cover no-repeat;
+  }
+  // @include bd-overlay(false);
   .col-md-9 {
     height: 84%;
     background-color: $color-white;

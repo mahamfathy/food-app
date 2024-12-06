@@ -65,7 +65,6 @@ export class UsersComponent {
 
         this.listData = res.data;
         this.tableRes = res;
-        console.log(this.tableRes);
       },
       error: (err) => {
         this.loading = false;
@@ -80,7 +79,6 @@ export class UsersComponent {
     this.pageSize = e.pageSize;
     this.pageNumber = e.pageIndex;
     this.getUsers();
-    console.log(e);
   }
 
   viewUser(user: IUser): void {
@@ -88,13 +86,9 @@ export class UsersComponent {
     const dialogRef = this.dialog.open(ViewUserComponent, {
       data: userCopy,
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
-    });
+
     this._UserService.getUsersById(user.id).subscribe({
-      next: (res) => {
-        console.log(res);
-      },
+      next: (res) => {},
       error: () => {},
       complete: () => {},
     });

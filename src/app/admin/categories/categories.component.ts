@@ -67,7 +67,6 @@ export class CategoriesComponent {
     this.pageSize = e.pageSize;
     this.pageNumber = e.pageIndex;
     this.getCategories();
-    console.log(e);
   }
   addCategory(data: any): void {
     this._CategoryService.onAddCategory(data).subscribe({
@@ -144,13 +143,5 @@ export class CategoriesComponent {
         });
       }
     });
-    // this._CategoryService.deleteCategory(id).subscribe({
-    //   next: (res) => {},
-    //   error: () => {},
-    //   complete: () => {
-    //     this._ToastrService.success('Category deleted successfully', 'Success');
-    //     this.getCategories();
-    //   },
-    // });
   }
 }

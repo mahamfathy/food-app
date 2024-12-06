@@ -17,7 +17,7 @@ import { FavService } from '../fav/services/fav.service';
   styleUrls: ['./user-recipes.component.scss'],
 })
 export class UserRecipesComponent {
-  loading:boolean= false
+  loading: boolean = false;
   name: string = '';
   listData: IRecipe[] = [];
   categoriesList: ICategory[] = [];
@@ -31,7 +31,8 @@ export class UserRecipesComponent {
   categoryId: number = 0;
   imagePath: string = 'https://upskilling-egypt.com:3006/';
   resMsg: string = '';
-  constructor(    private _ToastrService: ToastrService,
+  constructor(
+    private _ToastrService: ToastrService,
     public dialog: MatDialog,
     private _FavService: FavService,
     private snackBar: MatSnackBar,
@@ -53,7 +54,7 @@ export class UserRecipesComponent {
   }
 
   getRecipes(): void {
-    this.loading=true
+    this.loading = true;
     let tableParams = {
       pageSize: this.pageSize,
       pageNumber: this.pageNumber,
@@ -63,7 +64,7 @@ export class UserRecipesComponent {
     };
     this._HelperService.getRecipes(tableParams).subscribe({
       next: (res) => {
-    this.loading=false
+        this.loading = false;
         this.listData = res.data.map((recipe: IRecipe) => ({
           ...recipe,
           tag: Array.isArray(recipe.tag) ? recipe.tag : [recipe.tag],
@@ -74,7 +75,7 @@ export class UserRecipesComponent {
         this.tableRes = res;
       },
       error: (err) => {
-    this.loading=false
+        this.loading = false;
         this._ToastrService.error('Failed to load recipes', 'Error');
       },
     });
@@ -83,7 +84,6 @@ export class UserRecipesComponent {
     this._HelperService.getAllTags().subscribe({
       next: (res) => {
         this.tagList = res;
-        console.log(this.tagList);
       },
     });
   }
@@ -93,7 +93,6 @@ export class UserRecipesComponent {
     this.pageSize = e.pageSize;
     this.pageNumber = e.pageIndex;
     this.getRecipes();
-    console.log(e);
   }
 
   viewRecipes(recipe: IRecipe): void {

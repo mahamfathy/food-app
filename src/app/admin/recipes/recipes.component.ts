@@ -97,7 +97,6 @@ export class RecipesComponent {
     this.pageSize = e.pageSize;
     this.pageNumber = e.pageIndex;
     this.getRecipes();
-    console.log(e);
   }
 
   editRecipe(id: number): void {
