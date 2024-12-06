@@ -1,0 +1,32 @@
+@import "../abstract/variables";
+@import "../abstract/mixins";
+body {
+  font-family: "Inter", sans-serif !important;
+}
+.auth-header {
+  color: $primary-grey;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 30.26px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.auth-paragraph {
+  color: $secondary-grey;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  margin-bottom: 0.5rem;
+}
+.green-text {
+  color: $color-green1;
+  @include form-text;
+}
+.grey-text {
+  color: $dark-grey;
+  @include form-text;
+}

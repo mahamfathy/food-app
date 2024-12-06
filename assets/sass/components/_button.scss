@@ -1,0 +1,8 @@
+@import "../abstract/variables";
+.light-green-btn {
+  color: $color-white;
+  background-color: $color-green1;
+  border: none;
+  border-radius: 8px;
+  height: 2.5rem;
+}

@@ -1,0 +1,23 @@
+@import "../abstract/variables";
+.center-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.radius-16 {
+  border-radius: 16px;
+}
+.radius-8 {
+  border-radius: 8px;
+}
+.auth-padding {
+  padding: 2rem 1rem;
+}
+.error-text {
+  color: $error-text-color;
+  font-size: 12px;
+  margin-top: 5px;
+}
+.password {
+  padding-right: 3rem !important;
+}

@@ -1,0 +1,68 @@
+@import "../abstract/variables";
+.form {
+  width: 100%;
+  padding: 1.5rem 3.5rem;
+  flex-direction: column;
+  row-gap: 0.5rem;
+  .logo img {
+    height: 80px;
+  }
+  &__group {
+    .input-group {
+      margin: unset;
+      position: relative;
+      .input-group-text {
+        border: none;
+        img,
+        .fa-solid {
+          border-right: 1px solid $light-grey;
+          padding-right: 1rem;
+        }
+      }
+      input {
+        color: $color-black;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 18.75px;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+        background-color: #f8f9fa;
+        border: none;
+        padding: 1rem;
+        position: relative;
+        &::before {
+          content: "";
+          position: absolute;
+          height: 80%;
+          width: 1px;
+          background-color: $light-grey;
+          top: 10%;
+          left: 0;
+        }
+        &::placeholder {
+          color: $light-grey;
+        }
+        &:focus,
+        &:active {
+          box-shadow: 2px 1px 1px rgba(131, 145, 161, 0.7),
+            0px 1px 0px rgba(0, 0, 0, 0.3);
+          border-color: $light-grey;
+        }
+      }
+      .eye-icon {
+        position: absolute;
+        right: 2%;
+        width: 1.5rem;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        text-align: center;
+        cursor: pointer;
+      }
+    }
+    .error-text {
+      margin: unset;
+    }
+  }
+}

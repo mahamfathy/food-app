@@ -1,0 +1,33 @@
+@mixin bd-overlay($include-image: true) {
+  background: linear-gradient(
+      51.22deg,
+      rgba(47, 140, 96, 0.63) -22.39%,
+      rgba(0, 0, 0, 0.6237) 61.76%
+    )
+    #{if(
+      $include-image,
+      ', url("/assets/img/bg-login.png") center center / cover no-repeat',
+      ""
+    )};
+}
+@mixin form-text {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.36px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+// MEDIA QUERY MANAGER
+/*
+800 - 1200px:   Tablet landscape
+*/
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == tab-land {
+    @media (min-width: 768px) and (max-width: 991px) {
+      @content;
+    }
+  }
+}
