@@ -6,7 +6,7 @@
     )
     #{if(
       $include-image,
-      ', url("/assets/img/login.svg") center center / cover no-repeat',
+      ', url("../../../assets/img/login.svg") center center / cover no-repeat',
       ""
     )};
 }
