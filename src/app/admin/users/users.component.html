@@ -59,7 +59,7 @@
         <mat-form-field class="w-100">
           <mat-label>Role</mat-label>
           <mat-select [(ngModel)]="roleId" (selectionChange)="getUsers()">
-            <mat-option [value]="roleId">All</mat-option>
+            <mat-option [value]="[1, 2]">All</mat-option>
             <mat-option [value]="1">Super admin</mat-option>
             <mat-option [value]="2">User System</mat-option>
           </mat-select>

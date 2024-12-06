@@ -10,7 +10,14 @@
       <div
         class="info-wrapper pe-3 d-flex justify-content-end align-items-center column-gap-3"
       >
-        <span><img [src]="imagePath" alt="avatar" /></span>
+        <span
+          ><img
+            *ngIf="imageLoaded"
+            (load)="onImageLoad()"
+            (error)="onImageError()"
+            [src]="imagePath"
+            alt="avatar"
+        /></span>
         <span>{{ userName }}</span>
         <div class="dropdown">
           <a

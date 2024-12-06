@@ -11,7 +11,8 @@ import { ChangePasswordComponent } from '../change-password/change-password.comp
 })
 export class NavbarComponent implements OnInit {
   userName: string | null = '';
-  imagePath: string = 'assets/img/avatar.svg';
+  imagePath: string = '';
+  imageLoaded: boolean = false;
   constructor(
     private _AuthService: AuthService,
     private _UserService: UserService,
@@ -23,16 +24,24 @@ export class NavbarComponent implements OnInit {
     });
 
     this._UserService.imagePath$.subscribe((path) => {
-      this.imagePath = path
-        ? `http://upskilling-egypt.com:3006/${path}`
-        : 'assets/img/avatar.svg';
+      if (path) {
+        this.imagePath = `http://upskilling-egypt.com:3006/${path}`;
+      } else {
+        this.imageLoaded = true;
+      }
     });
-
     if (this._AuthService.getRole()) {
       this._UserService.fetchUser().subscribe({
         error: (err) => console.error('Failed to fetch user:', err),
       });
     }
+  }
+  onImageLoad(): void {
+    this.imageLoaded = true;
+  }
+  onImageError(): void {
+    this.imagePath = 'assets/img/default-avatar.avif';
+    this.imageLoaded = true;
   }
   logout(): void {
     this._AuthService.onLogout();

@@ -1,7 +1,7 @@
 <div class="card" style="width: 33rem">
   <div class="row p-2 g-0 align-items-center">
     <h3 class="mt-2 card-title text-center">#{{ data.id }}</h3>
-    <hr />
+    <hr class="m-0" />
     <div class="col-md-4 text-center">
       <img
         [src]="data.imagePath"
@@ -9,7 +9,7 @@
         alt="avatar"
       />
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 text-start">
       <div class="card-body">
         <p class="card-text">User name: {{ data.userName }}</p>
         <p class="card-text">Email: {{ data.email }}</p>

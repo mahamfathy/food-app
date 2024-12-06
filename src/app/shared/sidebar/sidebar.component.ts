@@ -18,7 +18,7 @@ export class SidebarComponent {
   @Output() toggleSidebar = new EventEmitter<boolean>();
   menu: IMenu[] = [
     {
-      link: '/dashboard/home',
+      link: this.isAdmin() ? '/dashboard/admin/home' : '/dashboard/user/home',
       text: 'Home',
       icon: 'fa-solid fa-lg fa-house',
       isActive: this.isAdmin() || this.isUser(),

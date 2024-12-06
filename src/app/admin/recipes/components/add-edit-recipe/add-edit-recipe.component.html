@@ -32,7 +32,7 @@
           <div>
             <mat-form-field class="me-2">
               <mat-label>Tag</mat-label>
-              <mat-select formControlName="tagId" multiple>
+              <mat-select formControlName="tagId">
                 <mat-option *ngFor="let tag of listTags" [value]="tag.id">{{
                   tag.name
                 }}</mat-option>
