@@ -1,4 +1,5 @@
 @import "../../../assets/sass/abstract/variables";
+@import "../../../assets/sass/abstract/mixins";
 aside {
   height: 100%;
   position: fixed;
@@ -17,8 +18,14 @@ aside {
 
   div {
     width: 100%;
+    @include respond(tab-land) {
+      margin: 1rem 0 !important;
+    }
     img {
       cursor: pointer;
+      @include respond(tab-land) {
+        width: 85% !important;
+      }
     }
     ul {
       list-style: none;
@@ -33,6 +40,9 @@ aside {
           font-size: 16px;
           font-weight: 500;
           cursor: pointer;
+          @include respond(tab-land) {
+            padding: 0 0.5rem !important;
+          }
           &.active,
           &:hover {
             color: $color-white;
@@ -56,7 +66,7 @@ aside {
     }
   }
   &.collapsed {
-    width: 100px;
+    width: 9%;
     div {
       img {
         width: 100px;
@@ -78,7 +88,7 @@ aside {
     }
   }
   &.expanded {
-    width: 230px;
+    width: 17%;
     div {
       width: 100%;
       img {
@@ -94,6 +104,11 @@ aside {
           }
         }
       }
+    }
+  }
+  .text {
+    @include respond(tab-land) {
+      font-size: 10px !important;
     }
   }
 }

@@ -43,15 +43,19 @@ section {
       thead,
       tbody {
         tr {
+          th {
+            text-align: center;
+          }
           th:last-child {
             text-align: end;
-            padding-right: 10rem;
+            // padding-right: 10rem;
           }
           td:last-child {
-            padding-right: 11.5rem;
+            // padding-right: 11.5rem;
             text-align: end;
           }
           td {
+            text-align: center;
             padding-left: 1.5rem;
           }
           .text-center {

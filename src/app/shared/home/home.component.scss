@@ -1,5 +1,29 @@
 @import "../../../assets/sass/components/animated-box";
+@import "../../../assets/sass/abstract/mixins";
 section {
+  .image-container {
+    @include respond(tab-land) {
+      width: 45% !important;
+      right: -10px !important;
+    }
+    img {
+      @include respond(tab-land) {
+        width: 85% !important;
+      }
+    }
+  }
+  .text-containter {
+    h1 {
+      @include respond(tab-land) {
+        font-size: 1.5rem !important;
+      }
+      span {
+        @include respond(tab-land) {
+          font-size: x-large !important;
+        }
+      }
+    }
+  }
   .second {
     background-color: $light-green;
     height: 9.5rem;
