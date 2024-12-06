@@ -6,7 +6,7 @@
     )
     #{if(
       $include-image,
-      ', url("/food-app/assets/img/login.png") center center / cover no-repeat',
+      ', url("/food-app/assets/img/login.svg") center center / cover no-repeat',
       ""
     )};
 }
