@@ -13,6 +13,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { ImageCropperComponent } from 'ngx-image-cropper';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { DeleteItemComponent } from './delete-item/delete-item.component';
 import { HomeComponent } from './home/home.component';
@@ -45,6 +46,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     ReactiveFormsModule,
     NgxDropzoneModule,
     MatProgressSpinnerModule,
+    ImageCropperComponent,
   ],
   exports: [
     NavbarComponent,
@@ -62,6 +64,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     MatSelectModule,
     NgxDropzoneModule,
     MatProgressSpinnerModule,
+    ImageCropperComponent,
   ],
 })
 export class SharedModule {}

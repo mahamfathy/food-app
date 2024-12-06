@@ -66,7 +66,6 @@ export class RegisterComponent {
     this._AuthService.onRegister(myData).subscribe({
       next: (res) => {
         this.resMessage = res.message;
-        const userName = data.value.userName;
         const email = data.value.email;
         this._LocalStorageService.setItem('email', email);
       },

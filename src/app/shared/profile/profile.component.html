@@ -10,10 +10,32 @@
           <img src="assets/img/logo.svg" alt="logo" />
         </div>
         <div class="text-container">
-          <h3 class="auth-header">Update profile</h3>
-          <p class="auth-paragraph">Update your data</p>
+          <h3 class="auth-header m-0">Update profile</h3>
+          <p class="auth-paragraph m-0">Update your data</p>
         </div>
-
+        <div class="row mb-2">
+          <div
+            class="col-md-12 d-flex text-center align-items-center justify-content-center"
+          >
+            <ngx-dropzone
+              class="dropzone-container"
+              (change)="onSelect($event)"
+            >
+              <ngx-dropzone-label
+                >Drop photo <i class="fa-solid fa-cloud-upload"></i
+              ></ngx-dropzone-label>
+              <ngx-dropzone-image-preview
+                ngProjectAs="ngx-dropzone-preview"
+                *ngFor="let f of files"
+                [file]="f"
+                class="dropzone-preview"
+                [removable]="true"
+                (removed)="onRemove(f)"
+              >
+              </ngx-dropzone-image-preview>
+            </ngx-dropzone>
+          </div>
+        </div>
         <div class="row mb-2">
           <div class="col-md-6">
             <div class="form__group">
@@ -139,28 +161,7 @@
           </div>
         </div>
         <div class="row my-2">
-          <div
-            class="col-md-6 d-flex text-center align-items-center justify-content-center"
-          >
-            <ngx-dropzone
-              class="dropzone-container"
-              (change)="onSelect($event)"
-            >
-              <ngx-dropzone-label
-                >Drop photo <i class="fa-solid fa-cloud-upload"></i
-              ></ngx-dropzone-label>
-              <ngx-dropzone-image-preview
-                ngProjectAs="ngx-dropzone-preview"
-                *ngFor="let f of files"
-                [file]="f"
-                class="dropzone-preview"
-                [removable]="true"
-                (removed)="onRemove(f)"
-              >
-              </ngx-dropzone-image-preview>
-            </ngx-dropzone>
-          </div>
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="form__group">
               <div class="input-group">
                 <span class="input-group-text"

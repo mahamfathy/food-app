@@ -15,20 +15,27 @@
           <p class="auth-paragraph">Welcome Back! Please enter your details</p>
         </div>
         <div class="row justify-content-center">
-          <ngx-dropzone class="dropzone-container" (change)="onSelect($event)">
-            <ngx-dropzone-label
-              >Drop photo <i class="fa-solid fa-cloud-upload"></i
-            ></ngx-dropzone-label>
-            <ngx-dropzone-image-preview
-              ngProjectAs="ngx-dropzone-preview"
-              *ngFor="let f of files"
-              [file]="f"
-              class="dropzone-preview"
-              [removable]="true"
-              (removed)="onRemove(f)"
+          <div
+            class="col-md-12 d-flex text-center align-items-center justify-content-center"
+          >
+            <ngx-dropzone
+              class="dropzone-container"
+              (change)="onSelect($event)"
             >
-            </ngx-dropzone-image-preview>
-          </ngx-dropzone>
+              <ngx-dropzone-label
+                >Drop photo <i class="fa-solid fa-cloud-upload"></i
+              ></ngx-dropzone-label>
+              <ngx-dropzone-image-preview
+                ngProjectAs="ngx-dropzone-preview"
+                *ngFor="let f of files"
+                [file]="f"
+                class="dropzone-preview"
+                [removable]="true"
+                (removed)="onRemove(f)"
+              >
+              </ngx-dropzone-image-preview>
+            </ngx-dropzone>
+          </div>
         </div>
         <div class="row">
           <div class="col-md-6">
